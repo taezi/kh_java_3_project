@@ -1,1 +1,3 @@
-nkjhhjhjhjhj
+25.07.07 진행한 일 - 메모장 수정중
+ 피그마 - 로그인/회원가입 UI 가안 작성
+ login.html - loginUI html과 css 만들어봄
