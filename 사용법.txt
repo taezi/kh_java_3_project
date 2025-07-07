@@ -1,0 +1,15 @@
+git config --global user.email "당신의이메일@example.com"
+git config --global user.name "당신의이름"
+(맨처음에 한번만하면됨)
+
+
+git clone https://github.com/taezi/kh_java_3_project.git
+cd kh_java_3_project
+git checkout -b feature/han_1
+			-> 자기이름 앞글자 + _ + 자신의작업페이지
+수정작업~~~
+
+git add .
+git commit -m "커밋1" 
+                                 -> 커밋 + 1,2,3,4.........
+git push -u origin feature/han_1
