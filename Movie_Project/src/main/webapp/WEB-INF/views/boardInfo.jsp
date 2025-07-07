@@ -8,24 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-<style>
-table {
-  margin: 20px auto;
-  border-collapse: collapse;
-  width: 90%;
+<
+style>table {
+	margin: 20px auto;
+	border-collapse: collapse;
+	width: 90%;
 }
+
 th, td {
-  border: 1px solid #aaa;
-  padding: 8px;
-  text-align: center;
+	border: 1px solid #aaa;
+	padding: 8px;
+	text-align: center;
 }
+
 thead {
-  background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
 </style>
 </style>
 </head>
 <body>
+	<h1>테스트 입니다.</h1>
 	<table>
 		<thead>
 			<tr>
