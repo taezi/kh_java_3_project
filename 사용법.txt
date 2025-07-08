@@ -5,14 +5,17 @@ git config --global user.name "당신의이름"
 --------맨처음 브런치생성할때-------------
 git clone https://github.com/taezi/kh_java_3_project.git
 cd kh_java_3_project
-git checkout -b feature/han_1
+
+git checkout develop
+git pull origin develop
+git checkout -b feature/han_login develop
 			-> 자기이름 앞글자 + _ + 자신의작업페이지
 수정작업~~~
 
 git add .
 git commit -m "커밋1" 
                                  -> 커밋 + 1,2,3,4.........
-git push -u origin feature/han_1
+git push -u origin feature/han_login
 --------------------------------------------
 기본적으로 배치키면 원레 작업하던 공간이니까
 바로 수정하면됨
@@ -22,7 +25,7 @@ git push -u origin feature/han_1
 git add .
 git commit -m "커밋1" 
                                  -> 커밋 + 1,2,3,4.........
-git push -u origin feature/han_1
+git push -u origin feature/han_login
 ------------------------------------------------
 생성된브런치로 이동할때
 git checkout feature/han_login
