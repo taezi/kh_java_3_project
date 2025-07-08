@@ -36,3 +36,4 @@ git push -u origin feature/han_login
 ----------------------
 해당 브런치에있는 데이터다운
 git pull orgin 브런치명
+수정
