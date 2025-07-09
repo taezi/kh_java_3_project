@@ -29,17 +29,20 @@ public class HandllerMapping {
 		case "AllBoard":
 			controller = new AllBoardController();
 			break;
-		case "registerView":
-			controller = new registerViewController();
+		case "RegisterView":
+			controller = new RegisterViewController();
 			break;
-		case "register":
-			controller = new registerController();
+		case "Register":
+			controller = new RegisterController();
 			break;
-		case "loginView":
-			controller = new loginViewController();
+		case "LoginView":
+			controller = new LoginViewController();
 			break;
-		case "login":
-			controller = new loginController();
+		case "Login":
+			controller = new LoginController();
+			break;
+		case "BoardWriteView":
+			controller = new BoardWriteViewController();
 			break;
 		}
 		

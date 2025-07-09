@@ -126,20 +126,20 @@
 	<ul class="user-actions">
 		<c:if test="${sessionScope.user == null }">
 			<li>
-				<a href="loginView.do">
+				<a href="LoginView.do">
 					<img src="${pageContext.request.contextPath}/images/login_icon.png" alt="로그인 아이콘"> 로그인
 				</a>
 			</li>
 			<li>
-				<a href="registerView.do">
+				<a href="RegisterView.do">
 					<img src="${pageContext.request.contextPath}/images/register_icon.png" alt="회원가입 아이콘"> 회원가입
 				</a>
 			</li>
 		</c:if>
-		<c:if test="${sessionScope.user != null  && sessionScope.user.id != 'admin'}">
+		<c:if test="${sessionScope.user != null  && sessionScope.user.usersid != 'admin'}">
 			<li>
-				<a href="Write.do">
-					<img src="${pageContext.request.contextPath}/images/writer_icon.png" alt="글쓰기 아이콘">글쓰기
+				<a href="BoardWriteView.do">
+					<img src="${pageContext.request.contextPath}/images/write_icon.png" alt="글쓰기 아이콘">글쓰기
 				</a>
 			</li>
 			<li class="user-info">${sessionScope.user.nickName }님이 로그인하셨습니다.</li>
@@ -149,10 +149,10 @@
 				</a>
 			</li>
 		</c:if>
-		<c:if test="${sessionScope.user != null  && sessionScope.user.id == 'admin'}">
+		<c:if test="${sessionScope.user != null  && sessionScope.user.usersid == 'admin'}">
 			<li>
-				<a href="Write.do">
-					<img src="${pageContext.request.contextPath}/images/writer_icon.png" alt="글쓰기 아이콘">글쓰기
+				<a href="BoardWriteView.do">
+					<img src="${pageContext.request.contextPath}/images/write_icon.png" alt="글쓰기 아이콘">글쓰기
 				</a>
 			</li>
 			<li>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="register.do" method="post">
+	<form action="Register.do" method="post">
 		<input type="text" name="id" placeholder="아이디를 입력하세요." maxlength="16"><br>
 		<input type="password" name="passwd" placeholder="암호를 입력하세요." maxlength="16"><br>
 		<input type="text" name="username" placeholder="이름을 입력해주세요" maxlength="10"><br>

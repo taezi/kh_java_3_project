@@ -27,6 +27,7 @@ thead {
 </style>
 </head>
 <body>
+	<a href="./BoardWrite.do">글쓰기</a>
 	<h1>테스트 입니다.</h1>
 	<table>
 		<thead>

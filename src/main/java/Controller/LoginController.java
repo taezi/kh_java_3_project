@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import service.UserService;
 import views.ModelAndView;
 
-public class loginController implements Controller {
+public class LoginController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -27,7 +27,7 @@ public class loginController implements Controller {
 		System.out.println(map);
 		
 		if(user == null) {
-			view = new ModelAndView("/registerView.do", true);
+			view = new ModelAndView("/RegisterView.do", true);
 			System.out.println("로그인 실패");
 		}else {
 			view = new ModelAndView("/index.jsp", true);

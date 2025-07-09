@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import service.UserService;
 import views.ModelAndView;
 
-public class registerController implements Controller {
+public class RegisterController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {

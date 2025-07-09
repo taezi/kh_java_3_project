@@ -6,4 +6,7 @@
   <select id="AllBoard" resultType="dto.boardDTO">
     select * from board
   </select>
+  
+ 
+  
 </mapper>

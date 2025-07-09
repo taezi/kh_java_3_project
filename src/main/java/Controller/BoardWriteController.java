@@ -6,11 +6,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import views.ModelAndView;
 
-public class registerViewController implements Controller {
+public class BoardWriteController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		return new ModelAndView("register.jsp", false);
+		//title, content 파라미터롤 읽어옴
+				
+				return null;
 	}
 
 }
