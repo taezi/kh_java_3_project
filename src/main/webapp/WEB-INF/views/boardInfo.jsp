@@ -25,7 +25,6 @@ thead {
 	background-color: #f0f0f0;
 }
 </style>
-</style>
 </head>
 <body>
 	<h1>테스트 입니다.</h1>

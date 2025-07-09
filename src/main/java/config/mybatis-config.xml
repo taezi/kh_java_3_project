@@ -17,5 +17,6 @@
   <mappers>
     <mapper resource="config/movie-mapper.xml"/>
     <mapper resource="config/board-mapper.xml"/>
+    <mapper resource="config/user-mapper.xml" />
   </mappers>
 </configuration>

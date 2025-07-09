@@ -7,8 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>
-		location.href="./Main.do";
-	</script>
+	<h1>메인 페이지입니다.</h1>
+	<a href="AllMovie.do">영화 정보 보기</a>
+	<hr />
+	<a href="AllBoard.do">게시판 정보 보기</a>
+	<hr />
+	<a href="registerView.do">회원가입</a>
+	<hr />
+	<a href="loginView.do">로그인</a>
 </body>
 </html>

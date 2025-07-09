@@ -6,12 +6,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import views.ModelAndView;
 
-public class MainController implements Controller {
+public class registerViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		// TODO Auto-generated method stub
-		return new ModelAndView("main.jsp", false);
+		return new ModelAndView("register.jsp", false);
 	}
 
 }

@@ -1,7 +1,5 @@
 package Controller;
 
-
-
 public class HandllerMapping {
 	private static HandllerMapping instance = new HandllerMapping();
 
@@ -20,10 +18,6 @@ public class HandllerMapping {
 		Controller controller = null;
 		
 		switch(command) {
-		//main
-		case "Main":
-			controller = new MainController();
-			break;
 		//Movie
 		case "AllMovie":
 			controller = new AllMovieController();
@@ -31,6 +25,18 @@ public class HandllerMapping {
 		//Board
 		case "AllBoard":
 			controller = new AllBoardController();
+			break;
+		case "registerView":
+			controller = new registerViewController();
+			break;
+		case "register":
+			controller = new registerController();
+			break;
+		case "loginView":
+			controller = new loginViewController();
+			break;
+		case "login":
+			controller = new loginController();
 			break;
 		}
 		
