@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.userMapper">
+  <insert id="register" parameterType="dto.userDTO">
+    INSERT INTO USERS (usersid, passwd, username, nickname)
+VALUES (#{usersid}, standard_hash(#{passwd}, 'SHA512'), #{userName}, #{nickName})
+  </insert>
+  <select id="login" resultType="dto.userDTO">
+  	select * from users where usersid = #{usersid} and passwd = standard_hash(#{passwd}, 'SHA512')
+  </select>
+</mapper>

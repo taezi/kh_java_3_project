@@ -24,7 +24,7 @@ public class DBManager {
 	}
 	
 	public SqlSession getSession() {
-		return sqlSessionFactory.openSession();
+		return sqlSessionFactory.openSession(true);
 	}
 
 	public static DBManager getInstance() {
