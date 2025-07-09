@@ -25,4 +25,7 @@ public class BoardService {
 		return mapper.AllBoard();
 	}
 	
+	public int WriteBoard(boardDTO board) {
+		return mapper.WriteBoard(board);
+	}
 }
