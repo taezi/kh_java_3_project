@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-<
-style>table {
+table {
 	margin: 20px auto;
 	border-collapse: collapse;
 	width: 90%;
@@ -24,7 +23,6 @@ th, td {
 thead {
 	background-color: #f0f0f0;
 }
-</style>
 </style>
 </head>
 <body>

@@ -8,5 +8,7 @@ public interface boardMapper {
 
 	ArrayList<boardDTO> AllBoard();
 
+	int WriteBoard(boardDTO board);
+
 
 }

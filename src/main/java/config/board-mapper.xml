@@ -6,4 +6,9 @@
   <select id="AllBoard" resultType="dto.boardDTO">
     select * from board
   </select>
+  
+  <insert id="WriteBoard">
+  	insert * into board(bno,usersId,titles,bpost)
+  	values(#{bno},#{usersId},#{titles},#{bpost})
+  </insert>
 </mapper>
