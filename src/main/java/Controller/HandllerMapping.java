@@ -18,6 +18,9 @@ public class HandllerMapping {
 		Controller controller = null;
 		
 		switch(command) {
+		case "Main":
+			controller = new MainController();
+			break;
 		//Movie
 		case "AllMovie":
 			controller = new AllMovieController();
