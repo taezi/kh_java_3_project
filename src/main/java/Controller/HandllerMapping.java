@@ -32,6 +32,9 @@ public class HandllerMapping {
 		case "AllBoard":
 			controller = new AllBoardController();
 			break;
+		case "BoardWrite":
+			controller = new BoardWriteController();
+			break;
 		}
 		
 		return controller;

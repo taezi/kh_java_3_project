@@ -113,10 +113,14 @@
 		<img src="${pageContext.request.contextPath}/images/kh_icon.png" alt="KH MOVIE 로고">
 	</a>
 
-	<div class="search-container">
-		<input type="text" class="search-input" placeholder="Search...">
-		<img src="${pageContext.request.contextPath}/images/search_icon.png" alt="Search" class="search-icon-inside">
-	</div>
+	<form action="Search.do" method="get" class="search-form"> 
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search..." name="query"> 
+            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                <img src="${pageContext.request.contextPath}/images/search_icon.png" alt="Search" class="search-icon-inside">
+            </button>
+        </div>
+    </form>
 
 
 	<ul class="user-actions">
@@ -132,10 +136,36 @@
 				</a>
 			</li>
 		</c:if>
-		<c:if test="${sessionScope.user != null }">
-			<li><a href="Write.do">글쓰기</a></li>
+		<c:if test="${sessionScope.user != null  && sessionScope.user.id != 'admin'}">
+			<li>
+				<a href="Write.do">
+					<img src="${pageContext.request.contextPath}/images/writer_icon.png" alt="글쓰기 아이콘">글쓰기
+				</a>
+			</li>
 			<li class="user-info">${sessionScope.user.nickName }님이 로그인하셨습니다.</li>
-			<li><a href="Logout.do">로그아웃</a></li>
+			<li>
+				<a href="Logout.do">
+					<img src="${pageContext.request.contextPath}/images/logout_icon.png" alt="로그아웃 아이콘">로그아웃
+				</a>
+			</li>
+		</c:if>
+		<c:if test="${sessionScope.user != null  && sessionScope.user.id == 'admin'}">
+			<li>
+				<a href="Write.do">
+					<img src="${pageContext.request.contextPath}/images/writer_icon.png" alt="글쓰기 아이콘">글쓰기
+				</a>
+			</li>
+			<li>
+				<a href="Admin.do">
+					<img src="${pageContext.request.contextPath}/images/admin_icon.png" alt="관리자 아이콘">관리자페이지
+				</a>
+			</li>
+			<li class="user-info">${sessionScope.user.nickName }님이 로그인하셨습니다.</li>
+			<li>
+				<a href="Logout.do">
+					<img src="${pageContext.request.contextPath}/images/logout_icon.png" alt="로그아웃 아이콘">로그아웃
+				</a>
+			</li>
 		</c:if>
 	</ul>
 </nav>
