@@ -11,40 +11,41 @@
 <style>
 	* {
 		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
+		padding: 0;	
 	}
+	
 	.container {
-		margin: 0 auto;
-        width: 1280px;
+        width: 100%;
+		box-sizing: border-box;
         font-size: 0px;
-	}
-	.mid_container {
-		height: 824px;
-		display: flex;
+        
+        display: flex;
 		flex-flow: row nowrap;
-		margin: 0 auto;
 	}
-	/*.margin_left, .margin_right {
-		width: 245px;
-		background-color: black;		
-	}*/
-	#input {
-		width: 950px;
+	.margin_left, .margin_right {
+		width: 10%;
+		box-sizing: border-box;		
+	}
+	form {
+		margin: 0 auto;
+		width: 80%
 		display: flex;
 		flex-flow: column nowrap;
-		border-left: 1px solid black;
-		border-right: 1px solid black;
+		border: 1px solid black;
 	}
 	#title {
-		height: 150px;
+		height: 40%;
+		box-sizing: border-box;
+		
 		padding-left: 30px;
 		padding-top: 50px;
 		font-size: 48px;
 		outline: none;
 	}
 	#content {
-		height: 674px;
+		height: 60%;
+		box-sizing: border-box;
+		
 		padding-left: 30px;
 		padding-bottom: 570px;
 		font-size: 24px;
@@ -54,36 +55,40 @@
  		color: lightgray;
 		font-size: 48px;
 	}
+	
 	.bottom {
+		height: 100px;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
-		height: 100px;
 		border: 1px solid black;
-		background-color: white;
 	}
 	#back {
-		margin-left: 60px;
-		margin-top: 20px;
 		width: 110px;
 		height: 50px;
+		margin-left: 60px;
+		margin-top: 20px;
+		
 		border-style: none;
 		background-color: transparent;
+		
 		font-size: 18px;
 		font-weight: bold;
 		color: #5B5B5B;
 	}
 	#register {
-		margin-right: 60px;
-		margin-top: 20px;
 		width: 110px;
 		height: 50px;
+		margin-right: 60px;
+		margin-top: 20px;
+		
+		border-style: none;
 		border-radius: 20px;
 		background-color: #DB1A1A;
-		color: white;
-		font-weight: bold;
-		border-style: none;
+		
 		font-size: 18px;
+		font-weight: bold;
+		color: white;
 	}
 </style>
 <script>
@@ -105,35 +110,34 @@
 	};
 </script>
 </head>
-<body>
-	<%-- <c:if test="${sessionScope.user == null }">
+<body><%-- 테스트할때 귀찮아서 주석처리해뒀음
+	<c:if test="${sessionScope.user == null }">
 		<script>
-			alert('로그인을 하셔야 글쓰기가 가능합니다.');
-			location.href = './boardMain.do'; //./boardMain.do : 이게 어딘데?
+			alert('로그인 후 글쓰기가 가능합니다.');
+			history.back();
 		</script>	
 	</c:if> --%>
 	
-		<jsp:include page="./template/header.jsp"></jsp:include>
-		<div class="container">	
-		<div class="mid_container">
-			<div class="margin_left"></div>
-			<form action="./BoardWrite.do" id="input" method="post" enctype="multipart/form-data"> <!-- ./boardWrite.do : 이거 어디로 가는거임? -->
-				<input type="text" id="title" name="title" placeholder="제목">					   <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
-				<div id="editor"></div>
-				<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
-			<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%>
-				<br>
-				<input type="file" name="file">
-				<input type="file" name="file">
-				<input type="file" name="file">
-			</form>
-			<div class="margin_right"></div>
-		</div>
-		</div>
+	<jsp:include page="./template/header.jsp"></jsp:include>
+	
+	<div class="container">	
+		<div class="margin_left"></div>
+		<form action="./BoardWrite.do" method="post" enctype="multipart/form-data"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
+			<div id="editor"></div>
+			<input type="text" id="title" name="title" placeholder="제목">					  
+			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
+		<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣어버렸음 -->
+			<br>
+			<input type="file" name="file">
+			<input type="file" name="file">
+			<input type="file" name="file">
+		</form>
+		<div class="margin_right"></div>
+	</div>
 		
-		<div class="bottom">
-			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
-			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
-		</div>
+	<div class="bottom">
+		<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
+		<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
+	</div>
 </body>
 </html>
