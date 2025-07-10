@@ -9,24 +9,40 @@ cd kh_java_3_project
 git checkout develop
 git pull origin develop
 git checkout -b feature/han_login develop
-			-> 자기이름 앞글자 + _ + 자신의작업페이지
-수정작업~~~ddd
+			-> 자기이름 앞글자 + _ + 자신의작업페이지,여기 develop은 맨처음에만한번
+수정작업~~~
 
 git add .
-git commit -m "커밋1" 
-                                 -> 커밋 + 1,2,3,4.........
+git commit -m "커밋내용"  
+	->feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 커밋 메시지 작
+
 git push -u origin feature/han_login
---------------------------------------------
+----------------2-1.병합하기전----------------------------
 기본적으로 배치키면 원레 작업하던 공간이니까
 바로 수정하면됨
 
 수정작업~~~
 
 git add .
-git commit -m "커밋1" 
+git commit -m "feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 커밋 메시지 작
                                  -> 커밋 + 1,2,3,4.........
 git push -u origin feature/han_login
-------------------------------------------------
+-------------------2-2.병합한후에----------------------------
+git checkout develop
+git pull origin develop
+git checkout  feature/han_login develop
+			->작업하는 브런치
+
+수정작업~~~
+
+git add .
+git commit -m "커밋내용"  
+	->feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 커밋 메시지 작
+git push -u origin feature/han_login
+
+
+
+--------------------------------------
 생성된브런치로 이동할때
 git checkout feature/han_login
 			-> 자기이름 앞글자 + _ + 자신의작업페이지
