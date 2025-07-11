@@ -27,7 +27,7 @@ public class LoginController implements Controller {
 		System.out.println(map);
 		
 		if(user == null) {
-			view = new ModelAndView("/RegisterView.do", true);
+			view = new ModelAndView("/LoginView.do", true);
 			System.out.println("로그인 실패");
 		}else {
 			view = new ModelAndView("/index.jsp", true);
