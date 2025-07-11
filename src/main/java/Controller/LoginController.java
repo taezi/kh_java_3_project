@@ -25,13 +25,15 @@ public class LoginController implements Controller {
 		userDTO user = UserService.getInstance().userLogin(map);
 		System.out.println(user);
 		System.out.println(map);
+		HttpSession session = request.getSession();
 		
 		if(user == null) {
+			session.setAttribute("loginFail", true); 
 			view = new ModelAndView("/LoginView.do", true);
 			System.out.println("로그인 실패");
 		}else {
 			view = new ModelAndView("/index.jsp", true);
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("user", user);
 			System.out.println(session);
 			System.out.println("로그인 성공");

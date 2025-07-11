@@ -44,7 +44,15 @@ public class HandllerMapping {
 		case "BoardWriteView":
 			controller = new BoardWriteViewController();
 			break;
+		case "SearchView":
+			controller = new SearchViewController();
+			break;
+		case "Logout":
+			controller = new LogoutController();
+			break;
+			
 		}
+		
 		
 		return controller;
 	}

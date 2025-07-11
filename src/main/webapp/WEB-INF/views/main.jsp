@@ -13,6 +13,7 @@
 		box-sizing: border-box; 
 	}
 	
+	
 
 	.container {
 		width: 100%; 
@@ -40,7 +41,7 @@
 		object-fit: cover;
 	}
 
-	.carousel {
+	.sub-carousel {
 		width: 100%; 
 		height: 350px; 
 		border: 1px solid black;
@@ -150,15 +151,114 @@
 	.right_arrow {
 		right: 10px;
 	}
+	
+	
+    .carousel {
+	  position: relative;
+	  overflow: hidden; 
+	  width: 100%; 
+	  max-width: 1000px; 
+	  margin: auto;
+	  
+	  height: 530px;
+	}
+
+    .carousel-track {
+	  display: flex;
+	  transition: transform 0.5s ease-in-out;
+
+	  width: 300%;
+	  height: 100%; 
+	}
+
+   
+	.carousel-slide {
+	  flex-basis: 33.3333%;
+	  flex-shrink: 0; 
+	  box-sizing: border-box;
+	  height: 100%; 
+	}
+
+
+	.carousel-slide img {
+	  width: 100%; 
+	  height: 100%; 
+	  object-fit: cover; 
+	  display: block;
+	}
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .carousel-btn.prev {
+      left: 20px;
+    }
+
+    .carousel-btn.next {
+      right: 20px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 3;
+    }
+
+    .carousel-dots button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+
+    .carousel-dots button.active {
+      background-color: white;
+    }
 </style>
+<script>
+
+</script>
 </head>
 
 
 <body>
 	<jsp:include page="./template/header.jsp"></jsp:include>
-	<div class="main-img">
-		<img src="https://image.tmdb.org/t/p/w780/x58Gk2ZGU5AEBp25MQe2nhZhd5z.jpg" alt="영화 배경 이미지" class="main-img-1">
-	</div>
+	
+   	<div class="carousel">
+	    <div class="carousel-track">
+	      <div class="carousel-slide">
+	        <img src="https://image.tmdb.org/t/p/w1280/x58Gk2ZGU5AEBp25MQe2nhZhd5z.jpg" alt="슬라이드1">
+	      </div>
+	      <div class="carousel-slide">
+	        <img src="https://image.tmdb.org/t/p/w1280/sItIskd5xpiE64bBWYwZintkGf3.jpg" alt="슬라이드2">
+	      </div>
+	      <div class="carousel-slide">
+	        <img src="https://image.tmdb.org/t/p/w1280/nKyBbFSooRPTJVqjrDteD1lF733.jpg" alt="슬라이드3">
+	      </div>
+	    </div>
+	    <button class="carousel-btn prev">&#10094;</button>
+	    <button class="carousel-btn next">&#10095;</button>
+	    <div class="carousel-dots"></div>
+    </div>
+		
+
+	
 	
 	<div class="container">
 		<div class="left_container">
@@ -166,7 +266,7 @@
 		</div>
 
 		<div class="main_container">
-			<div class="carousel">
+			<div class="sub-carousel">
 		        <ul class="item_container">
 		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"><a>전독시</a></li>
 		          <li><img src="https://image.tmdb.org/t/p/w500/ygr4hE8Qpagv8sxZbMw1mtYkcQE.jpg" alt="영화 포스터"></li>
@@ -200,7 +300,78 @@
 		</div>
 
 	</div>
-	
+	<script>
+	    //로그아웃//
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const logout= urlParams.get('logout');
+	    
+	   
+	    if (logout === 'success') {
+	        alert("로그아웃하셨습니다.");
+	        
+	    }
+	    //-로그아웃//
+	    window.onload = () => {
+	        const track = document.querySelector('.carousel-track');
+	        const slides = Array.from(track.children);
+	        const prevBtn = document.querySelector('.carousel-btn.prev');
+	        const nextBtn = document.querySelector('.carousel-btn.next');
+	        const dotsContainer = document.querySelector('.carousel-dots');
+
+	        let currentIndex = 0;
+
+	        
+	        const slideWidth = slides[0].offsetWidth; 
+
+	       
+	        slides.forEach((_, i) => {
+	            const dot = document.createElement('button');
+	            if (i === 0) dot.classList.add('active');
+	            dotsContainer.appendChild(dot);
+	        });
+
+	        const dots = Array.from(dotsContainer.children);
+
+	    
+	        const updateSlide = (index) => {
+	           
+	            track.style.transform = `translateX(-${index * slideWidth}px)`;
+	            
+	            
+	            dots.forEach(dot => dot.classList.remove('active'));
+	            dots[index].classList.add('active');
+	            
+	            currentIndex = index;
+	        };
+
+	      
+	        updateSlide(currentIndex); 
+
+	        nextBtn.onclick = () => {
+	            const newIndex = (currentIndex + 1) % slides.length;
+	            updateSlide(newIndex);
+	        };
+
+	        prevBtn.onclick = () => {
+	            const newIndex = (currentIndex - 1 + slides.length) % slides.length;
+	            updateSlide(newIndex);
+	        };
+
+	        dots.forEach((dot, i) => {
+	            dot.onclick = () => updateSlide(i);
+	        });
+
+	     
+	        let autoSlideInterval = setInterval(() => {
+	            const newIndex = (currentIndex + 1) % slides.length;
+	            updateSlide(newIndex);
+	        }, 3000);
+	    };
+	    
+	    
+	    
+	    
+	</script>
 </body>
 
 </html>

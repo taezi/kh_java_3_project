@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	/* 전체 헤더(nav) 스타일 */
+	
 	nav {
 		height: 100px; 
 		width: 100%; 
@@ -15,7 +15,7 @@
 		box-sizing: border-box; 
 	}
 
-	/* KH MOVIE 로고  */
+
 	.header-logo-link {
 		
 		display: flex; 
@@ -28,7 +28,7 @@
 		vertical-align: middle;
 	}
 
-	/* 서치바 컨테이너 (이미지를 배경으로 사용하는 경우) */
+
 	
 	.search-container {
 		position: relative;
@@ -65,7 +65,7 @@
 		z-index: 2;
 	}
 
-	/* 사용자 액션 (로그인/회원가입 등) */
+
 	.user-actions {
 		list-style-type: none;
 		margin: 0;
@@ -113,7 +113,7 @@
 		<img src="${pageContext.request.contextPath}/images/kh_icon.png" alt="KH MOVIE 로고">
 	</a>
 
-	<form action="Search.do" method="get" class="search-form"> 
+	<form action="SearchView.do" method="get" class="search-form"> 
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search..." name="query"> 
             <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">

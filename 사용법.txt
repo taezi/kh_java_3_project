@@ -27,21 +27,21 @@ git add .
 git commit -m "feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 커밋 메시지 작
                                  -> 커밋 + 1,2,3,4.........
 git push -u origin feature/han_login
--------------------2-2.병합한후에----------------------------
-git checkout develop
-git pull origin develop
-git checkout  feature/han_login develop
-			->작업하는 브런치
+
+
+****중요*************2-2.병합한후에*****************************
+git checkout feature/han_login           <-------------------작업하는 브런치
+git merge develop
+git add .
+git commit -m "Merge develop into feature/han_login "
 
 수정작업~~~
 
 git add .
-git commit -m "커밋내용"  
-	->feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 커밋 메시지 작
-git push -u origin feature/han_login
+git commit -m "커밋한 내용 간단히"
+git push origin feature/han_login 
 
-
-
+---->>>>>>>>>>>깃허브에서 병합 리퀘스트 
 --------------------------------------
 생성된브런치로 이동할때
 git checkout feature/han_login
