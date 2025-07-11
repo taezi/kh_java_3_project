@@ -30,6 +30,7 @@ public class MovieService {
 	public List<movieDTO> selectMovieTopList(int i) {
 		// TODO Auto-generated method stub
 		return mapper.selectMovieTopList(i);
+	}
 
 	public List<movieDTO> searchMovie(String keyword) {
 		return mapper.searchMovie(keyword);
