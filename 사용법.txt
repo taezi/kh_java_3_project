@@ -28,8 +28,10 @@ git commit -m "feat: 로그인 기능 구현 (최초 커밋)" # 의미 있는 �
                                  -> 커밋 + 1,2,3,4.........
 git push -u origin feature/han_login
 
-
+아래반복
 ****중요*************2-2.병합한후에*****************************
+git checkout develop         # develop 브랜치로 이동
+git pull origin develop      # 원격에서 최신 내용 가져오기
 git checkout feature/han_login           <-------------------작업하는 브런치
 git merge develop
 git add .

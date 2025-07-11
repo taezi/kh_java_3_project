@@ -297,6 +297,7 @@
 		
 		<div class="right_container">
 			<a href="AllBoard.do">게시판 정보 보기</a>
+			<a href="Cas.do">캐러셀 보기</a>
 		</div>
 
 	</div>

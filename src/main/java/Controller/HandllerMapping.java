@@ -50,6 +50,9 @@ public class HandllerMapping {
 		case "Logout":
 			controller = new LogoutController();
 			break;
+		case "Cas":
+			controller = new CasController();
+			break;
 			
 		}
 		
