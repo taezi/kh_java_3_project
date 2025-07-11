@@ -17,7 +17,7 @@ public class AllMovieController implements Controller {
 		
 		request.setAttribute("list", list);
 		
-		return new ModelAndView("movieInfo.jsp", false);
+		return new ModelAndView("movieAllInfo.jsp", false);
 	}
 
 }

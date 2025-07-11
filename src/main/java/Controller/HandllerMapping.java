@@ -47,6 +47,9 @@ public class HandllerMapping {
 		case "SearchView":
 			controller = new SearchViewController();
 			break;
+		case "movieinfo":
+			controller = new MovieInfoController();
+			break;
 		case "Logout":
 			controller = new LogoutController();
 			break;
