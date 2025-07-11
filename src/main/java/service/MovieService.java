@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import config.DBManager;
 import dto.movieDTO;
@@ -23,6 +24,11 @@ public class MovieService {
 
 	public ArrayList<movieDTO> AllMovie() {
 		return mapper.AllMovie();
+	}
+
+	public List<movieDTO> selectMovieTopList(int i) {
+		// TODO Auto-generated method stub
+		return mapper.selectMovieTopList(i);
 	}
 	
 	
