@@ -2,29 +2,29 @@ package dto;
 
 public class movieDTO {
 	private String movieId;
-	private String descriptions;
+	private String wposter;
+	private String hposter;
 	private String movieName;
+	private String descriptions;
 	private String openDt;
 	private String repGenreNm;
-	private String directors;
-	private String companys;
-	private String audits;
 	private String GradeNm;
+	private String popularity;
 	
 	public movieDTO() {	}
 
-	public movieDTO(String movieId, String descriptions, String movieName, String openDt, String repGenreNm,
-			String directors, String companys, String audits, String gradeNm) {
+	public movieDTO(String movieId, String wposter, String hposter, String movieName, String descriptions,
+			String openDt, String repGenreNm, String gradeNm, String popularity) {
 		super();
 		this.movieId = movieId;
-		this.descriptions = descriptions;
+		this.wposter = wposter;
+		this.hposter = hposter;
 		this.movieName = movieName;
+		this.descriptions = descriptions;
 		this.openDt = openDt;
 		this.repGenreNm = repGenreNm;
-		this.directors = directors;
-		this.companys = companys;
-		this.audits = audits;
 		GradeNm = gradeNm;
+		this.popularity = popularity;
 	}
 
 	public String getMovieId() {
@@ -35,12 +35,20 @@ public class movieDTO {
 		this.movieId = movieId;
 	}
 
-	public String getDescriptions() {
-		return descriptions;
+	public String getWposter() {
+		return wposter;
 	}
 
-	public void setDescriptions(String descriptions) {
-		this.descriptions = descriptions;
+	public void setWposter(String wposter) {
+		this.wposter = wposter;
+	}
+
+	public String getHposter() {
+		return hposter;
+	}
+
+	public void setHposter(String hposter) {
+		this.hposter = hposter;
 	}
 
 	public String getMovieName() {
@@ -49,6 +57,14 @@ public class movieDTO {
 
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
+	}
+
+	public String getDescriptions() {
+		return descriptions;
+	}
+
+	public void setDescriptions(String descriptions) {
+		this.descriptions = descriptions;
 	}
 
 	public String getOpenDt() {
@@ -67,30 +83,6 @@ public class movieDTO {
 		this.repGenreNm = repGenreNm;
 	}
 
-	public String getDirectors() {
-		return directors;
-	}
-
-	public void setDirectors(String directors) {
-		this.directors = directors;
-	}
-
-	public String getCompanys() {
-		return companys;
-	}
-
-	public void setCompanys(String companys) {
-		this.companys = companys;
-	}
-
-	public String getAudits() {
-		return audits;
-	}
-
-	public void setAudits(String audits) {
-		this.audits = audits;
-	}
-
 	public String getGradeNm() {
 		return GradeNm;
 	}
@@ -99,11 +91,19 @@ public class movieDTO {
 		GradeNm = gradeNm;
 	}
 
+	public String getPopularity() {
+		return popularity;
+	}
+
+	public void setPopularity(String popularity) {
+		this.popularity = popularity;
+	}
+
 	@Override
 	public String toString() {
-		return "movieDTO [movieId=" + movieId + ", descriptions=" + descriptions + ", movieName=" + movieName
-				+ ", openDt=" + openDt + ", repGenreNm=" + repGenreNm + ", directors=" + directors + ", companys="
-				+ companys + ", audits=" + audits + ", GradeNm=" + GradeNm + "]";
+		return "movieDTO [movieId=" + movieId + ", wposter=" + wposter + ", hposter=" + hposter + ", movieName="
+				+ movieName + ", descriptions=" + descriptions + ", openDt=" + openDt + ", repGenreNm=" + repGenreNm
+				+ ", GradeNm=" + GradeNm + ", popularity=" + popularity + "]";
 	}
 	
 }
