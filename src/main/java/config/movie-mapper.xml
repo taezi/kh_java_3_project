@@ -6,10 +6,39 @@
   <select id="AllMovie" resultType="dto.movieDTO">
     select * from movie
   </select>
+
+  
+  <select id="selectMovieTopList" resultType="dto.movieDTO">
+  <![CDATA[
+	SELECT *
+	FROM (
+	    SELECT
+	        movieid AS movieId,
+	        wposter,
+	        hposter,
+	        moviename AS movieName,
+	        descriptions,
+	        openDt AS openDt,
+	        repGenreNm AS repGenreNm,
+	        GradeNm AS gradeNm,
+	        popularity
+	    FROM
+	        movie
+	    ORDER BY
+	        popularity DESC
+	)
+	WHERE ROWNUM <= #{i}
+  ]]> 
+  </select>
+  
+  
+  
+
   <select id="searchMovie" resultType="dto.movieDTO">
   	select * from movie where moviename like '%' || #{keyword} || '%'
   </select>
   <select id="movieInfo" resultType="dto.movieDTO">
   	select * from movie where movieid = #{movieid}
   </select>
+
 </mapper>

@@ -64,36 +64,40 @@
 	}
 	
 	.item_container > li {
-		flex-shrink: 0; 
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        font-size: 16px; 
-        color: white; 
-        text-align: center;
-        padding-bottom: 10px; /* 텍스트 아래 여백 */
-        gap: 5px; /* 이미지와 텍스트 사이 간격 */
-        
-        /* item_container에서 gap을 제거했으므로, li에 직접 margin-right를 줍니다. */
-        margin-right: 30px; /* 아이템 간 간격 */
+	    flex-shrink: 0;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    font-size: 16px;
+	    color: white;
+	    text-align: center;
+	    padding-bottom: 10px;
+	    gap: 5px;
+
+	    margin-right: 30px;
 	}
 
-    /* 마지막 아이템에는 margin-right를 제거하여 불필요한 공간을 없앱니다. */
+    
     .item_container > li:last-child {
         margin-right: 0;
     }
+    
+    
 
 	.item_container > li > img {
 		height: 240px; 
-		width: 100%;
-		object-fit: cover; /* 이미지가 잘리더라도 비율 유지하며 li 채움 */
+		width: auto;
+		object-fit: cover; 
 		display: block; /
+		
 	}
-	.item_container > li > a { /* 전독시 텍스트 링크 스타일 */
+	.item_container > li > a { 
         color: white;
         text-decoration: none;
         font-size: 1rem;
-        margin-top: 5px;
+        margin-top: 15px;
+        text-align: center;
+
     }
     .item_container > li > a:hover {
         text-decoration: underline;
@@ -162,7 +166,7 @@
 	  
 	  height: 530px;
 	}
-
+	
     .carousel-track {
 	  display: flex;
 	  transition: transform 0.5s ease-in-out;
@@ -242,14 +246,11 @@
 	
    	<div class="carousel">
 	    <div class="carousel-track">
-	      <div class="carousel-slide">
-	        <img src="https://image.tmdb.org/t/p/w1280/x58Gk2ZGU5AEBp25MQe2nhZhd5z.jpg" alt="슬라이드1">
-	      </div>
-	      <div class="carousel-slide">
-	        <img src="https://image.tmdb.org/t/p/w1280/sItIskd5xpiE64bBWYwZintkGf3.jpg" alt="슬라이드2">
-	      </div>
-	      <div class="carousel-slide">
-	        <img src="https://image.tmdb.org/t/p/w1280/nKyBbFSooRPTJVqjrDteD1lF733.jpg" alt="슬라이드3">
+	        <c:forEach var="movie" items="${list}" begin="0" end="2">
+				<div class="carousel-slide">
+					<img src="https:/image.tmdb.org/t/p/w1280/${movie.hposter}" alt="${movie.movieName}" />
+				</div> 
+			</c:forEach>
 	      </div>
 	    </div>
 	    <button class="carousel-btn prev">&#10094;</button>
@@ -268,16 +269,16 @@
 		<div class="main_container">
 			<div class="sub-carousel">
 		        <ul class="item_container">
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"><a>전독시</a></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/ygr4hE8Qpagv8sxZbMw1mtYkcQE.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/ygr4hE8Qpagv8sxZbMw1mtYkcQE.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/ygr4hE8Qpagv8sxZbMw1mtYkcQE.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
-		          <li><img src="https://image.tmdb.org/t/p/w500/8UualSlMf7Tk1vHEOzHaQrjbUKC.jpg" alt="영화 포스터"></li>
+        	    	<c:forEach var="movie" items="${list}">
+				    	
+				    		<li>
+					    		<img src="https://image.tmdb.org/t/p/w500/${movie.wposter}" alt="${movie.movieName}" />
+					    		<a>${movie.movieName}</a><br>
+					    		<a>${movie.popularity}</a>
+				    		</li>
+				        
+					</c:forEach>
+
 		        </ul>
 		        <button type="button" class="left_arrow">
 		        	<img src="${pageContext.request.contextPath}/images/left_arrow.png" alt="왼쪽 화살표" class="arrow-icon">
@@ -292,6 +293,8 @@
 				<a href="AllMovie.do">영화 정보 보기</a>
 				<hr />
 				<a href="AllBoard.do">게시판 정보 보기</a>
+				
+				
 			</div>
 		</div>
 		

@@ -1,9 +1,11 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import config.DBManager;
 import dto.boardDTO;
+import dto.movieDTO;
 import mapper.boardMapper;
 
 public class BoardService {
@@ -24,5 +26,7 @@ public class BoardService {
 	public ArrayList<boardDTO> AllBoard() {
 		return mapper.AllBoard();
 	}
+
+
 	
 }

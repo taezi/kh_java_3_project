@@ -9,8 +9,12 @@ public interface movieMapper {
 
 	ArrayList<movieDTO> AllMovie();
 
+
+	List<movieDTO> selectMovieTopList(int i);
+
 	List<movieDTO> searchMovie(String keyword);
 
 	movieDTO movieInfo(String movieid);
+
 	
 }
