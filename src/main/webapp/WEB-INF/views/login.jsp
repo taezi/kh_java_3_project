@@ -57,21 +57,26 @@
   input{
     height: 60px;
     border-radius: 10px;
-    border: none;
     border: 1px solid darkgray;
-    justify-items: center;
-    padding-top: 5px;
+   /*  justify-items: center; */
+    padding: 5px 15px;
     font-size: 20px;
   }
-  input:hover{
+  .loginInbox > input:hover{
     color: gray;
   }
   input::placeholder{
     padding-left: 10px;
     font-size: 20px;
     font-style: #e9e9e9;
-    justify-content: center;
+   /*  justify-content: center; */
   }
+  input:focus {
+    border-color:#db1a1a;
+    outline: none;
+  /*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
+  }
+
   #checkbox{
     display: flex;
     box-sizing: border-box;
@@ -93,7 +98,7 @@
   .loginInbox > button{
     height: 50px;
     border-radius: 10px;
-    border: #db1a1a
+    border: #db1a1a;
   }
   .loginInbox > ul >li{
     display: flex;
@@ -164,13 +169,13 @@
 </script>
 </head>
   <body>
-   <header>
-   	<div class="move_search">
-    	<jsp:include page="./template/header.jsp"></jsp:include>      
-    </div>
-   </header>
+        <header>
+   	      <div class="move_search">
+    	      <jsp:include page="./template/header.jsp"></jsp:include>      
+          </div>
+        </header>
   
-      <div class="container">
+    <div class="container">
        
         <div class="bodyBox">
         <div class="leftside">
@@ -180,8 +185,8 @@
 			<form action ="Login.do" method="post">
           		<div class="loginInbox">
             		<h1>KHMOVIE</h1>
-            		<input id="in_id" type="text" name="id" placeholder="아이디를 입력해주세요" maxlength="16" />
-            		<input id="in_pw" type="password" name="passwd" placeholder="암호를 입력해주세요." maxlength="16" />
+            		<input id="in_id" type="text" name="id" placeholder="아이디를 입력해주세요" maxlength="20" autofocus />
+            		<input id="in_pw" type="password" name="passwd" placeholder="암호를 입력해주세요." maxlength="20" />
             		
             		<div id="checkbox">
               			<label for="chk_id">아이디 저장</label><input type="checkbox" id="chk_id">

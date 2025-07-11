@@ -61,18 +61,22 @@
     border: none;
     border: 1px solid darkgray;
     /* justify-items: center; */
-    padding-top: 5px;
-    padding-left: 10px;
+    padding: 5px 20px; 
     font-size: 20px;
   }
   input:hover{
     color: gray;
   }
   input::placeholder{
-    padding-left: 10px;
+    /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
     font-size: 20px;
     font-style: #e9e9e9;
     /* justify-content: center; */
+  }
+    input:focus {
+    border-color:#db1a1a;
+    outline: none;
+  /*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
   }
   #checkbox{
     display: flex;
@@ -138,10 +142,10 @@
         <div class="membershipInbox">
           <h1>KHMOVIE</h1>
 
-          <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="16">
+          <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" autofocus>
           <input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="10">
-          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="16">
-          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="16">
+          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="20">
+          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="20">
           <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
             
           <div id="checkbox">
