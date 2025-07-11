@@ -6,6 +6,7 @@
   <select id="AllMovie" resultType="dto.movieDTO">
     select * from movie
   </select>
+
   
   <select id="selectMovieTopList" resultType="dto.movieDTO">
   <![CDATA[
@@ -32,4 +33,12 @@
   
   
   
+
+  <select id="searchMovie" resultType="dto.movieDTO">
+  	select * from movie where moviename like '%' || #{keyword} || '%'
+  </select>
+  <select id="movieInfo" resultType="dto.movieDTO">
+  	select * from movie where movieid = #{movieid}
+  </select>
+
 </mapper>

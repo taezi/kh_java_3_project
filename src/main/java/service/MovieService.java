@@ -26,9 +26,18 @@ public class MovieService {
 		return mapper.AllMovie();
 	}
 
+
 	public List<movieDTO> selectMovieTopList(int i) {
 		// TODO Auto-generated method stub
 		return mapper.selectMovieTopList(i);
+
+	public List<movieDTO> searchMovie(String keyword) {
+		return mapper.searchMovie(keyword);
+	}
+
+	public movieDTO movieInfo(String movieid) {
+		return mapper.movieInfo(movieid);
+
 	}
 	
 	

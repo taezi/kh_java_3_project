@@ -8,7 +8,7 @@ public class movieDTO {
 	private String descriptions;
 	private String openDt;
 	private String repGenreNm;
-	private String GradeNm;
+	private String gradeNm;
 	private String popularity;
 	
 	public movieDTO() {	}
@@ -23,7 +23,7 @@ public class movieDTO {
 		this.descriptions = descriptions;
 		this.openDt = openDt;
 		this.repGenreNm = repGenreNm;
-		GradeNm = gradeNm;
+		this.gradeNm = gradeNm;
 		this.popularity = popularity;
 	}
 
@@ -84,11 +84,11 @@ public class movieDTO {
 	}
 
 	public String getGradeNm() {
-		return GradeNm;
+		return gradeNm;
 	}
 
 	public void setGradeNm(String gradeNm) {
-		GradeNm = gradeNm;
+		this.gradeNm = gradeNm;
 	}
 
 	public String getPopularity() {
@@ -103,7 +103,9 @@ public class movieDTO {
 	public String toString() {
 		return "movieDTO [movieId=" + movieId + ", wposter=" + wposter + ", hposter=" + hposter + ", movieName="
 				+ movieName + ", descriptions=" + descriptions + ", openDt=" + openDt + ", repGenreNm=" + repGenreNm
-				+ ", GradeNm=" + GradeNm + ", popularity=" + popularity + "]";
+				+ ", gradeNm=" + gradeNm + ", popularity=" + popularity + "]";
 	}
+
+	
 	
 }
