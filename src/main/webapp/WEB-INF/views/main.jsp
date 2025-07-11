@@ -274,7 +274,8 @@
 				    		<li>
 					    		<img src="https://image.tmdb.org/t/p/w500/${movie.wposter}" alt="${movie.movieName}" />
 					    		<a>${movie.movieName}</a><br>
-					    		<a>${movie.popularity}</a>
+					    		<a>${movie.gradeNm}</a><br>
+					    		<a>🔥 인기 지수: ${movie.popularity}</a>
 				    		</li>
 				        
 					</c:forEach>
