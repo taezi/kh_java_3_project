@@ -6,4 +6,10 @@
   <select id="AllMovie" resultType="dto.movieDTO">
     select * from movie
   </select>
+  <select id="searchMovie" resultType="dto.movieDTO">
+  	select * from movie where moviename like '%' || #{keyword} || '%'
+  </select>
+  <select id="movieInfo" resultType="dto.movieDTO">
+  	select * from movie where movieid = #{movieid}
+  </select>
 </mapper>

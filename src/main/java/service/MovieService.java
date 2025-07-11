@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import config.DBManager;
 import dto.movieDTO;
@@ -23,6 +24,14 @@ public class MovieService {
 
 	public ArrayList<movieDTO> AllMovie() {
 		return mapper.AllMovie();
+	}
+
+	public List<movieDTO> searchMovie(String keyword) {
+		return mapper.searchMovie(keyword);
+	}
+
+	public movieDTO movieInfo(String movieid) {
+		return mapper.movieInfo(movieid);
 	}
 	
 	
