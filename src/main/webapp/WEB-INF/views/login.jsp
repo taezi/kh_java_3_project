@@ -212,6 +212,18 @@
 
       </footer>
     </div>
+    <%
+		
+		if (session.getAttribute("loginFail") != null && (Boolean)session.getAttribute("loginFail")) {
+	%>
+			<script type="text/javascript">
+				alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+			</script>
+	<%
+			
+			session.removeAttribute("loginFail");
+		}
+	%>
 
   
 </body>
