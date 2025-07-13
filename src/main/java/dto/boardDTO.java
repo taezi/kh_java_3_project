@@ -73,7 +73,4 @@ public class boardDTO {
 		return "boardDTO [bno=" + bno + ", usersId=" + usersId + ", titles=" + titles + ", bpost=" + bpost + ", bdate="
 				+ bdate + ", bview=" + bview + "]";
 	}
-
-	
-
 }

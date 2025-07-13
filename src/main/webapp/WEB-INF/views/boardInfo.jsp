@@ -6,35 +6,99 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판</title>
 <style>
+/* 아 <style> 다시고쳐야함 ㅡㅡ, <style>만 다시 고치면됨 ㅡㅡ
+.container
+	header
+	mid_container
+		margin_left
+			img_left
+		main_container
+			button
+				btn_write
+			table
+				thead
+				tbody
+				tfoot
+		margin_right
+			img_right
+	footer
+*/
 .container {
+	margin: 0px;
+	padding: 0px;
+	
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
-	
-	margin: 0;
-	paddint: 0;
 }
+
 .mid_container {
 	width: 100%;
 	box-sizing: border-box;
 	
-	display: 100%;
+	display: flex;
 	flex-flow: row nowrap;
 }
-.margin_left, .margin_right {
-	width: 30%;
+.margin_left {
+	width: 15%;
 	box-sizing: border-box;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .margin_right {
+	width: 15%;
+	box-sizing: border-box;
+	
 	display: flex;
 	flex-flow: column nowrap;
+	
+	justify-content: center;
+	align-items: center;
 }
-table {
+.img_left {
+	width: 200px;
+	height: 200px;
+}
+.img_right {
+	width: 150px;
+	height: 600px;
+}
+.main_container {
 	width: 70%;
 	box-sizing: border-box;
+	
+	display: flex;
+	flex-flow: column nowrap; 
+}
+.button {
+    width: 100%; /* 테이블과 동일한 너비로 설정 */
+    box-sizing: border-box;
+
+    display: flex; /* flex 컨테이너로 설정 */
+    justify-content: flex-end; /* 내용을 오른쪽 끝으로 정렬 */
+    margin-bottom: 10px; /* 버튼과 표 사이에 약간의 간격 */
+}
+.btn_write {
+		width: 110px;
+		height: 50px;
+		
+		border-style: none;
+		border-radius: 20px;
+		background-color: #DB1A1A;
+		
+		font-size: 18px;
+		font-weight: bold;
+		color: white;
+	}
+table {
 	margin: 0 auto;
+	
+	width: 100%;
+	box-sizing: border-box;
 	
 	border-collapse: collapse;
 	border: 1px solid black;
@@ -42,7 +106,6 @@ table {
 }
 tr {
 	border-bottom: 1px solid black;
-	text
 }
 </style>
 </head>
@@ -51,35 +114,63 @@ tr {
 		<jsp:include page="./template/header.jsp"></jsp:include>
 		<div class="mid_container">
 			<div class="margin_left">
-			<a href=""><img src="${pageContext.request.contextPath}/images/add1.jpg" alt="왼쪽엑박"></a>
+				<a href=""><img src="${pageContext.request.contextPath}/images/add2.jpg" class="img_left" alt="왼쪽엑박"></a>
 			</div>
-			<table>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>아이디</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					<%--<th>좋아요</th>--%>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="board" items="${list}">
+			
+			<div class="main_container">
+				<div class="button">
+                	<a href="./BoardWriteView.do" class="btn_write">글쓰기</a>
+            	</div>
+				<table>
+					<thead>
 						<tr>
-							<td>${board.bno}</td>
-							<td>${board.titles}</td>
-							<td>${board.usersId}</td>
-							<td>${board.bdate}</td>
-							<td>${board.bview}</td>
-						<%--<td>${board.blike}</td>--%> <!-- DTO에 blike 없어서 주석처리해뒀습니다 -->	
+							<th>번호</th>
+							<th>제목</th>
+							<th>아이디</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						<%--<th>좋아요</th>--%>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="board" items="${list}">
+							<tr>
+								<td>${board.bno}</td>
+								<td><a href="./BoardView.do?bno=${board.bno }">${board.titles}</td>
+								<td>${board.usersId}</td>
+								<td>${board.bdate}</td>
+								<td>${board.bview}</td>
+							<%--<td>${board.blike}</td>--%> <!-- boardDTO에 blike 없어서 주석처리해뒀습니다,
+							</tr>								 근데 blike는 BoardDTO에 선언하실건가요? 아니면 DTO파일 따로 만드실건가용? -->				
+						</c:forEach>
+					</tbody>
+					<tfoot>
+            			<tr>
+            				<td colspan="7" class="pagging_bar">
+            					<c:if test="${pagging.priviousPageGroup }">
+            						<a href="./AllBoard.do?page=${pagging.startPageOfPageGroup - 1 }">◀</a>
+            					</c:if>
+					  			<c:forEach var="i" begin="${pagging.startPageOfPageGroup }" end="${pagging.endPageOfPageGroup }">
+					  				<c:choose>
+						  				<c:when test="${i == pagging.currentPage }">
+						  					<a href="./AllBoard.do?page=${i }" class="active">${i }</a>
+						  				</c:when>
+						  				<c:otherwise>
+	            							<a href="./AllBoard.do?page=${i }">${i }</a>
+	            						</c:otherwise>
+					  				</c:choose>
+					  			</c:forEach>
+						 		<c:if test="${pagging.nextPageGroup }">
+						 			<a href="./AllBoard.do?page=${pagging.endPageOfPageGroup + 1 }">▶</a>      
+						 		</c:if>
+            				</td>
+            			</tr>
+            		</tfoot>
+				</table>
+			</div>
+			
 			<div class="margin_right">
-				<a href="./BoardWriteView.do" class="btn">글쓰기</a>
-				<a href=""><img src="${pageContext.request.contextPath}/images/add2.jpg" alt="오른쪽엑박"></a>
+				<a href=""><img src="${pageContext.request.contextPath}/images/add1.jpg" class="img_right" alt="오른쪽엑박"></a>
 			</div>
 		</div>
 		<jsp:include page="./template/footer.jsp"></jsp:include>
