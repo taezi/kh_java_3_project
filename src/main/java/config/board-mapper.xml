@@ -4,9 +4,31 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.boardMapper">
   <select id="AllBoard" resultType="dto.boardDTO">
-    select * from board
+    select * from
+    (select
+    row_number() over(order by b.bno desc) as rw, b.*
+	from board b)
+	where ceil(rw / #{pageContentEa}) = #{pageNo}
   </select>
   
- 
+  <select id="SelectBoardTotalCount" resultType="int">
+	select count(*) from board
+  </select>
   
+  <update id="UpdateBoardCount">
+	select * from board
+  </update>
+  
+  <select id="BoardView" resultMap="board">
+	select * from board where bno = #{bno}
+  </select>
+  
+  <select id="BoardCommentView" resultType="dto.boardCommentDTO">
+  	<![CDATA[
+  			select * from
+			(select row_number() over(order by bcno desc) as rw, bc.* 
+			from board_comment bc where bno = #{bno})
+			where rw <= #{page} * 5 
+		]]>
+  </select>
 </mapper>

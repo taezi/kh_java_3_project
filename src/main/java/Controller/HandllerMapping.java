@@ -56,13 +56,11 @@ public class HandllerMapping {
 		case "Cas":
 			controller = new CasController();
 			break;
-			
+		case "BoardView":
+			controller = new BoardViewController();
+			break;
 		}
-		
 		
 		return controller;
 	}
-	
-	
-	
 }

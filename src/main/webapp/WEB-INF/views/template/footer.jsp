@@ -9,6 +9,8 @@
 	.container{
 		width: 100%;
 		height: 100px;
+		box-sizing: border-box;
+		
 		border: 1px solid black;
 	}
 </style>

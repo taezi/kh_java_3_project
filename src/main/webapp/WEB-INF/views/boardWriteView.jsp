@@ -128,9 +128,9 @@
 			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
 		<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣어버렸음 -->
 			<br>
+		<%--<input type="file" name="file">
 			<input type="file" name="file">
-			<input type="file" name="file">
-			<input type="file" name="file">
+			<input type="file" name="file">--%> <!-- 첨부파일꼭안해도되지않나...흠 -->
 		</form>
 		<div class="margin_right"></div>
 	</div>

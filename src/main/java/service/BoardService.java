@@ -1,9 +1,12 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import config.DBManager;
+import dto.boardCommentDTO;
 import dto.boardDTO;
 import dto.movieDTO;
 import mapper.boardMapper;
@@ -23,10 +26,33 @@ public class BoardService {
 		return instance;
 	}
 
-	public ArrayList<boardDTO> AllBoard() {
-		return mapper.AllBoard();
+	public ArrayList<boardDTO> AllBoard(int pageNo, int pageContentEa) { /* 0712 매개변수, map만드는코드들 추가함 */
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("pageContentEa", pageContentEa);
+		
+		return mapper.AllBoard(map);
 	}
 
+	public int SelectBoardTotalCount() { /* 0712 */
+		return mapper.SelectBoardTotalCount();
+	}
 
+	public int UpdateBoardCount(int bno) {
+		return mapper.UpdateBoardCount(bno);
+	}
+
+	public boardDTO BoardView(int bno) {
+		// TODO Auto-generated method stub
+		return mapper.BoardView(bno);
+	}
+
+	public List<boardCommentDTO> BoardCommentView(int bno, int i) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bno", bno);
+		map.put("page", i);
+		return mapper.BoardCommentView(map);
+	}
+	
 	
 }
