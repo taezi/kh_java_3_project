@@ -142,7 +142,7 @@
         <div class="membershipInbox">
           <h1>KHMOVIE</h1>
 
-          <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" autofocus>
+          <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="16" autofocus>
           <input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="10">
           <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="20">
           <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="20">
@@ -152,7 +152,7 @@
             <input type="checkbox" id="chk_id"><label for="chk_id">가입 필수 정보를 위임하는데 동의합니다.</label>
           </div>
            
-          <button type="submit" id="btn_membership" type="button">KHLogIn</button>
+          <button type="submit" id="btn_membership">KHLogIn</button>
            
         </div>
        	 </form>
@@ -165,7 +165,72 @@
 
     </footer>
   </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.membershipOutbox form'); // 폼 요소를 선택
+        const inId = document.getElementById('in_id');
+        const inUsername = document.getElementById('in_username');
+        const inPw = document.getElementById('in_pw');
+        const inPwRe = document.getElementById('in_pwre');
+        const inNickname = document.getElementById('in_nickname');
+        const chkId = document.getElementById('chk_id');
 
+        form.addEventListener('submit', function(event) {
+            // 기본 제출 동작을 막습니다. (유효성 검사를 위해)
+            event.preventDefault(); 
+
+            // 1. 입력 필드 값 확인
+            if (inId.value.trim() === '') {
+                alert('이메일을 입력해 주세요.');
+                inId.focus();
+                return; 
+            }
+
+            if (inUsername.value.trim() === '') {
+                alert('이름을 입력해 주세요.');
+                inUsername.focus();
+                return;
+            }
+
+            if (inPw.value.trim() === '') {
+                alert('비밀번호를 입력해 주세요.');
+                inPw.focus();
+                return;
+            }
+
+            if (inPwRe.value.trim() === '') {
+                alert('비밀번호를 다시 입력해 주세요.');
+                inPwRe.focus();
+                return;
+            }
+
+            // 2. 비밀번호 일치 여부 확인
+            if (inPw.value !== inPwRe.value) {
+                alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
+                inPwRe.focus();
+                return;
+            }
+
+            if (inNickname.value.trim() === '') {
+                alert('별명을 입력해 주세요.');
+                inNickname.focus();
+                return;
+            }
+
+            // 3. 체크박스 확인
+            if (!chkId.checked) {
+                alert('가입 필수 정보 위임에 동의해 주세요.');
+                chkId.focus(); // 체크박스에 포커스
+                return;
+            }
+
+            // 모든 유효성 검사를 통과하면 폼을 제출합니다.
+            form.submit();
+        });
+    });
+</script>
   
+</body>
+</html>
 </body>
 </html>

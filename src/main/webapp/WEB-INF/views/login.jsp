@@ -66,7 +66,7 @@
     color: gray;
   }
   input::placeholder{
-    padding-left: 10px;
+   /* padding-left: 10px; */
     font-size: 20px;
     font-style: #e9e9e9;
    /*  justify-content: center; */
@@ -93,7 +93,7 @@
   }
   #checkbox >label{
     font-size: 20px;
-    font-style: #e9e9e9;
+    color:  #e9e9e9;
   }
   .loginInbox > button{
     height: 50px;
@@ -164,9 +164,6 @@
     white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 방지 */
 }
 </style>
-<script>
-
-</script>
 </head>
   <body>
         <header>
@@ -185,13 +182,13 @@
 			<form action ="Login.do" method="post">
           		<div class="loginInbox">
             		<h1>KHMOVIE</h1>
-            		<input id="in_id" type="text" name="id" placeholder="아이디를 입력해주세요" maxlength="20" autofocus />
-            		<input id="in_pw" type="password" name="passwd" placeholder="암호를 입력해주세요." maxlength="20" />
+            		<input id="in_id" type="text" name="id" placeholder="아이디(이메일)을 입력해주세요" maxlength="16" autofocus />
+            		<input id="in_pw" type="password" name="passwd" placeholder="비밀번호를 입력해주세요." maxlength="20" />
             		
             		<div id="checkbox">
               			<label for="chk_id">아이디 저장</label><input type="checkbox" id="chk_id">
             		</div>
-            		<button type="submit" id="btn_login" type="button">KHLogIn</button>
+            		<button type="submit" id="btn_login">KHLogIn</button>
 
             			<ul class="linebox">
               				<li class="line"><hr></li>
@@ -203,7 +200,7 @@
             				<ul>
               					<li><a href="">아이디찾기</a></li>
               					<li><a href="">비밀번호찾기</a></li>
-              					<li><a href="">회원가입하기</a></li>
+              					<li><a href="RegisterView.do">회원가입하기</a></li>
             				</ul>
             			</div>
          	 	</div>
@@ -218,18 +215,52 @@
       </footer>
     </div>
     <%
-		
 		if (session.getAttribute("loginFail") != null && (Boolean)session.getAttribute("loginFail")) {
 	%>
 			<script type="text/javascript">
-				alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+				alert("아이디(이메일) 또는 비밀번호를 잘못 입력했습니다.");
 			</script>
 	<%
-			
 			session.removeAttribute("loginFail");
 		}
 	%>
+<script>
+    // 페이지 로드 후 DOM 요소에 접근할 수 있도록 `DOMContentLoaded` 이벤트 리스너 사용
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.querySelector('form');
+        const chkId = document.getElementById('chk_id');
+        const inputId = document.getElementById('in_id'); // 아이디 입력 
+        const inputPw = document.getElementById('in_pw'); // 비밀번호 입력 
 
-  
+        loginForm.addEventListener('submit', function(event) {
+            // 1. 아이디 유효성 검사
+            if (inputId.value.trim() === '') {
+                alert("아이디를 입력해 주세요.");
+                inputId.focus();
+                event.preventDefault();
+                return;
+            }
+
+            // 2. 비밀번호 유효성 검사
+            if (inputPw.value.trim() === '') {
+                alert("비밀번호를 입력해 주세요.");
+                inputPw.focus();
+                event.preventDefault();
+                return;
+            }
+
+            // 3. 아이디 저장 체크박스 확인
+            if (chkId.checked) {
+                const isConfirmed = confirm("아이디 저장을 체크하셨습니다.\n 공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시려면 확인을 눌러주세요");
+                
+                if (!isConfirmed) {
+                    event.preventDefault();
+                }
+            } else {
+                alert("아이디 저장을 체크하지 않았습니다. 로그인합니다.");
+            }
+        });
+    });
+</script>
 </body>
 </html>
