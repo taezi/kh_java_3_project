@@ -11,7 +11,7 @@ public class BoardWriteViewController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
-		return new ModelAndView("boardWrite.jsp", false);
+		return new ModelAndView("boardWriteView.jsp", false);
 	}
 
 }
