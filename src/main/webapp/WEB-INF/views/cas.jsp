@@ -3,208 +3,201 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>롯데시네마 캐러셀 구현</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* 전체 캐러셀 컨테이너 */
-    .carousel-container {
-      width: 800px; /* 원하는 너비로 조절 */
-      margin: 50px auto; /* 페이지 중앙 정렬 */
-      position: relative; /* 버튼 및 인디케이터의 기준점 */
-      overflow: hidden; /* 컨테이너를 벗어나는 이미지 숨김 */
-    }
-
-    /* 이미지들을 감싸고 실제 움직이는 영역 */
-    .carousel-inner {
+<meta charset="UTF-8">
+<title>롯데시네마 서브 캐러셀</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+	body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #111;
+      color: #fff;
       display: flex;
-      /* 자바스크립트에서 동적으로 width를 설정하므로, 여기서는 초기값만 설정합니다. */
-      /* width: 400%; <--- 이 줄을 삭제합니다. */
-      transition: transform 0.5s ease-in-out; /* 부드러운 슬라이드 효과 */
-    }
-
-    /* 개별 이미지 아이템 */
-    .carousel-item {
-      flex-shrink: 0; /* 아이템 너비가 줄어들지 않도록 함 */
-      /* 자바스크립트에서 동적으로 flex-basis를 설정하므로, 여기서는 초기값만 설정합니다. */
-      /* flex-basis: 25%; <--- 이 줄을 삭제합니다. */
-      width: 100%; /* 부모 너비에 맞춤 (JS에서 flex-basis로 제어하므로 중요도는 낮음) */
-      box-sizing: border-box;
-    }
-
-    .carousel-item img {
-      width: 100%;
-      display: block; /* 이미지 하단 여백 제거 */
-      height: 450px; /* 이미지 높이 고정 */
-      object-fit: cover; /* 이미지가 잘리더라도 비율을 유지하며 꽉 채움 */
-    }
-
-    /* 이전/다음 화살표 버튼 */
-    .carousel-control {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.4);
-      color: white;
-      border: none;
-      padding: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 10;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
+      flex-direction: column;
       align-items: center;
+      min-height: 100vh;
       justify-content: center;
     }
 
-    .prev {
-      left: 20px;
+    .sub-carousel-container {
+      width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background-color: #222;
+      padding: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
 
-    .next {
-      right: 20px;
-    }
-    
-    /* 하단 인디케이터(점) */
-    .carousel-indicators {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        display: flex;
-        gap: 10px; /* 점 사이의 간격 */
+    .sub-carousel-inner {
+      display: flex;
     }
 
-    .indicator {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #ccc;
-        border: none;
-        cursor: pointer;
-        padding: 0;
+    .sub-item-container {
+      flex-shrink: 0;
+      width: 200px;
+      margin: 0 10px;
+      text-align: center;
+      padding: 15px;
+      background-color: #333;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
 
-    .indicator.active {
-        background-color: #d81e05; /* 롯데시네마 활성 색상 */
+    .sub-item-container img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
-  </style>
+
+    .sub-item-container a {
+      color: #eee;
+      font-size: 15px;
+      text-decoration: none;
+      line-height: 1.0;
+    }
+    .sub-item-container a:last-of-type {
+        font-size: 14px;
+        color: #ffc107;
+    }
+
+    .sub-carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .sub-carousel-control:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .sub-carousel-control img.arrow-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .sub-carousel-control.prev {
+      left: 0px;
+    }
+
+    .sub-carousel-control.next {
+      right: 0px;
+    }
+</style>
 </head>
 <body>
+<jsp:include page="./template/header.jsp"></jsp:include>
+  <h2 style="text-align:center;">롯데시네마 서브 캐러셀 작동 테스트</h2>
 
-  <jsp:include page="./template/header.jsp"></jsp:include>
+  <div class="sub-carousel-container" id="sub-carousel">
+    <div class="sub-carousel-inner">
 
-  <h2>롯데시네마 캐러셀 예제</h2>
+		<c:forEach var="movie" items="${list}" varStatus="status">
+			<div class="sub-item-container">
+				<img src="https://image.tmdb.org/t/p/w500/${movie.wposter}" alt="${movie.movieName}" />
+				<a>${status.count} : ${movie.movieName}</a><br>
+				<a>${movie.gradeNm}</a><br>
+				<a>🔥 인기 지수: ${movie.popularity}</a>
+			</div>
+		</c:forEach>
 
-  <div class="carousel-container" id="myCarousel">
-    <div class="carousel-inner">
-      <div class="carousel-item">
-        <img src="https://image.tmdb.org/t/p/w1280/x58Gk2ZGU5AEBp25MQe2nhZhd5z.jpg" alt="하이재킹" />
-      </div>
-      <div class="carousel-item">
-        <img src="https://image.tmdb.org/t/p/w1280/sItIskd5xpiE64bBWYwZintkGf3.jpg" alt="인사이드아웃2" />
-      </div>
-      <div class="carousel-item">
-        <img src="https://image.tmdb.org/t/p/w1280/nKyBbFSooRPTJVqjrDteD1lF733.jpg" alt="핸섬가이즈" />
-      </div>
-       <div class="carousel-item">
-        <img src="https://image.tmdb.org/t/p/w1280/yAqL0makiGke5yYiVWpmBDSKIVP.jpg" alt="리추얼" /> </div>
     </div>
 
-    <button class="carousel-control prev">&lt;</button>
-    <button class="carousel-control next">&gt;</button>
-
-    <div class="carousel-indicators"></div>
+    <button class="sub-carousel-control prev">
+    	<img src="${pageContext.request.contextPath}/images/left_arrow.png" alt="왼쪽 화살표" class="arrow-icon">
+	</button>
+    <button class="sub-carousel-control next">
+    	<img src="${pageContext.request.contextPath}/images/right_arrow.png" alt="오른쪽 화살표" class="arrow-icon">
+    </button>
   </div>
-  <div>
-  <img src="https://image.tmdb.org/t/p/w1280/yAqL0makiGke5yYiVWpmBDSKIVP.jpg" alt="리추얼"  name="ex1">
-  </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const carousel = document.getElementById('myCarousel');
-  const inner = carousel.querySelector('.carousel-inner');
-  const items = carousel.querySelectorAll('.carousel-item');
-  const prevBtn = carousel.querySelector('.prev');
-  const nextBtn = carousel.querySelector('.next');
-  const indicatorsContainer = carousel.querySelector('.carousel-indicators');
-
-  const totalItems = items.length;
-  let currentIndex = 0;
-  let autoSlideInterval;
-
-  // 1. 초기 설정: CSS 동적 생성
-  // 아이템 개수에 맞춰 inner와 item의 너비를 설정합니다.
-  // 이렇게 하면 아이템 개수가 바뀌어도 CSS를 수정할 필요가 없습니다.
-  inner.style.width = `${totalItems * 100}%`;
-  items.forEach(item => {
-    item.style.flexBasis = `${100 / totalItems}%`;
-  });
-
-  // 2. 인디케이터(점) 생성
-  for (let i = 0; i < totalItems; i++) {
-    const button = document.createElement('button');
-    button.classList.add('indicator');
-    button.addEventListener('click', () => {
-      goToSlide(i);
-      resetAutoSlide(); // 인디케이터 클릭 시 자동 슬라이드 타이머 초기화
-    });
-    indicatorsContainer.appendChild(button);
-  }
-  const indicators = indicatorsContainer.querySelectorAll('.indicator');
-
-  // 3. 슬라이드 이동 및 UI 업데이트 함수
-  function goToSlide(index) {
-    // 순환 로직: 마지막 슬라이드에서 다음으로 가면 첫 슬라이드로
-    if (index < 0) {
-      index = totalItems - 1;
-    } else if (index >= totalItems) {
-      index = 0;
-    }
-
-    // ⭐ 핵심 로직: 이동 거리 계산
-    // 이동할 위치 = -(아이템 너비 % * 이동할 인덱스)
-    const newTransform = `translateX(-${index * (100 / totalItems)}%)`;
-    inner.style.transform = newTransform;
-
-    // 현재 슬라이드의 인디케이터 활성화
-    indicators[currentIndex].classList.remove('active');
-    indicators[index].classList.add('active');
-    
-    // 현재 인덱스 업데이트
-    currentIndex = index;
-  }
-
-  // 4. 이벤트 리스너 연결
-  prevBtn.addEventListener('click', () => {
-    goToSlide(currentIndex - 1);
-    resetAutoSlide(); // 버튼 클릭 시 자동 슬라이드 타이머 초기화
-  });
-
-  nextBtn.addEventListener('click', () => {
-    goToSlide(currentIndex + 1);
-    resetAutoSlide();
-  });
   
-  // 5. 자동 슬라이드 기능
-  function startAutoSlide() {
-      autoSlideInterval = setInterval(() => {
-          goToSlide(currentIndex + 1);
-      }, 5000); // 5초마다 다음 슬라이드로 이동
-  }
+<script>
+    window.onload = () => {
+        const subCarouselInner = document.querySelector(".sub-carousel-inner");
+        const subItems = document.querySelectorAll(".sub-item-container");
+        const subPrevBtn = document.querySelector(".sub-carousel-control.prev");
+        const subNextBtn = document.querySelector(".sub-carousel-control.next");
+        const subCarouselContainer = document.querySelector(".sub-carousel-container");
 
-  function resetAutoSlide() {
-      clearInterval(autoSlideInterval);
-      startAutoSlide();
-  }
+        if (subItems.length === 0) {
+            console.warn("No sub-carousel items found. Carousel will not operate.");
+            if (subPrevBtn) subPrevBtn.style.display = 'none';
+            if (subNextBtn) subNextBtn.style.display = 'none';
+            return;
+        }
+        
+        const animationOptions = {
+            duration : 500,
+            fill : 'forwards',
+            iterations : 1,
+            easing : 'ease-in-out'
+        };
 
-  // 6. 초기화
-  goToSlide(0); // 첫 번째 슬라이드부터 시작
-  startAutoSlide(); // 페이지 로드 시 자동 슬라이드 시작
-});
+        const itemsPerView = 4;
+        const itemsToScroll = 1;
+
+        let isAnimating = false;
+
+        const firstItem = subItems?.[0];
+        let itemTotalWidth = 0;
+        if (firstItem) {
+            const itemComputedStyle = getComputedStyle(firstItem);
+            itemTotalWidth = firstItem.offsetWidth + 
+                               parseFloat(itemComputedStyle.marginLeft) + 
+                               parseFloat(itemComputedStyle.marginRight);
+        }
+
+        subCarouselInner.style.width = `${itemTotalWidth * subItems.length}px`;
+        subCarouselInner.style.marginLeft = `0px`;
+
+        if(subPrevBtn) {
+            subPrevBtn.addEventListener('click', () => {
+                if (isAnimating) return;
+                isAnimating = true;
+                for (let i = 0; i < itemsToScroll; i++) {
+                    subCarouselInner.prepend(subCarouselInner.lastElementChild);
+                }
+                subCarouselInner.style.marginLeft = `-${itemTotalWidth * itemsToScroll}px`;
+                subCarouselInner.animate({marginLeft : `0px`}, animationOptions).onfinish = () => {
+                    subCarouselInner.style.marginLeft = '0px'; 
+                    isAnimating = false;
+                };
+            });
+        }
+
+        if(subNextBtn) {
+            subNextBtn.addEventListener('click', () => {
+                if (isAnimating) return;
+                isAnimating = true;
+                subCarouselInner.animate({marginLeft : `-${itemTotalWidth * itemsToScroll}px`}, animationOptions).onfinish = () => {
+                    for (let i = 0; i < itemsToScroll; i++) {
+                        subCarouselInner.appendChild(subCarouselInner.firstElementChild);
+                    }
+                    subCarouselInner.style.marginLeft = '0px';
+                    isAnimating = false;
+                };
+            });
+        }
+    };
 </script>
-
 </body>
 </html>
