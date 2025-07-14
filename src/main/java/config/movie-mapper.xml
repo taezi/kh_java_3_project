@@ -49,6 +49,6 @@
 	</select>
 	<insert id="movieCommentInsert" parameterType="dto.movieCommentDTO">
 		INSERT INTO movie_comment (mcno, usersid, movieid, mpost, mdate, reports)
-		VALUES (one_seq.NEXTVAL, #{usersid}, #{movieid}, #{mpost}, SYSDATE, 0)
+		VALUES (SEQ_MOVIECOMMENT_MCNO.NEXTVAL, #{usersid}, #{movieid}, #{mpost}, SYSDATE, 0)
 	</insert>
 </mapper>
