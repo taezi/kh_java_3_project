@@ -19,7 +19,7 @@ public class RegisterController implements Controller {
 		String nickname = request.getParameter("nickname");
 		
 
-		userDTO dto = new userDTO(id, passwd, passwdre, username, nickname  );
+		userDTO dto = new userDTO(id, passwd,  username, nickname);
 
 		
 		UserService.getInstance().registerInsert(dto);
