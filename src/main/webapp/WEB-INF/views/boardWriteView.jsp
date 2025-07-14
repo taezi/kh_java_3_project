@@ -43,9 +43,11 @@
 		box-sizing: border-box;		
 	}
 	form {
+
 		width: 70%;
 		box-sizing: border-box;
 		
+
 		display: flex;
 		flex-flow: column nowrap;
 		font-size: 0px;
@@ -133,7 +135,7 @@
 	
 		console.log(editor.getHTML()); //콘솔에 작성된 HTML내용 찍어보기
 	
-		document.querySelector('form').onsubmit = (e) => {
+		document.querySelector('#input').onsubmit = (e) => {
 			console.log(editor.getHTML());	
 			document.querySelector('#content').value = editor.getHTML(); //에디터에 작성한 HTML을 숨겨진<input>태그에 넣어서 전송되게함
 		};
@@ -147,27 +149,32 @@
 			history.back();
 		</script>	
 	</c:if> --%>
-	<div class="max_container">
-		<jsp:include page="./template/header.jsp"></jsp:include>		
-		<div class="container">	
-			<div class="margin_left"></div>
-			<form action="./BoardWriteView.do" id="link" method="post"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
-				<input type="text" id="title" name="title" placeholder="제목">					  
-				<div id="editor"></div>
-				<input type="hidden" id="content" name="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
-			<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣었음 -->
-			<%--<br>
-				<input type="file" name="file">
-				<input type="file" name="file">
-				<input type="file" name="file">--%> <!-- 첨부파일꼭안해도되지않나 그래서 주석처리했음 -->
-			</form>
-			<div class="margin_right"></div>
-		</div>
+
+	
+	<jsp:include page="./template/header.jsp"></jsp:include>
+	
+	<div class="container">	
+		<div class="margin_left"></div>
+		<form id="input" action="./BoardWrite.do" method="post"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
+			<div id="editor"></div>
+			<input type="text" id="title" name="title" placeholder="제목">					  
+			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
+		<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣어버렸음 -->
+			<br>
+		<%--<input type="file" name="file">
+			<input type="file" name="file">
+			<input type="file" name="file">--%> <!-- 첨부파일꼭안해도되지않나...흠 -->
 		
+		</form>
+		<div class="margin_right"></div>
+		
+		
+	</div>
 		<div class="bottom">
 			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
-			<button type="submit" id="register" form="link">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
+			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
 		</div>
-	</div>	
+
+
 </body>
 </html>

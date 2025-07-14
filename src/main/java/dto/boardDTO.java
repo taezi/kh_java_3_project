@@ -1,7 +1,7 @@
 package dto;
 
 public class boardDTO {
-	private String bno;
+	private int bno;
 	private String usersId;
 	private String titles;
 	private String bpost;
@@ -10,7 +10,7 @@ public class boardDTO {
 	
 	public boardDTO() {	}
 
-	public boardDTO(String bno, String usersId, String titles, String bpost, String bdate, String bview) {
+	public boardDTO(int bno, String usersId, String titles, String bpost, String bdate, String bview) {
 		super();
 		this.bno = bno;
 		this.usersId = usersId;
@@ -20,11 +20,11 @@ public class boardDTO {
 		this.bview = bview;
 	}
 
-	public String getBno() {
+	public int getBno() {
 		return bno;
 	}
 
-	public void setBno(String bno) {
+	public void setBno(int bno) {
 		this.bno = bno;
 	}
 

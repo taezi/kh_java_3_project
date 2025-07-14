@@ -15,11 +15,12 @@ public class RegisterController implements Controller {
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		String passwdre = request.getParameter("passwdre");
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
 		
-		userDTO dto = new userDTO(id, passwd, username, nickname, passwdre );
+
+		userDTO dto = new userDTO(id, passwd,  username, nickname);
+
 		
 		UserService.getInstance().registerInsert(dto);
 		return new ModelAndView("/index.jsp", true);

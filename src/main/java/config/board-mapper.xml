@@ -15,6 +15,16 @@
 	select count(*) from board
   </select>
   
+  	<select id="selectBoardNo" resultType="int">
+		select seq_board_bno.nextval from dual
+	</select>
+	
+	<insert id="insertBoard">
+	  insert into board(bno, usersid, titles, bpost)
+	  values(#{bno}, #{usersId}, #{titles}, #{bpost})
+	</insert>
+  
+  
   <!-- update문인데 select문 써둬서 주석처리해뒀습니다
   <update id="UpdateBoardCount">
 	select * from board

@@ -25,10 +25,29 @@ public class HandllerMapping {
 		case "AllMovie":
 			controller = new AllMovieController();
 			break;
+		case "movieinfo":
+			controller = new MovieInfoController();
+			break;
+		case "SearchView":
+			controller = new SearchViewController();
+			break;
+		case "movieCommentWrite":
+			controller = new movieCommentWriteController();
+			break;
 		//Board
 		case "AllBoard":
 			controller = new AllBoardController();
 			break;
+		case "BoardWriteView":
+			controller = new BoardWriteViewController();
+			break;
+		case "Cas":
+			controller = new CasController();
+			break;
+		case "BoardView":
+			controller = new BoardViewController();
+			break;
+		//로그인
 		case "RegisterView":
 			controller = new RegisterViewController();
 			break;
@@ -41,26 +60,17 @@ public class HandllerMapping {
 		case "Login":
 			controller = new LoginController();
 			break;
-		case "BoardWriteView":
-			controller = new BoardWriteViewController();
-			break;
-		case "SearchView":
-			controller = new SearchViewController();
-			break;
-		case "movieinfo":
-			controller = new MovieInfoController();
-			break;
 		case "Logout":
 			controller = new LogoutController();
 			break;
 		case "Admin":
 			controller = new AdminController();
 			break;
-		case "Cas":
-			controller = new CasController();
+		case "report":
+			controller = new reportController();
 			break;
-		case "BoardView":
-			controller = new BoardViewController();
+		case "BoardWrite":
+			controller = new BoardWriteController();
 			break;
 		}
 		
