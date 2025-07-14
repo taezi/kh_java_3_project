@@ -28,7 +28,7 @@
 	}
 	form {
 		margin: 0 auto;
-		width: 80%
+		width: 80%;
 		display: flex;
 		flex-flow: column nowrap;
 		border: 1px solid black;
@@ -103,7 +103,7 @@
 	
 		console.log(editor.getHTML()); //콘솔에 작성된 HTML내용 찍어보기
 	
-		document.querySelector('form').onsubmit = (e) => {
+		document.querySelector('#input').onsubmit = (e) => {
 			console.log(editor.getHTML());	
 			document.querySelector('#content').value = editor.getHTML(); //에디터에 작성한 HTML을 숨겨진<input>태그에 넣어서 전송되게함
 		};
@@ -122,7 +122,7 @@
 	
 	<div class="container">	
 		<div class="margin_left"></div>
-		<form action="./BoardWriteView.do" method="post" enctype="multipart/form-data"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
+		<form id="input" action="./BoardWrite.do" method="post"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
 			<div id="editor"></div>
 			<input type="text" id="title" name="title" placeholder="제목">					  
 			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
@@ -131,13 +131,16 @@
 		<%--<input type="file" name="file">
 			<input type="file" name="file">
 			<input type="file" name="file">--%> <!-- 첨부파일꼭안해도되지않나...흠 -->
+		
 		</form>
 		<div class="margin_right"></div>
-	</div>
 		
-	<div class="bottom">
-		<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
-		<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
+		
 	</div>
+		<div class="bottom">
+			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
+			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
+		</div>
+
 </body>
 </html>

@@ -62,6 +62,9 @@ public class HandllerMapping {
 		case "BoardView":
 			controller = new BoardViewController();
 			break;
+		case "BoardWrite":
+			controller = new BoardWriteController();
+			break;
 		}
 		
 		return controller;
