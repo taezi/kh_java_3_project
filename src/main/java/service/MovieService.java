@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import config.DBManager;
+import dto.movieCommentDTO;
 import dto.movieDTO;
 import mapper.movieMapper;
 
@@ -39,6 +40,14 @@ public class MovieService {
 	public movieDTO movieInfo(String movieid) {
 		return mapper.movieInfo(movieid);
 
+	}
+
+	public List<movieCommentDTO> movieComment(String movieid) {
+		return mapper.movieCommentList(movieid);
+	}
+
+	public int insertComment(movieCommentDTO comment) {
+		return mapper.movieCommentInsert(comment);
 	}
 	
 	

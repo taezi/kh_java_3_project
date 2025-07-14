@@ -3,12 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.movieMapper">
-  <select id="AllMovie" resultType="dto.movieDTO">
-    select * from movie
-  </select>
 
-  
-  <select id="selectMovieTopList" resultType="dto.movieDTO">
+	<select id="AllMovie" resultType="dto.movieDTO">
+		select * from movie
+	</select>
+
+	<select id="selectMovieTopList" resultType="dto.movieDTO">
   <![CDATA[
 	SELECT *
 	FROM (
@@ -28,17 +28,27 @@
 	        popularity DESC
 	)
 	WHERE ROWNUM <= #{i}
-  ]]> 
-  </select>
-  
-  
-  
+  ]]>
+	</select>
 
-  <select id="searchMovie" resultType="dto.movieDTO">
-  	select * from movie where moviename like '%' || #{keyword} || '%'
-  </select>
-  <select id="movieInfo" resultType="dto.movieDTO">
-  	select * from movie where movieid = #{movieid}
-  </select>
+	<select id="searchMovie" resultType="dto.movieDTO">
+		select * from movie where
+		moviename like '%' || #{keyword} || '%'
+	</select>
 
+	<select id="movieInfo" resultType="dto.movieDTO">
+		select * from movie where
+		movieid = #{movieid}
+	</select>
+
+	<select id="movieCommentList" resultType="dto.movieCommentDTO">
+		SELECT * FROM
+		movie_comment
+		WHERE movieid = #{movieid}
+		ORDER BY mcno DESC
+	</select>
+	<insert id="movieCommentInsert" parameterType="dto.movieCommentDTO">
+		INSERT INTO movie_comment (mcno, usersid, movieid, mpost, mdate, reports)
+		VALUES (SEQ_MOVIECOMMENT_MCNO.NEXTVAL, #{usersid}, #{movieid}, #{mpost}, SYSDATE, 0)
+	</insert>
 </mapper>
