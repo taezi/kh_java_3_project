@@ -34,7 +34,7 @@
   .loginOutbox{
     display:flex;
     flex-flow: column nowrap;
-    border: 1px solid #db1a1a;
+    border: 2px solid #db1a1a;
     padding: 0px;
     width: 800px;
     justify-content: center;
@@ -57,7 +57,7 @@
   input{
     height: 60px;
     border-radius: 10px;
-    border: 1px solid darkgray;
+    border: 2px solid darkgray;
    /*  justify-items: center; */
     padding: 5px 15px;
     font-size: 20px;
@@ -93,12 +93,15 @@
   }
   #checkbox >label{
     font-size: 20px;
-    color:  #e9e9e9;
+    color:  rgb(77, 77, 77);
   }
   .loginInbox > button{
     height: 50px;
     border-radius: 10px;
     border: #db1a1a;
+  }
+  button:hover{
+    border: 5px solid orange;
   }
   .loginInbox > ul >li{
     display: flex;
@@ -155,7 +158,7 @@
   .userbox > ul{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 90%;
   }
   .userbox > ul > li > a {
@@ -163,6 +166,9 @@
     text-decoration: none; 
     white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 방지 */
 }
+.userbox > ul > li > a:hover{
+  color: #db1a1a;
+  }
 </style>
 </head>
   <body>
@@ -182,7 +188,7 @@
 			<form action ="Login.do" method="post">
           		<div class="loginInbox">
             		<h1>KHMOVIE</h1>
-            		<input id="in_id" type="text" name="id" placeholder="아이디(이메일)을 입력해주세요" maxlength="16" autofocus />
+            		<input id="in_id" type="text" name="id" placeholder="아이디(이메일)을 입력해주세요" maxlength="50" autofocus />
             		<input id="in_pw" type="password" name="passwd" placeholder="비밀번호를 입력해주세요." maxlength="20" />
             		
             		<div id="checkbox">
@@ -200,7 +206,7 @@
             				<ul>
               					<li><a href="">아이디찾기</a></li>
               					<li><a href="">비밀번호찾기</a></li>
-              					<li><a href="RegisterView.do">회원가입하기</a></li>
+              					<li><a href="RegisterView.do">회원가입</a></li>
             				</ul>
             			</div>
          	 	</div>
@@ -225,40 +231,45 @@
 		}
 	%>
 <script>
-    // 페이지 로드 후 DOM 요소에 접근할 수 있도록 `DOMContentLoaded` 이벤트 리스너 사용
     document.addEventListener('DOMContentLoaded', function() {
+        // form 및 3개 유효검사
         const loginForm = document.querySelector('form');
-        const chkId = document.getElementById('chk_id');
-        const inputId = document.getElementById('in_id'); // 아이디 입력 
-        const inputPw = document.getElementById('in_pw'); // 비밀번호 입력 
+        const inId = document.getElementById('in_id'); // 아이디 입력 필드
+        const inPw = document.getElementById('in_pw'); // 비밀번호 입력 필드
+        const chkId = document.getElementById('chk_id'); // 아이디 저장 체크박스
 
         loginForm.addEventListener('submit', function(event) {
+            // 중요: 폼의 기본 제출 동작을 막습니다. (유효성 검사를 위해)
+            event.preventDefault();
+
             // 1. 아이디 유효성 검사
-            if (inputId.value.trim() === '') {
-                alert("아이디를 입력해 주세요.");
-                inputId.focus();
-                event.preventDefault();
-                return;
+            if (inId.value.trim() === '') {
+                alert("아이디(이메일)을 입력해 주세요.");
+                inId.focus();
+                return; // 공백시 login.jsp 이동
             }
 
             // 2. 비밀번호 유효성 검사
-            if (inputPw.value.trim() === '') {
+            if (inPw.value.trim() === '') {
                 alert("비밀번호를 입력해 주세요.");
-                inputPw.focus();
-                event.preventDefault();
-                return;
+                inPw.focus();
+                return; // 공백시 login.jsp 이동
             }
 
-            // 3. 아이디 저장 체크박스 확인
+            // 3. 아이디 저장 체크박스 확인 
             if (chkId.checked) {
-                const isConfirmed = confirm("아이디 저장을 체크하셨습니다.\n 공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시려면 확인을 눌러주세요");
+                const isConfirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시려면 확인을 눌러주세요.");
                 
                 if (!isConfirmed) {
-                    event.preventDefault();
+                    // 사용자가 '취소'를 누르면 login.jsp 이동
+                    return; 
                 }
             } else {
-                alert("아이디 저장을 체크하지 않았습니다. 로그인합니다.");
+                alert("아이디 저장을 체크하지 않았습니다. 로그인합니다."); 
             }
+
+            // 모든 유효성 검사확인후 form 제출
+            loginForm.submit();
         });
     });
 </script>
