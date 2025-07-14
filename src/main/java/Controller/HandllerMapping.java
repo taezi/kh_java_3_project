@@ -69,6 +69,9 @@ public class HandllerMapping {
 		case "report":
 			controller = new reportController();
 			break;
+		case "BoardWrite":
+			controller = new BoardWriteController();
+			break;
 		}
 		
 		return controller;

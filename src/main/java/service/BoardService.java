@@ -53,6 +53,16 @@ public class BoardService {
 		map.put("page", i);
 		return mapper.BoardCommentView(map);
 	}
+
+	public int selectBoardNo() {
+		// TODO Auto-generated method stub
+		return mapper.selectBoardNo();
+	}
+
+	public int insertBoard(boardDTO board) {
+		// TODO Auto-generated method stub
+		return mapper.insertBoard(board);
+	}
 	
 	
 }

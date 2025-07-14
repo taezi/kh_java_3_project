@@ -18,7 +18,9 @@ public class RegisterController implements Controller {
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
 		
-		userDTO dto = new userDTO(id, passwd, username, nickname);
+
+		userDTO dto = new userDTO(id, passwd, passwdre, username, nickname  );
+
 		
 		UserService.getInstance().registerInsert(dto);
 		return new ModelAndView("/index.jsp", true);

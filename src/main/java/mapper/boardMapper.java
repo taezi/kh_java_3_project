@@ -22,4 +22,8 @@ public interface boardMapper {
 
 	List<boardCommentDTO> BoardCommentView(Map<String, Object> map);
 
+	int selectBoardNo();
+
+	int insertBoard(boardDTO board);
+
 }
