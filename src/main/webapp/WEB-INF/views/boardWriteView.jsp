@@ -8,66 +8,97 @@
 <title>게시판 글쓰기</title>
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<style>
+<style>/* 헤더걍위로아예빼서 다시하기............ */
 	* {
 		margin: 0;
-		padding: 0;	
+		padding: 0;
+		
+		font-family: 'Noto Sans KR', sans-serif;
+		color: #333;
 	}
-	
+	html, body {
+    	height: 100%;
+    	margin: 0;
+    	padding: 0;
+	}
+	.max_container {
+    	height: 100vh;
+
+    	display: flex;
+    	flex-flow: column nowrap;
+    	font-size: 0px;	
+	}
 	.container {
-        width: 100%;
+        flex: 1;
 		box-sizing: border-box;
-        font-size: 0px;
         
         display: flex;
 		flex-flow: row nowrap;
+        font-size: 0px;
+        
+		background-color: #f0f0f0;
 	}
 	.margin_left, .margin_right {
-		width: 10%;
+		width: 15%;
 		box-sizing: border-box;		
 	}
 	form {
-		margin: 0 auto;
-		width: 80%;
+
+		width: 70%;
+		box-sizing: border-box;
+		
+
 		display: flex;
 		flex-flow: column nowrap;
-		border: 1px solid black;
+		font-size: 0px;
+		
+		border-radius: 30px; /*급히수정*/
+			
+    	margin: 40px;
+   		box-shadow: 0 0 5px rgba(0,0,0,0.5);
+   		
+   		/*이상하면지워 --> 이거 무족권 들어갔어야했었음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+   		background-color: white; /* 배경색 추가 */
+		overflow: hidden; /* 안쪽에 튀어나오는 거 방지 */
 	}
 	#title {
-		height: 40%;
+		height: 30%;
 		box-sizing: border-box;
 		
-		padding-left: 30px;
-		padding-top: 50px;
 		font-size: 48px;
 		outline: none;
+		
+		border: none;
 	}
-	#content {
-		height: 60%;
+	#editor {
+		height: 70%;
 		box-sizing: border-box;
 		
-		padding-left: 30px;
-		padding-bottom: 570px;
 		font-size: 24px;
 		outline: none;
+		
+		border: none;
 	}
 	#title::placeholder {
  		color: lightgray;
 		font-size: 48px;
 	}
-	
 	.bottom {
 		height: 100px;
+		
 		display: flex;
 		flex-flow: row nowrap;
+		font-size: 0px;
+		
 		justify-content: space-between;
+		
 		border: 1px solid black;
 	}
 	#back {
 		width: 110px;
 		height: 50px;
-		margin-left: 60px;
-		margin-top: 20px;
+		margin-left: 60px; /*조정*/
+		margin-top: 20px; /*조정*/
 		
 		border-style: none;
 		background-color: transparent;
@@ -75,12 +106,13 @@
 		font-size: 18px;
 		font-weight: bold;
 		color: #5B5B5B;
+		/*color: #333; 이걸로도해보기*/
 	}
 	#register {
 		width: 110px;
 		height: 50px;
-		margin-right: 60px;
-		margin-top: 20px;
+		margin-right: 60px; /*조정*/
+		margin-top: 20px; /*조정*/
 		
 		border-style: none;
 		border-radius: 20px;
@@ -117,6 +149,7 @@
 			history.back();
 		</script>	
 	</c:if> --%>
+
 	
 	<jsp:include page="./template/header.jsp"></jsp:include>
 	
@@ -141,6 +174,7 @@
 			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
 			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
 		</div>
+
 
 </body>
 </html>
