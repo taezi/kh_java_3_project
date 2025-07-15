@@ -72,6 +72,8 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
+		case "BoardLike":
+			controller = new BoardLikeController();
 		}
 		
 		return controller;
