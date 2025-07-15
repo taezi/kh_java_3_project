@@ -362,7 +362,7 @@
 		  <div class="carousel-inner">
 		    
 	        <c:forEach var="movie" items="${list}" begin="0" end="3" >
-		        <div class="carousel-item">
+		        <div class="carousel-item" data-movie-id="${movie.movieId}">
 					<img src="https:/image.tmdb.org/t/p/w1280/${movie.hposter}" alt="${movie.movieName}" />
 				</div>
 			</c:forEach>
@@ -641,7 +641,39 @@ window.onload = () => {
     });
   }
   // 서브 캐러셀 END
-};
+  
+
+  document.querySelectorAll('.carousel-item').forEach(item => {
+      item.addEventListener('click', function() {
+          const movieId = this.dataset.movieId; // data-movie-id 값 가져오기
+
+          if (movieId) {
+              // AJAX 요청 보내기
+              fetch(`./MovieUrl.do?movieId=\${movieId}`) // MovieUrl.do 서블릿 호출
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error(`HTTP error! status: ${response.status}`);
+                      }
+                      return response.json();
+                  })
+                  .then(data => {
+                      if (data.success && data.trailerUrl) {
+                          // 새 창으로 예고편 주소 띄우기
+                          window.open(data.trailerUrl, '_blank');
+                      } else {
+                          alert(data.message || '예고편을 가져오는 데 실패했습니다.');
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error fetching trailer:', error);
+                      alert('예고편을 가져오는 중 오류가 발생했습니다. 다시 시도해주세요.');
+                  });
+          } else {
+              alert('영화 ID를 찾을 수 없습니다.');
+          }
+      });
+  });
+}; // window.onload 함수의 닫는 중괄호
 
     
     
