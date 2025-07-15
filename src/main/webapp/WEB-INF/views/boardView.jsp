@@ -12,11 +12,11 @@
 	<div class="board-container">
 		<h3 class="board-title">제목 : ${board.titles }</h3>
 		<p class="board-meta-info">작성자 : ${board.usersId }, 작성일 : ${board.bdate }</p>
-		<p class="board-meta-info">조회수 : ${board.bview}</p>
+		<p class="board-meta-info">조회수 : ${board.bview }</p>
 		<div class="content">${board.bpost }</div>
 		
 		<button type="button" class="btn_content_like">
-			<img src="${pageContext.request.contextPath}/images/heart.png" class="heart" alt="하트피엔지엑박">
+			<img src="${pageContext.request.contextPath}/images/heart.png" class="heart" alt="하트엑박">
 			<span>${board.blike }</span>
 		</button>
 		

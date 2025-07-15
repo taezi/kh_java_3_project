@@ -142,13 +142,13 @@
 	};
 </script>
 </head>
-<body><%-- 테스트할때 귀찮아서 주석처리해뒀음
+<body>
 	<c:if test="${sessionScope.user == null }">
 		<script>
 			alert('로그인 후 글쓰기가 가능합니다.');
 			history.back();
 		</script>	
-	</c:if> --%>
+	</c:if>
 
 	
 	<jsp:include page="./template/header.jsp"></jsp:include>
@@ -156,8 +156,8 @@
 	<div class="container">	
 		<div class="margin_left"></div>
 		<form id="input" action="./BoardWrite.do" method="post"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
-			<div id="editor"></div>
 			<input type="text" id="title" name="title" placeholder="제목">					  
+			<div id="editor"></div>
 			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
 		<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣어버렸음 -->
 			<br>

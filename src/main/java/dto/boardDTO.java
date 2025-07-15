@@ -7,10 +7,15 @@ public class boardDTO {
 	private String bpost;
 	private String bdate;
 	private String bview;
+	private String nickname;
+	private int blike;
+	private int bhate;
+	private int ccount;
 	
 	public boardDTO() {	}
 
-	public boardDTO(int bno, String usersId, String titles, String bpost, String bdate, String bview) {
+	public boardDTO(int bno, String usersId, String titles, String bpost, String bdate, String bview, String nickname,
+			int blike, int bhate, int ccount) {
 		super();
 		this.bno = bno;
 		this.usersId = usersId;
@@ -18,6 +23,10 @@ public class boardDTO {
 		this.bpost = bpost;
 		this.bdate = bdate;
 		this.bview = bview;
+		this.nickname = nickname;
+		this.blike = blike;
+		this.bhate = bhate;
+		this.ccount = ccount;
 	}
 
 	public int getBno() {
@@ -68,9 +77,48 @@ public class boardDTO {
 		this.bview = bview;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public int getBlike() {
+		return blike;
+	}
+
+	public void setBlike(int blike) {
+		this.blike = blike;
+	}
+
+	public int getBhate() {
+		return bhate;
+	}
+
+	public void setBhate(int bhate) {
+		this.bhate = bhate;
+	}
+
+	public int getCcount() {
+		return ccount;
+	}
+
+	public void setCcount(int ccount) {
+		this.ccount = ccount;
+	}
+
 	@Override
 	public String toString() {
 		return "boardDTO [bno=" + bno + ", usersId=" + usersId + ", titles=" + titles + ", bpost=" + bpost + ", bdate="
-				+ bdate + ", bview=" + bview + "]";
+				+ bdate + ", bview=" + bview + ", nickname=" + nickname + ", blike=" + blike + ", bhate=" + bhate
+				+ ", ccount=" + ccount + "]";
 	}
+
+	
+	
+	
+
+	
 }

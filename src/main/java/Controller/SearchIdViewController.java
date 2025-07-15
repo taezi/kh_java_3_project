@@ -9,14 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import service.MovieService;
 import views.ModelAndView;
 
-public class CasController implements Controller {
+public class SearchIdViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		// TODO Auto-generated method stub
-		List<movieDTO> list = MovieService.getInstance().selectMovieTopList(20);
-		request.setAttribute("list", list);
-		return new ModelAndView("cas.jsp", false);
+		// login - SearchId(아이디찾기) - 화면만 바꿔줘도 될듯?
+	
+		return new ModelAndView("SearchIdView.jsp", false);
 	}
 
 }
