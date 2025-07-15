@@ -230,8 +230,8 @@ ul {
 						<button type="button" id="btn_naver">네이버로그인</button>
 						<div class="userbox">
 							<ul>
-								<li><a href="">아이디찾기</a></li>
-								<li><a href="">비밀번호찾기</a></li>
+								<li><a href="SearchIdView.do">아이디찾기</a></li>
+								<li><a href="SearchPwView.do">비밀번호찾기</a></li>
 								<li><a href="RegisterView.do">회원가입</a></li>
 							</ul>
 						</div>
