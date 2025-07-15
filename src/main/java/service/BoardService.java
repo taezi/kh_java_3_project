@@ -64,6 +64,7 @@ public class BoardService {
 		return mapper.insertBoard(board);
 	}
 
+
 	public int InsertBoardLike(int bno, String usersid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bno", bno);
@@ -80,6 +81,11 @@ public class BoardService {
 
 	public Map<String, Object> SelectBoardLikeHateCount(int bno) {
 		return mapper.SelectBoardLikeHateCount(bno);
+
+	public List<boardDTO> selectBoardTopList(int i) {
+		// TODO Auto-generated method stub
+		return mapper.selectBoardTopList(i);
+
 	}
 	
 	

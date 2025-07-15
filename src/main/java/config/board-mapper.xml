@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="insertBoard">
-	  insert into board_view(bno, usersid, titles, bpost)
+	  insert into board(bno, usersid, titles, bpost)
 	  values(#{bno}, #{usersId}, #{titles}, #{bpost})
 	</insert>
   
@@ -42,6 +42,7 @@
 		]]>
   </select>
   
+
   <insert id="InsertBoardLike">
   	insert into board_event(bno, usersId) values(#{bno},#{usersId})
   </insert>
@@ -56,4 +57,21 @@
 		(select count(*) from board_view where bno = #{bno}) as bhate
 		from dual
 	</select>
+
+  	<select id="selectBoardTopList" resultType="dto.boardDTO">
+  <![CDATA[
+	SELECT *
+	FROM (
+	    SELECT
+	        *
+	    FROM
+	        board_view
+	    ORDER BY
+	        bno DESC
+	)
+	WHERE ROWNUM <= #{i}
+  ]]>
+	</select>
+  
+
 </mapper>
