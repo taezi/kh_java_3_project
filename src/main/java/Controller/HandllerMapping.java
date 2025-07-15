@@ -72,6 +72,19 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
+		case "SearchIdView":
+			controller = new SearchIdViewController();
+			break;
+		case "SearchId":
+			controller = new SearchIdController();
+			break;
+		case "SearchPwView":
+			controller = new SearchPwViewController();
+			break;
+		case "SearchPw": 
+			controller = new SearchPwController();
+			break;
+		
 		}
 		
 		return controller;
