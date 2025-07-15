@@ -129,7 +129,7 @@ tr {
 							<th>아이디</th>
 							<th>작성일</th>
 							<th>조회수</th>
-						<%--<th>좋아요</th>--%>
+							<th>좋아요</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -140,8 +140,8 @@ tr {
 								<td>${board.usersId}</td>
 								<td>${board.bdate}</td>
 								<td>${board.bview}</td>
-							<%--<td>${board.blike}</td>--%> <!-- boardDTO에 blike 없어서 주석처리해뒀습니다,
-							</tr>								 근데 blike는 BoardDTO에 선언하실건가요? 아니면 DTO파일 따로 만드실건가용? -->				
+								<td>${board.blike}</td>
+							</tr>								 				
 						</c:forEach>
 					</tbody>
 					<tfoot>

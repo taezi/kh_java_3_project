@@ -25,7 +25,8 @@
 	</insert>
   
   <update id="UpdateBoardCount">
-	select * from board_view
+  	  update board set bview = bview + 1
+	  where bno = #{bno}
   </update>
   
   <select id="BoardView" resultType="dto.boardDTO">
@@ -41,6 +42,22 @@
 		]]>
   </select>
   
+
+  <insert id="InsertBoardLike">
+  	insert into board_event(bno, usersId) values(#{bno},#{usersId})
+  </insert>
+  
+  <delete id="DeleteBoardLike">
+  	delete from board_event where bno = #{bno} and usersId = #{usersId}
+  </delete>
+  
+  <select id="SelectBoardLikeHateCount" resultType="map">
+		select
+		(select count(*) from board_view where bno = #{bno}) as blike,
+		(select count(*) from board_view where bno = #{bno}) as bhate
+		from dual
+	</select>
+
   	<select id="selectBoardTopList" resultType="dto.boardDTO">
   <![CDATA[
 	SELECT *
@@ -56,6 +73,5 @@
   ]]>
 	</select>
   
-  
-  
+
 </mapper>

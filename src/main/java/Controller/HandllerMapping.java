@@ -69,11 +69,12 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
-<<<<<<< HEAD
 		case "NaverLoginCallback":
 			controller = new NaverLoginCallbackController();
 			break;
-=======
+		case "BoardLike":
+			controller = new BoardLikeController();
+      break;
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;
@@ -86,10 +87,7 @@ public class HandllerMapping {
 		case "SearchPw": 
 			controller = new SearchPwController();
 			break;
-		
->>>>>>> 16290ef83d1f60a2ac69187d73b55839b9a8442d
 		}
-		
 		return controller;
 	}
 }
