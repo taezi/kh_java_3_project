@@ -10,4 +10,7 @@ VALUES (#{usersid},standard_hash(#{passwd}, 'SHA512'), #{userName}, #{nickName})
   <select id="login" resultType="dto.userDTO">
   	select * from users where usersid = #{usersid} and passwd = standard_hash(#{passwd}, 'SHA512')
   </select>
+  <select id="findID" resultType="dto.userDTO">
+    select * from users where usersid = #{id}
+  </select>
 </mapper>

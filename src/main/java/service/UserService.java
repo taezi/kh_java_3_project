@@ -29,5 +29,9 @@ public class UserService {
 		return mapper.login(map);
 	}
 
+	public userDTO findById(String id) {
+		return mapper.findID(id);
+	}
+
 	
 }

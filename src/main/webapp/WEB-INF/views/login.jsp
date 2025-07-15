@@ -1,3 +1,6 @@
+<%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.security.SecureRandom"%>
+<%@ page import="java.math.BigInteger"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -227,7 +230,16 @@ ul {
 							<li>또는</li>
 							<li class="line"><hr></li>
 						</ul>
-						<button type="button" id="btn_naver">네이버로그인</button>
+						<%
+						String clientId = "eKoX27wwR93fBr4I64mw";
+						String redirectURI = URLEncoder.encode("http://localhost:8888/kh_java_3_project/NaverLoginCallback.do", "UTF-8");
+						SecureRandom random = new SecureRandom();
+						String state = new BigInteger(130, random).toString(32);
+						String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + clientId + "&redirect_uri="
+								+ redirectURI + "&state=" + state;
+						%>
+						<a href="<%=apiURL%>"><button type="button" id="btn_naver">
+								네이버로그인</button></a>
 						<div class="userbox">
 							<ul>
 								<li><a href="">아이디찾기</a></li>
@@ -243,38 +255,44 @@ ul {
 		<footer> </footer>
 	</div>
 	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		  const loginForm = document.querySelector('.loginOutbox form');
-		  const inId = document.getElementById('in_id');
-		  const inPw = document.getElementById('in_pw');
-		  const chkId = document.getElementById('chk_id');
+		document
+				.addEventListener(
+						'DOMContentLoaded',
+						function() {
+							const loginForm = document
+									.querySelector('.loginOutbox form');
+							const inId = document.getElementById('in_id');
+							const inPw = document.getElementById('in_pw');
+							const chkId = document.getElementById('chk_id');
 
-		  loginForm.addEventListener('submit', function(event) {
-		    event.preventDefault();
+							loginForm
+									.addEventListener(
+											'submit',
+											function(event) {
+												event.preventDefault();
 
-		    if (inId.value.trim() === '') {
-		      alert('이메일을 입력해 주세요.');
-		      inId.focus();
-		      return; 
-		    }
+												if (inId.value.trim() === '') {
+													alert('이메일을 입력해 주세요.');
+													inId.focus();
+													return;
+												}
 
-		    if (inPw.value.trim() === '') {
-		      alert('비밀번호를 입력해 주세요.');
-		      inPw.focus();
-		      return;
-		    }
+												if (inPw.value.trim() === '') {
+													alert('비밀번호를 입력해 주세요.');
+													inPw.focus();
+													return;
+												}
 
-		    if (chkId.checked) {
-		      const confirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시겠습니까?");
-		      if (!confirmed) {
-		        return;
-		      }
-		    }
-		    loginForm.submit();
-		  });
-		});
-
-</script>
+												if (chkId.checked) {
+													const confirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시겠습니까?");
+													if (!confirmed) {
+														return;
+													}
+												}
+												loginForm.submit();
+											});
+						});
+	</script>
 
 
 
