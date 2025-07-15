@@ -24,12 +24,9 @@
 	  values(#{bno}, #{usersId}, #{titles}, #{bpost})
 	</insert>
   
-  
-  <!-- update문인데 select문 써둬서 주석처리해뒀습니다
   <update id="UpdateBoardCount">
-	select * from board
+	select * from board_view
   </update>
-  -->
   
   <select id="BoardView" resultType="dto.boardDTO">
 	select * from board where bno = #{bno}
