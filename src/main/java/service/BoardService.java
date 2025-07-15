@@ -81,6 +81,7 @@ public class BoardService {
 
 	public Map<String, Object> SelectBoardLikeHateCount(int bno) {
 		return mapper.SelectBoardLikeHateCount(bno);
+	}
 
 	public List<boardDTO> selectBoardTopList(int i) {
 		// TODO Auto-generated method stub
