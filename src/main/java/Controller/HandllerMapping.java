@@ -41,9 +41,6 @@ public class HandllerMapping {
 		case "BoardWriteView":
 			controller = new BoardWriteViewController();
 			break;
-		case "Cas":
-			controller = new CasController();
-			break;
 		case "BoardView":
 			controller = new BoardViewController();
 			break;
