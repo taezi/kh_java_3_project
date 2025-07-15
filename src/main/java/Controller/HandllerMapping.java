@@ -77,7 +77,7 @@ public class HandllerMapping {
 			break;
 		case "BoardLike":
 			controller = new BoardLikeController();
-      break;
+			break;
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;
