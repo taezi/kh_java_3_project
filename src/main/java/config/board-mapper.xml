@@ -7,12 +7,12 @@
     select * from
     (select
     row_number() over(order by b.bno desc) as rw, b.*
-	from board b)
+	from board_view b)
 	where ceil(rw / #{pageContentEa}) = #{pageNo}
   </select>
   
   <select id="SelectBoardTotalCount" resultType="int">
-	select count(*) from board
+	select count(*) from board_view
   </select>
   
   	<select id="selectBoardNo" resultType="int">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="insertBoard">
-	  insert into board(bno, usersid, titles, bpost)
+	  insert into board_view(bno, usersid, titles, bpost)
 	  values(#{bno}, #{usersId}, #{titles}, #{bpost})
 	</insert>
   
