@@ -69,6 +69,9 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
+		case "MovieUrl":
+			controller = new MovieUrlController();
+			break;
 		}
 		
 		return controller;
