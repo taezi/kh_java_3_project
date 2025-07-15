@@ -26,4 +26,6 @@ public interface boardMapper {
 
 	int insertBoard(boardDTO board);
 
+	List<boardDTO> selectBoardTopList(int i);
+
 }

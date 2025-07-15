@@ -63,6 +63,11 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return mapper.insertBoard(board);
 	}
+
+	public List<boardDTO> selectBoardTopList(int i) {
+		// TODO Auto-generated method stub
+		return mapper.selectBoardTopList(i);
+	}
 	
 	
 }

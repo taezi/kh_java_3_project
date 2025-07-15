@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="insertBoard">
-	  insert into board_view(bno, usersid, titles, bpost)
+	  insert into board(bno, usersid, titles, bpost)
 	  values(#{bno}, #{usersId}, #{titles}, #{bpost})
 	</insert>
   
@@ -40,4 +40,22 @@
 			where rw <= #{page} * 5 
 		]]>
   </select>
+  
+  	<select id="selectBoardTopList" resultType="dto.boardDTO">
+  <![CDATA[
+	SELECT *
+	FROM (
+	    SELECT
+	        *
+	    FROM
+	        board_view
+	    ORDER BY
+	        bno DESC
+	)
+	WHERE ROWNUM <= #{i}
+  ]]>
+	</select>
+  
+  
+  
 </mapper>
