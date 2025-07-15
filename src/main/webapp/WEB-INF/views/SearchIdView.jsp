@@ -125,6 +125,33 @@
 			<div class="rightside"></div>
 		</div>
 		<footer> </footer>
-<script> </script>
+<script> 
+// 유효성 검사 - 이름, 별명 2자이상
+function valueForm() {
+    const username = document.getElementById('in_username').value.trim();
+    const nickname = document.getElementById('in_nickname').value.trim();
+    
+    if (username === ''){
+        alert('이름을 입력해주세요.');
+        document.getElementById('in_username').focus();
+        return false;
+    }
+    if (nickname === ''){
+      alert('별명을 입력해주세요.');
+      document.getElementById('in_nickname').focus();
+      return false;
+    }
+    if (username.length < 2 || nickname.length <2) { 
+        alert("이름과 별명은 각각 두 글자 이상 입력해주세요.");
+        if(username.length < 2){
+          document.getElementById('in_username').focus();
+        }else{
+          document.getElementById('in_nickname').focus();
+        }
+        return false; 
+    }
+    return true; //유효성검사 OK
+  }
+</script>
 </body>
 </html>
