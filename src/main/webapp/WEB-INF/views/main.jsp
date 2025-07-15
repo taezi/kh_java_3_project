@@ -429,7 +429,7 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>아이디</th>
+							<th>닉네임</th>
 							<th>작성일</th>
 							<th>조회수</th>
 							<th>좋아요</th>
@@ -440,7 +440,7 @@
 							<tr>
 								<td>${board.bno}</td>
 								<td><a href="./BoardView.do?bno=${board.bno }">${board.titles}</td>
-								<td>${board.usersId}</td>
+								<td>${board.nickname}</td>
 								<td>${board.bdate}</td>
 								<td>${board.bview}</td>
 								<td>${board.blike}</td>
