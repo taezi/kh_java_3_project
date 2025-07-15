@@ -71,9 +71,26 @@ public class HandllerMapping {
 			break;
 		case "MovieUrl":
 			controller = new MovieUrlController();
+      break;
+		case "NaverLoginCallback":
+			controller = new NaverLoginCallbackController();
+			break;
+		case "BoardLike":
+			controller = new BoardLikeController();
+      break;
+		case "SearchIdView":
+			controller = new SearchIdViewController();
+			break;
+		case "SearchId":
+			controller = new SearchIdController();
+			break;
+		case "SearchPwView":
+			controller = new SearchPwViewController();
+			break;
+		case "SearchPw": 
+			controller = new SearchPwController();
 			break;
 		}
-		
 		return controller;
 	}
 }
