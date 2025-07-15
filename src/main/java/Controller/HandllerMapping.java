@@ -69,6 +69,9 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
+		case "BoardLike":
+			controller = new BoardLikeController();
+      break;
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;
@@ -81,7 +84,7 @@ public class HandllerMapping {
 		case "SearchPw": 
 			controller = new SearchPwController();
 			break;
-		
+
 		}
 		
 		return controller;
