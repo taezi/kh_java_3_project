@@ -59,9 +59,10 @@ textarea {
 			            <li>작성일 : ${comment.bcdate }</li>	
 			            <li>
 			                <button type="button" class="btn_comment_like" data-bcno="${comment.bcno}">
-			                    <img src="${pageContext.request.contextPath}/images/heart.png" class="comment_heart" alt="하트엑박">
-			                    <span>좋아요 개수 : ${comment.clike }</span>
-			                </button>
+							    <input type="hidden" name="cno" value="${comment.bcno}">
+							    <img src="${pageContext.request.contextPath}/images/heart.png" class="comment_heart" alt="하트엑박">
+							    <span>좋아요 개수 : ${comment.clike }</span>
+							</button>
 			            </li>
 			        </ul>
 			        <p>${comment.bcpost }</p>
@@ -100,29 +101,27 @@ textarea {
 	//게시글 좋아요 end//
 	//댓글 좋아요 start//
 	document.querySelectorAll('.btn_comment_like').forEach(item => {
-	    item.onclick = async (e) => {
-	    	const commentDiv = e.currentTarget.closest('.comment');
-	        const cno = commentDiv.querySelector('input[name="cno"]').value;
-	        const bno = commentDiv.dataset.bno; // data-bno 속성 값 가져오기
-	
-	        console.log("댓글 번호 (cno):", cno);
-	        console.log("게시글 번호 (bno):", bno); // bno 값 확인용
-	
-	        let url = `./BoardCommentLike.do?bcno=\${cno}&bno=\${bno}`; // bno 파라미터 추가
-	
-	        try {
-	            const response = await fetch(url);
-	            const data = await response.json();
-	
-	            alert(data.msg);
-	            console.log("서버 응답 데이터:", data);
-	            document.querySelector('.btn_comment_like > span').innerHTML = data.bcount.CLIKE;
-	
-	            
-	        } catch (error) {
-	            console.error("댓글 좋아요 처리 중 오류 발생:", error);
-	        }
-	    }
+		item.onclick = async (e) => {
+		    const cno = e.currentTarget.querySelector('input[name="cno"]')?.value;
+		    const commentDiv = e.currentTarget.closest('.comment');
+		    const bno = commentDiv?.dataset?.bno;
+
+		    if (!cno || !bno) {
+		        console.error("cno 또는 bno를 찾을 수 없습니다.");
+		        return;
+		    }
+
+		    try {
+		        const response = await fetch(`./BoardCommentLike.do?bcno=\${cno}&bno=\${bno}`);
+		        const data = await response.json();
+		        alert(data.msg);
+
+		        const newLikeCount = (data.bcount && typeof data.bcount.CLIKE !== 'undefined') ? data.bcount.CLIKE : 0;
+		        e.currentTarget.querySelector('span').innerHTML = `좋아요 개수 : \${newLikeCount}`;
+		    } catch (error) {
+		        console.error("댓글 좋아요 처리 중 오류 발생:", error);
+		    }
+		};
 	});
 	//댓글 좋아요 end//
 </script>

@@ -38,7 +38,7 @@
   			select * from
 			(select row_number() over(order by bcno desc) as rw, bc.* 
 			from board_comment_view bc where bno = #{bno})
-			where rw <= #{page} * 5 
+			where rw <= #{page} * 5
 		]]>
   </select>
   
