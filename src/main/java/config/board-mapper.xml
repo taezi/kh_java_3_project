@@ -79,4 +79,12 @@
 		insert into board_comment(bcno,bno,usersId, bcpost)
 		values(seq_board_comment_bcno.nextval, #{bno},#{usersId},#{bcpost})
 	</insert>
+	
+	<delete id="DeleteBoardComment">
+	delete from board_comment where bcno = #{bcno}
+	</delete>
+	
+	<delete id="DeleteBoard">
+	delete from board where bno = #{bno}
+	</delete>
 </mapper>

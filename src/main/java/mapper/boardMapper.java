@@ -37,5 +37,9 @@ public interface boardMapper {
 
 	int BoardCommentInsert(boardCommentDTO comment);
 
+	int DeleteBoardComment(int bcno);
+
+	int DeleteBoard(int bno);
+
 
 }
