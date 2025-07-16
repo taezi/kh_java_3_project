@@ -30,7 +30,7 @@
   </update>
   
   <select id="BoardView" resultType="dto.boardDTO">
-	select * from board where bno = #{bno}
+	select * from board_view where bno = #{bno}
   </select>
   
   <select id="BoardCommentView" resultType="dto.boardCommentDTO">
