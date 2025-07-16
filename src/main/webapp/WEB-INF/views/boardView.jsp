@@ -75,7 +75,6 @@ textarea {
 <script>
 	document.querySelector('.btn_content_like').onclick = async (e) => {
 		const bno = ${board.bno};
-		
 		try{
 			const response = await fetch(`./BoardLike.do?bno=\${bno}`);
 			const data = await response.json(); //response를 json으로 파싱

@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import dto.boardDTO;
 import dto.movieCommentDTO;
@@ -20,6 +21,10 @@ public interface movieMapper {
 	List<movieCommentDTO> movieCommentList(String movieid);
 
 	int movieCommentInsert(movieCommentDTO comment);
+
+	int movieReportAdd(Map<String, String> map);
+
+	List<movieCommentDTO> reportList();
 
 
 }

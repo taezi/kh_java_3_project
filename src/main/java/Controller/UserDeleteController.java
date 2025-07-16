@@ -4,13 +4,19 @@ import java.io.IOException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.UserService;
 import views.ModelAndView;
 
-public class reportController implements Controller {
+public class UserDeleteController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		return new ModelAndView("report.jsp", false);
+		
+		String usersid = request.getParameter("usersid");
+		
+		UserService.getInstance().deleteUser(usersid);
+		
+		return new ModelAndView("/Admin.do", true);
 	}
 
 }
