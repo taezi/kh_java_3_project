@@ -108,8 +108,8 @@
 				<form action="LoginView.do" method="post">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
-						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20" autofocus>
-            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
+						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20" required autofocus>
+            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" required maxlength="16">
 
 					
 						<button type="submit" id="btn_searchId">로그인하기</button>
