@@ -36,6 +36,7 @@ public class AllBoardController implements Controller {
 		ArrayList<boardDTO> list = BoardService.getInstance().AllBoard(pageNo, pageContentEa); /* 0712 페이징하는부분 추가하면서 매개변수도 추가함 */
 		
 		request.setAttribute("list", list);
+		request.setAttribute("pagging", pagging);
 		
 		return new ModelAndView("boardInfo.jsp", false);
 	}

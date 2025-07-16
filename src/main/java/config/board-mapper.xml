@@ -112,4 +112,13 @@
 	delete from board where bno = #{bno}
 	</delete>
 
+	<update id="BoardUpdate">
+	update board
+	set titles = #{titles}, bpost = #{bpost}
+	where bno = #{bno}
+	</update>
+	
+	<update id="UpdateBoardComment">
+	update board_comment set bcpost = #{bcpost} where bcno = #{bcno}
+</update>
 </mapper>

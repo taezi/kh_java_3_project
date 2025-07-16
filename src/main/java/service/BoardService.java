@@ -129,6 +129,21 @@ public class BoardService {
 		
 	}
 
+	public int BoardUpdate(int bno, String titles, String bpost) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("titles", titles);
+		map.put("bpost", bpost);
+		return mapper.BoardUpdate(map);
+	}
+
+	public int UpdateBoardComment(int bcno, String bcpost) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bcno", bcno);
+		map.put("bcpost", bcpost);
+		return mapper.UpdateBoardComment(map);
+	}
+
 	
 	
 }
