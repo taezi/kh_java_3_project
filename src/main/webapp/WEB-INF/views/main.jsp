@@ -261,61 +261,60 @@
 
 .board {
     margin-top: 30px;
-    width: 85%; /* 메인 컨테이너 너비의 85% */
-    /* font-size: 20px; // 전체 board 영역의 기본 폰트 사이즈는 필요에 따라 조절하세요. */
-    border: 1px solid #444; /* 테두리 색상 조정 */
+    width: 85%; 
+    border: 1px solid #444; 
     box-sizing: border-box;
-    padding: 20px; /* 내부 여백 추가 */
-    background-color: #333; /* 게시판 배경색 */
-    color: #eee; /* 기본 글자색 */
-    border-radius: 8px; /* 둥근 모서리 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+    padding: 20px; 
+    background-color: #333; 
+    color: #eee; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 .board a {
-    color: #ffc107; /* 링크 색상 */
-    text-decoration: none; /* 밑줄 제거 */
+    color: #ffc107; 
+    text-decoration: none; 
     transition: color 0.3s ease;
 }
 
 .board a:hover {
-    color: #ffd700; /* 호버 시 색상 변경 */
-    text-decoration: underline; /* 호버 시 밑줄 추가 */
+    color: #ffd700; 
+    text-decoration: underline; 
 }
 
 /* KH MVIE 이야기 + 링크 스타일 */
-.board > a:first-of-type { /* 게시판 제목 아래 첫 번째 링크 */
-    display: block; /* 블록 요소로 만들어 줄바꿈 */
-    font-size: 24px; /* 제목 스타일 */
+.board > a:first-of-type { /
+    display: block;
+    font-size: 24px; 
     font-weight: bold;
-    margin-bottom: 15px; /* 아래 테이블과의 간격 */
-    text-align: left; /* 왼쪽 정렬 */
-    color: #ffc107; /* 메인 색상 */
+    margin-bottom: 15px; 
+    text-align: left; 
+    color: #ffc107; 
 }
 
 /* 게시판 테이블 스타일 */
 .board table {
-    width: 100%; /* 부모 .board에 꽉 채우기 */
-    border-collapse: collapse; /* 셀 경계선 병합 */
-    margin-top: 20px; /* 상단 여백 */
-    font-size: 16px; /* 테이블 내부 폰트 크기 */
-    table-layout: fixed; /* 고정 너비 레이아웃 */
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+    font-size: 16px; 
+    table-layout: fixed; 
 }
 
 .board th, .board td {
-    border: 1px solid #555; /* 셀 경계선 */
-    padding: 12px; /* 셀 내부 여백 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    white-space: nowrap; /* 내용이 넘쳐도 줄바꿈 안 함 (필요시 조절) */
-    overflow: hidden; /* 내용이 넘치면 숨김 */
-    text-overflow: ellipsis; /* 내용이 넘치면 ... 표시 */
+    border: 1px solid #555;
+    padding: 12px; 
+    text-align: center; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .board thead th {
-    background-color: #444; /* 헤더 배경색 */
-    color: #fff; /* 헤더 글자색 */
+    background-color: #444; 
+    color: #fff; 
     font-weight: bold;
-    padding: 15px 12px; /* 헤더 패딩 */
+    padding: 15px 12px; 
 }
 
 .board tbody tr:nth-child(even) { /* 짝수 행 배경색 */
@@ -337,13 +336,13 @@
 
 /* 테이블 내부 제목 링크 스타일 (BoardView.do) */
 .board tbody td a {
-    color: #eee; /* 제목 링크 색상 (테이블 기본 글자색과 유사하게) */
+    color: #eee; 
     font-weight: normal;
     text-decoration: none;
 }
 
 .board tbody td a:hover {
-    color: #ffc107; /* 호버 시 강조 색상 */
+    color: #ffc107; 
     text-decoration: underline;
 }
 
@@ -642,14 +641,14 @@ window.onload = () => {
   }
   // 서브 캐러셀 END
   
-
+ //메인 캐러셀 누르면 예고편 보여주는 함수 start
   document.querySelectorAll('.carousel-item').forEach(item => {
       item.addEventListener('click', function() {
-          const movieId = this.dataset.movieId; // data-movie-id 값 가져오기
+          const movieId = this.dataset.movieId; 
 
           if (movieId) {
-              // AJAX 요청 보내기
-              fetch(`./MovieUrl.do?movieId=\${movieId}`) // MovieUrl.do 서블릿 호출
+              
+              fetch(`./MovieUrl.do?movieId=\${movieId}`) 
                   .then(response => {
                       if (!response.ok) {
                           throw new Error(`HTTP error! status: ${response.status}`);
@@ -673,6 +672,11 @@ window.onload = () => {
           }
       });
   });
+  //메인 캐러셀 누르면 예고편 보여주는 함수 end
+  
+  
+  
+  
 }; // window.onload 함수의 닫는 중괄호
 
     
