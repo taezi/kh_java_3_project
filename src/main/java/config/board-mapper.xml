@@ -44,19 +44,20 @@
   
 
   <insert id="InsertBoardLike">
-  	insert into board_event(bno, usersId) values(#{bno},#{usersId})
+  	insert into board_event(bno, usersid, blike, bhate) values(#{bno},#{usersid}, '1', '0')
   </insert>
   
   <delete id="DeleteBoardLike">
-  	delete from board_event where bno = #{bno} and usersId = #{usersId}
+  	delete from board_event where bno = #{bno} and usersid = #{usersid} and blike = '1'
   </delete>
   
-  <select id="SelectBoardLikeHateCount" resultType="map">
-		select
-		(select count(*) from board_view where bno = #{bno}) as blike,
-		(select count(*) from board_view where bno = #{bno}) as bhate
-		from dual
-	</select>
+<select id="SelectBoardLikeHateCount" resultType="map">
+    SELECT
+        NVL(SUM(CASE WHEN BLIKE = '1' THEN 1 ELSE 0 END), 0) AS BLIKE,
+        NVL(SUM(CASE WHEN BHATE = '1' THEN 1 ELSE 0 END), 0) AS BHATE
+    FROM BOARD_EVENT
+    WHERE BNO = #{bno}
+</select>
 
   	<select id="selectBoardTopList" resultType="dto.boardDTO">
   <![CDATA[
