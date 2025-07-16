@@ -69,7 +69,7 @@
   input::placeholder{
     /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
     font-size: 20px;
-    font-style: #e9e9e9;
+    color: #3a3a3a;
     /* justify-content: center; */
   }
     input:focus {
@@ -105,17 +105,15 @@
 			<div class="leftside"></div>
       
 			<div class="searchIdOutbox">
-				<form action="SearchPw.do" method="post">
+				<form action="SearchPw.do" method="post" onsubmit="return valueForm()">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
-            <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" required autofocus>
+            <input id="in_id" type="email" name="id" placeholder="이메일을 입력하세요" maxlength="20" required autofocus>
 						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20" required>
             <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16" required>
 
-            CSS와 formaction 이동경로 맞추기 전. 비밀번호 찾는 페이지 입니다.
+            
 						<button type="submit" id="btn_searchId">비밀번호찾기</button>
-
-						
 					
 					</div>
 				</form>
@@ -123,6 +121,39 @@
 			<div class="rightside"></div>
 		</div>
 		<footer> </footer>
-<script> </script>
+<script>
+  // 유효성 검사 - 이름, 별명 2자이상
+function valueForm() {
+    const id = document.getElementById('in_id').value.trim();
+    const username = document.getElementById('in_username').value.trim();
+    const nickname = document.getElementById('in_nickname').value.trim();
+    
+    if (id === ''){
+        alert('이메일을 입력해주세요.');
+        document.getElementById('in_id').focus();
+        return false;
+    }
+    if (username === ''){
+        alert('이름을 입력해주세요.');
+        document.getElementById('in_username').focus();
+        return false;
+    }
+    if (nickname === ''){
+      alert('별명을 입력해주세요.');
+      document.getElementById('in_nickname').focus();
+      return false;
+    }
+    if (username.length < 2 || nickname.length <2) { 
+        alert("이름과 별명은 각각 두 글자 이상 입력해주세요.");
+        if(username.length < 2){
+          document.getElementById('in_username').focus();
+        }else{
+          document.getElementById('in_nickname').focus();
+        }
+        return false; 
+    }
+    return true; //유효성검사 OK
+  }
+</script>
 </body>
 </html>

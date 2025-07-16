@@ -65,7 +65,8 @@
     font-size: 20px;
   }
   .membershipInbox > input:hover{
-    color: yellowgreen;
+    font-size: 20px;
+    cursor: text;
   }
   input::placeholder{
     /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
@@ -85,7 +86,7 @@
     text-justify: center;
     gap: 10px;
     padding-left: 10px;
-    color: #e9e9e9;
+    color: #3a3a3a;
   }
   .membershipInbox > #checkbox :hover{
    color: blue;
@@ -108,6 +109,7 @@
   }
   button:hover {
 	border: 5px solid orange;
+  cursor: pointer;
   }
   #btn_membership{
     background-color: #db1a1a;
@@ -148,8 +150,8 @@
           <h1>KHMOVIE</h1>
 
           <input id="in_id" type="email" name="id" placeholder="이메일을 입력하세요" maxlength="50" required autofocus>
-          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="20" required>
-          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="20" required>
+          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
+          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
           <input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="10" required>
           <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16" required>
             
@@ -214,7 +216,14 @@
             Nickname.focus();
             return;
           }
+          const password = Pw.value.trim();
+          const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
           // 2-1 비밀번호 특수문자+숫자+알파벳 조합 추가. (해야함)
+          if (!regex.test(password)) {
+			      alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
+  			    Pw.focus();
+  			    return;
+}
          // 3. 체크박스 확인
           if (!chkId.checked) {
             alert('가입 필수 정보 위임에 동의해 주세요.');

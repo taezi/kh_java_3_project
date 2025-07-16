@@ -16,5 +16,7 @@ VALUES (#{usersid},standard_hash(#{passwd}, 'SHA512'), #{userName}, #{nickName})
   <select id="searchId" resultType="dto.userDTO">
 	select * from users where username =  #{username} and nickname = #{nickname}
   </select>
-
+  <select id="searchPw" resultType="dto.userDTO">
+	select * from users where usersid = #{id} and username =  #{username} and nickname = #{nickname}
+  </select>
 </mapper>
