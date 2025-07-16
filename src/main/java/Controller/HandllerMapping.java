@@ -75,6 +75,7 @@ public class HandllerMapping {
 		case "BoardLike":
 			controller = new BoardLikeController();
 			break;
+			//login- 찾기(search ->find name 변경예정)
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;
@@ -96,6 +97,17 @@ public class HandllerMapping {
 		case "UserDelete":
 			controller = new UserDeleteController();
 			break;
+
+		case "BoardCommentLike":
+			controller = new BoardCommentLikeController();
+			break;
+		case "BoardCommentDelete":
+			controller = new BoardCommentDeleteController();
+			break;
+		case "BoardDelete":
+			controller = new BoardDeleteController();
+			break;	
+
 		}
 
 		return controller;

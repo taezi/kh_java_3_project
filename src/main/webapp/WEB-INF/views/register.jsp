@@ -142,11 +142,11 @@
         <div class="membershipInbox">
           <h1>KHMOVIE</h1>
 
-          <input id="in_id" type="email" name="id" placeholder="이메일을 입력하세요" maxlength="50" autofocus>
-          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="20">
-          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="20">
-          <input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="10">
-          <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
+          <input id="in_id" type="email" name="id" placeholder="이메일을 입력하세요" maxlength="50" required autofocus>
+          <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요" maxlength="20" required>
+          <input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요" maxlength="20" required>
+          <input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="10" required>
+          <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16" required>
             
           <div id="checkbox">
             <input type="checkbox" id="chk_id"><label for="chk_id">가입 필수 정보를 위임하는데 동의합니다.</label>

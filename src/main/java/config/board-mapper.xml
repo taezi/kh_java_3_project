@@ -37,8 +37,8 @@
   	<![CDATA[
   			select * from
 			(select row_number() over(order by bcno desc) as rw, bc.* 
-			from board_comment bc where bno = #{bno})
-			where rw <= #{page} * 5 
+			from board_comment_view bc where bno = #{bno})
+			where rw <= #{page} * 5
 		]]>
   </select>
   
@@ -52,13 +52,13 @@
 
   </delete>
   
-<select id="SelectBoardLikeHateCount" resultType="map">
-    SELECT
-        NVL(SUM(CASE WHEN BLIKE = '1' THEN 1 ELSE 0 END), 0) AS BLIKE,
-        NVL(SUM(CASE WHEN BHATE = '1' THEN 1 ELSE 0 END), 0) AS BHATE
-    FROM BOARD_EVENT
-    WHERE BNO = #{bno}
-</select>
+	<select id="SelectBoardLikeHateCount" resultType="map">
+	    SELECT
+	        NVL(SUM(CASE WHEN BLIKE = '1' THEN 1 ELSE 0 END), 0) AS BLIKE,
+	        NVL(SUM(CASE WHEN BHATE = '1' THEN 1 ELSE 0 END), 0) AS BHATE
+	    FROM BOARD_EVENT
+	    WHERE BNO = #{bno}
+	</select>
 
   	<select id="selectBoardTopList" resultType="dto.boardDTO">
   <![CDATA[
@@ -79,4 +79,37 @@
 		insert into board_comment(bcno,bno,usersId, bcpost)
 		values(seq_board_comment_bcno.nextval, #{bno},#{usersId},#{bcpost})
 	</insert>
+	
+
+  <insert id="InsertBoardCommentLike">
+
+  	insert into board_comment_event(bcno, bno ,usersid, bclike, bchate) values(#{bcno},#{bno},#{usersid}, '1', '0')
+  </insert>
+  
+  <delete id="DeleteBoardCommentLike">
+  	delete from board_comment_event where bcno = #{bcno} and usersid = #{usersid} and bclike = '1'
+
+  </delete>
+  
+	<select id="SelectBoardCommentLikeHateCount" resultType="map">
+
+	    SELECT
+	        NVL(SUM(CASE WHEN BCLIKE = '1' THEN 1 ELSE 0 END), 0) AS CLIKE,
+	        NVL(SUM(CASE WHEN BCHATE = '1' THEN 1 ELSE 0 END), 0) AS CHATE
+	    FROM BOARD_COMMENT_EVENT
+	    WHERE BCNO = #{bcno}
+	</select>
+	
+	
+	
+	
+
+	<delete id="DeleteBoardComment">
+	delete from board_comment where bcno = #{bcno}
+	</delete>
+	
+	<delete id="DeleteBoard">
+	delete from board where bno = #{bno}
+	</delete>
+
 </mapper>

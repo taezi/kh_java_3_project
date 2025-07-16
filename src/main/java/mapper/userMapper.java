@@ -13,8 +13,12 @@ public interface userMapper {
 
 	userDTO findID(String id);
 
+
 	List<userDTO> AllUser();
 
 	int deleteUser(String usersid);
+
+	userDTO searchId(Map<String, Object> map);
+
 	
 }
