@@ -59,8 +59,14 @@
 	</update>
 	
 	<select id="reportList" resultType="dto.movieCommentDTO">
-    SELECT usersid, movieid, reports
+    SELECT mcno, usersid, movieid, reports
     FROM movie_comment
     WHERE reports > 0
 </select>
+
+<delete id="MovieCommentDelete">
+	DELETE FROM Movie_Comment
+	WHERE mcno = #{mcno} AND usersid = #{usersid} AND movieid = #{movieid}
+</delete>
+
 </mapper>

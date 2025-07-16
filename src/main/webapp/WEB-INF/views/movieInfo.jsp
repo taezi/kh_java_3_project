@@ -143,7 +143,7 @@ body {
 <script>
 	function alertAndRedirect() {
 		alert("로그인 후 이용 가능합니다.");
-		location.href = "LoginView.do"; // ← 너의 로그인 뷰 URL에 맞게 수정
+		location.href = "LoginView.do";
 	}
 	function reportUser(usersid, movieid) {
 		  console.log("🐛 전달받은 값:", usersid, movieid);
@@ -163,7 +163,6 @@ body {
 		      console.error(error);
 		    });
 		}
-
 </script>
 </head>
 <body>

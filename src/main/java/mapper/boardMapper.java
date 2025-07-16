@@ -44,11 +44,15 @@ public interface boardMapper {
 
 	Map<String, Object> SelectBoardCommentLikeHateCount(int bcno);
 
-	
-
 	int DeleteBoardComment(int bcno);
 
 	int DeleteBoard(int bno);
+
+	int reportBoardPlus(Map<String, Object> map);
+
+	List<boardCommentDTO> getReport();
+
+	int AdminBoardDelete(Map<String, Object> map);
 
 
 
