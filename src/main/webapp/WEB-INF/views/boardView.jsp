@@ -35,7 +35,7 @@ textarea {
 		<div class="board-actions">
 			<c:if test="${sessionScope.user != null && sessionScope.user.usersid == board.usersId }">
 				<a href="./BoardDelete.do?bno=${board.bno}" class="button-common button-delete">게시글 삭제 버튼</a>
-				<a href="" class="button-common button-modify">게시글 수정</a>
+				<a href="./BoardUpdate.do?" class="button-common button-modify">게시글 수정 버튼</a>
 			</c:if>	
 		</div>
 		
