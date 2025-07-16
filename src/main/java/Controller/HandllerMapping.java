@@ -90,7 +90,11 @@ public class HandllerMapping {
 		case "SearchPw": 
 			controller = new SearchPwController();
 			break;
+		case "BoardCommentInsert":
+			controller = new BoardCommentInsertController();
+			break;
 		}
+			
 		return controller;
 	}
 }

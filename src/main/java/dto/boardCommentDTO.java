@@ -1,8 +1,8 @@
 package dto;
 
 public class boardCommentDTO {
-	private String bcno;
-	private String bno;
+	private int bcno;
+	private int bno;
 	private String usersId;
 	private String nickname;
 	private String bcpost;
@@ -13,7 +13,7 @@ public class boardCommentDTO {
 	
 	public boardCommentDTO() {	}
 
-	public boardCommentDTO(String bcno, String bno, String usersId, String nickname, String bcpost, String bcdate,
+	public boardCommentDTO(int bcno, int bno, String usersId, String nickname, String bcpost, String bcdate,
 			int reports, int clike, int chate) {
 		super();
 		this.bcno = bcno;
@@ -27,19 +27,19 @@ public class boardCommentDTO {
 		this.chate = chate;
 	}
 
-	public String getBcno() {
+	public int getBcno() {
 		return bcno;
 	}
 
-	public void setBcno(String bcno) {
+	public void setBcno(int bcno) {
 		this.bcno = bcno;
 	}
 
-	public String getBno() {
+	public int getBno() {
 		return bno;
 	}
 
-	public void setBno(String bno) {
+	public void setBno(int bno) {
 		this.bno = bno;
 	}
 

@@ -35,5 +35,7 @@ public interface boardMapper {
 
 	List<boardDTO> selectBoardTopList(int i);
 
+	int BoardCommentInsert(boardCommentDTO comment);
+
 
 }

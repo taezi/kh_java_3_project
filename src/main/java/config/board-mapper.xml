@@ -42,13 +42,14 @@
 		]]>
   </select>
   
-
   <insert id="InsertBoardLike">
+
   	insert into board_event(bno, usersid, blike, bhate) values(#{bno},#{usersid}, '1', '0')
   </insert>
   
   <delete id="DeleteBoardLike">
   	delete from board_event where bno = #{bno} and usersid = #{usersid} and blike = '1'
+
   </delete>
   
 <select id="SelectBoardLikeHateCount" resultType="map">
@@ -74,5 +75,8 @@
   ]]>
 	</select>
   
-
+	<insert id="BoardCommentInsert">
+		insert into board_comment(bcno,bno,usersId, bcpost)
+		values(seq_board_comment_bcno.nextval, #{bno},#{usersId},#{bcpost})
+	</insert>
 </mapper>
