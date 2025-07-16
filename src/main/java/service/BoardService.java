@@ -75,7 +75,7 @@ public class BoardService {
 	public int DeleteBoardLike(int bno, String usersid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bno", bno);
-  	map.put("usersid", usersid);
+		map.put("usersid", usersid);
 		return mapper.DeleteBoardLike(map);		
 	}
 
@@ -93,6 +93,32 @@ public class BoardService {
 		return mapper.BoardCommentInsert(comment);
 	}
 
+
+
+	public int InsertBoardCommentLike(int bcno, int bno, String usersid) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bcno", bcno);
+		map.put("bno", bno);
+		map.put("usersid", usersid);
+		return mapper.InsertBoardCommentLike(map);
+	}
+
+	public int DeleteBoardCommentLike(int bcno, String usersid) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bcno", bcno);
+		map.put("usersid", usersid);
+		return mapper.DeleteBoardCommentLike(map);
+	}
+
+	public Map<String, Object> SelectBoardCommentLikeHateCount(int bcno) {
+		// TODO Auto-generated method stub
+		return mapper.SelectBoardCommentLikeHateCount(bcno);
+	}
+
+	
+
 	public int DeleteBoardComment(int bcno) {
 		return mapper.DeleteBoardComment(bcno);
 		
@@ -102,6 +128,7 @@ public class BoardService {
 		return mapper.DeleteBoard(bno);
 		
 	}
+
 	
 	
 }

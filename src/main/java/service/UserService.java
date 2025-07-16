@@ -32,6 +32,9 @@ public class UserService {
 	public userDTO findById(String id) {
 		return mapper.findID(id);
 	}
-
+	
+	public userDTO searchId(Map<String, Object> map) {
+		return mapper.searchId(map);
+	}
 	
 }

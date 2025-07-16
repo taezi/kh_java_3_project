@@ -108,9 +108,9 @@
 				<form action="SearchPw.do" method="post">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
-            <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" autofocus>
-						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20">
-            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
+            <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" required autofocus>
+						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20" required>
+            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16" required>
 
             CSS와 formaction 이동경로 맞추기 전. 비밀번호 찾는 페이지 입니다.
 						<button type="submit" id="btn_searchId">비밀번호찾기</button>

@@ -135,11 +135,9 @@ button:hover {
 	height: 68px;
 	font-size: 20px;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .linebox {
 	display: flex;
 	flex-flow: row nowrap;
@@ -148,7 +146,6 @@ ul {
 	width: 100%; /* loginInbox의 전체 너비를 사용 */
 	box-sizing: border-box;
 }
-
 .linebox>li:nth-child(2) {
 	/*width: 60px; */
 	flex-shrink: 0;
@@ -215,9 +212,10 @@ ul {
 					<div class="loginInbox">
 						<h1>KHMOVIE</h1>
 						<input id="in_id" type="text" name="id"
-							placeholder="아이디(이메일)을 입력해주세요" maxlength="50" autofocus /> <input
+							placeholder="아이디(이메일)을 입력해주세요" maxlength="50" required autofocus /> 
+							<input
 							id="in_pw" type="password" name="passwd"
-							placeholder="비밀번호를 입력해주세요." maxlength="20" />
+							placeholder="비밀번호를 입력해주세요." maxlength="20" required />
 
 						<div id="checkbox">
 							<label for="chk_id">아이디 저장</label><input type="checkbox"

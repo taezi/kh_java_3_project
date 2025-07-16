@@ -108,16 +108,13 @@
 			<div class="leftside"></div>
       
 			<div class="searchIdOutbox">
-				<form action="SearchId.do" method="post">
+				<form action="SearchId.do" method="post" onsubmit="return valueForm()">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
-						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20" autofocus>
-            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
-
+						<input id="in_username" name="username" type="text" placeholder="찾을 아이디의 이름을 입력하세요" maxlength="20" required autofocus >
+            <input id="in_nickname" name="nickname" type="text" placeholder="찾을 아이디의 별명을 입력하세요" maxlength="16" required>
 					
 						<button type="submit" id="btn_searchId">아이디 확인</button>
-
-						
 					
 					</div>
 				</form>
@@ -125,8 +122,8 @@
 			<div class="rightside"></div>
 		</div>
 		<footer> </footer>
-<script> 
-// 유효성 검사 - 이름, 별명 2자이상
+<script>
+  // 유효성 검사 - 이름, 별명 2자이상
 function valueForm() {
     const username = document.getElementById('in_username').value.trim();
     const nickname = document.getElementById('in_nickname').value.trim();

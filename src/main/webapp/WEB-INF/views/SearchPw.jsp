@@ -115,7 +115,7 @@
             CSS와 formaction 이동경로 맞추기 전. <br>
             비밀번호 찾기 누른후 페이지 입니다.
             위에 input 태그 지우고, 비밀번호 출력하는 페이지. 
-            비밀번호 재설정은 거절합니다. 버튼 행오버 기능 필요함
+            비밀번호 재설정은 거절합니다. 버튼 행오버 CSS 필요함
 						<button type="submit" id="btn_searchId">메인화면 이동</button>
 
 						
