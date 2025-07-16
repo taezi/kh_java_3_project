@@ -6,13 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style> /* 임시 css 입니다 */
+<style> 
 .heart { 
 	width: 100px;
 	height: 100px;
 }
+textarea {
+	width: 400px;
+	height: 400px;
+}
 </style>
 <script>
+window.onload = () => {
 	document.querySelector('.btn_content_like').onclick = async (e) => {
 		const bno = ${board.bno};
 		
@@ -28,6 +33,7 @@
 			console.log(error);
 		}
 	}
+}
 </script>
 </head>
 <body>
@@ -41,7 +47,7 @@
 		
 		<button type="button" class="btn_content_like">
 			<img src="${pageContext.request.contextPath}/images/heart.png" class="heart" alt="하트엑박">
-			<span>${board.blike }</span>
+			<span>좋아요 개수 : ${board.blike }</span>
 		</button>
 		
 		<div class="board-actions">
@@ -68,7 +74,7 @@
 					<ul>
 						<li>작성자 : ${comment.usersId }</li>
 						<li>작성일 : ${comment.bcdate }</li>	
-				   <%-- <li><a class="btn_comment_like">좋아요 : ${comment.bclike }</a></li> --%> <!-- DTO에 bclike 없어서 임시로 주석처리해둠 --> 
+				        <li><a class="btn_comment_like">좋아요 : ${comment_event.bclike }</a></li>
 					</ul>
 					<p>${comment.bcpost }</p>
 					

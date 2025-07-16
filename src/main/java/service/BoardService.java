@@ -75,7 +75,7 @@ public class BoardService {
 	public int DeleteBoardLike(int bno, String usersid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bno", bno);
-		map.put("id", usersid);
+		map.put("usersId", usersid);
 		return mapper.DeleteBoardLike(map);		
 	}
 
@@ -87,6 +87,10 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return mapper.selectBoardTopList(i);
 
+	}
+
+	public int BoardCommentInsert(boardCommentDTO comment) {
+		return mapper.BoardCommentInsert(comment);
 	}
 	
 	

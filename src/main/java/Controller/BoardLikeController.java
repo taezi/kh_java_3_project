@@ -44,6 +44,7 @@ public class BoardLikeController implements Controller {
 			json.put("count", new JSONObject(map));
 		}
 		
+		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().println(json);
 		return null;
 	}
