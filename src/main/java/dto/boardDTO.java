@@ -8,6 +8,7 @@ public class boardDTO {
 	private String bdate;
 	private String bview;
 	private String nickname;
+	private int reports;
 	private int blike;
 	private int bhate;
 	private int ccount;
@@ -15,6 +16,7 @@ public class boardDTO {
 	public boardDTO() {	}
 
 	public boardDTO(int bno, String usersId, String titles, String bpost, String bdate, String bview, String nickname,
+			int reports,
 			int blike, int bhate, int ccount) {
 		super();
 		this.bno = bno;
@@ -24,9 +26,20 @@ public class boardDTO {
 		this.bdate = bdate;
 		this.bview = bview;
 		this.nickname = nickname;
+		this.reports = reports;
 		this.blike = blike;
 		this.bhate = bhate;
 		this.ccount = ccount;
+	}
+	
+	
+
+	public int getReports() {
+		return reports;
+	}
+
+	public void setReports(int reports) {
+		this.reports = reports;
 	}
 
 	public int getBno() {

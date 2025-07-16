@@ -100,27 +100,78 @@ button:hover {
 		<div class="main_container">
 			<div class="adminInfo">
 				<h1>관리자페이지</h1>
-				<p></p>
-				<h2>■ 신고 목록</h2>
+				<h2>■ 영화 댓글 신고 목록</h2>
 				<c:choose>
 					<c:when test="${empty reportList}">
 						<div class="crimeList">신고 목록이 없습니다.</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="report" items="${reportList}">
-							<c:if test="${report.reports > 0}">
-								<p>
-									${report.usersid}님이 <a
-										href="movieinfo.do?movieid=${report.movieid}"
-										style="color: #db1a1a; text-decoration: underline;">
-										${report.movieid} </a> (영화번호)를 신고당함.
-								</p>
-							</c:if>
-						</c:forEach>
-
+						<table class="registerList">
+							<tr>
+								<th>작성자</th>
+								<th>영화ID</th>
+								<th>관리</th>
+							</tr>
+							<c:forEach var="report" items="${reportList}">
+								<c:if test="${report.reports > 0}">
+									<tr>
+										<td>${report.usersid}</td>
+										<td><a href="movieinfo.do?movieid=${report.movieid}"
+											style="color: #db1a1a; text-decoration: underline;">
+												${report.movieid} </a></td>
+										<td>
+											<form action="DeleteMovieComment.do" method="post"
+												onsubmit="return confirm('정말 삭제하시겠습니까?');">
+												<input type="hidden" name="mcno" value="${report.mcno}" />
+												<input type="hidden" name="usersid"
+													value="${report.usersid}" /> <input type="hidden"
+													name="movieid" value="${report.movieid}" />
+												<button type="submit">삭제</button>
+											</form>
+										</td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</table>
 					</c:otherwise>
 				</c:choose>
 
+				<h2>■ 게시판 신고 목록</h2>
+				<c:choose>
+					<c:when test="${empty boardReportList}">
+						<div class="crimeList">신고 목록이 없습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<table class="registerList">
+							<tr>
+								<th>작성자</th>
+								<th>게시판 번호</th>
+								<th>관리</th>
+							</tr>
+							<c:forEach var="breport" items="${boardReportList}">
+								<c:if test="${breport.reports > 0}">
+									<tr>
+										<td>${breport.usersId}</td>
+										<td><a href="BoardView.do?bno=${breport.bno}"
+											style="color: #db1a1a; text-decoration: underline;">
+												${breport.bno} </a></td>
+										<td>
+											<form action="AdminBoardDelete.do" method="post"
+												onsubmit="return confirm('정말 삭제하시겠습니까?');">
+												<input type="hidden" name="bno" value="${breport.bno}" />
+												<input type="hidden" name="usersid"
+													value="${breport.usersId}" />
+												<button type="submit">삭제</button>
+											</form>
+										</td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
+
+				<h2>■ 회원 목록</h2>
 				<c:choose>
 					<c:when test="${empty userList}">
 						<div class="registerList">회원 목록이 없습니다.</div>

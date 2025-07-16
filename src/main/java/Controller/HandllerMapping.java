@@ -97,7 +97,6 @@ public class HandllerMapping {
 		case "UserDelete":
 			controller = new UserDeleteController();
 			break;
-
 		case "BoardCommentLike":
 			controller = new BoardCommentLikeController();
 			break;
@@ -107,7 +106,15 @@ public class HandllerMapping {
 		case "BoardDelete":
 			controller = new BoardDeleteController();
 			break;	
-
+		case "DeleteMovieComment":
+			controller = new MovieCommentDeleteController();
+			break;
+		case "reportBoard":
+			controller = new BoardReportController();
+			break;
+		case "AdminBoardDelete":
+			controller = new AdminBoardDeleteController();
+			break;
 		}
 
 		return controller;

@@ -129,6 +129,19 @@ public class BoardService {
 		
 	}
 
+	public int boardReportPlus(Map<String, Object> map) {
+		return mapper.reportBoardPlus(map);
+		
+	}
+
+	public List<boardCommentDTO> getReport() {
+		return mapper.getReport();
+	}
+
+	public int AdminBoardDelete(Map<String, Object> map) {
+		return mapper.AdminBoardDelete(map);
+	}
+
 	
 	
 }

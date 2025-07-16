@@ -26,5 +26,6 @@ public interface movieMapper {
 
 	List<movieCommentDTO> reportList();
 
+	int MovieCommentDelete(Map<String, Object> map);
 
 }

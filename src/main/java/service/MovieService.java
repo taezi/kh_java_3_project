@@ -61,6 +61,10 @@ public class MovieService {
 		return mapper.reportList();
 	}
 
+	public int CommentMovieDelete(Map<String, Object> map) {
+		return mapper.MovieCommentDelete(map);
+	}
+
 	
 	
 }
