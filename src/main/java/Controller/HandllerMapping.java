@@ -78,6 +78,7 @@ public class HandllerMapping {
 		case "BoardLike":
 			controller = new BoardLikeController();
 			break;
+			//login- 찾기(search ->find name 변경예정)
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;

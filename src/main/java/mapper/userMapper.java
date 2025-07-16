@@ -11,5 +11,7 @@ public interface userMapper {
 	userDTO login(Map<String, Object> map);
 
 	userDTO findID(String id);
+
+	userDTO searchId(Map<String, Object> map);
 	
 }
