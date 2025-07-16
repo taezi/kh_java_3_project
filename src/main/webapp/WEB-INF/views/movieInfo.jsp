@@ -145,6 +145,25 @@ body {
 		alert("로그인 후 이용 가능합니다.");
 		location.href = "LoginView.do"; // ← 너의 로그인 뷰 URL에 맞게 수정
 	}
+	function reportUser(usersid, movieid) {
+		  console.log("🐛 전달받은 값:", usersid, movieid);
+		  const confirmResult = confirm("해당 유저를 신고하시겠습니까?");
+		  if (!confirmResult) return;
+
+		  fetch(`reportMovie.do?usersid=\${usersid}&movieid=\${movieid}`)
+		    .then((res) => {
+		      if (!res.ok) throw new Error("서버 오류");
+		      return res.text();
+		    })
+		    .then((result) => {
+		      alert("신고가 접수되었습니다.");
+		    })
+		    .catch((error) => {
+		      alert("신고 중 오류가 발생했습니다.");
+		      console.error(error);
+		    });
+		}
+
 </script>
 </head>
 <body>
@@ -196,19 +215,18 @@ body {
 				<div class="comment-item">
 					<div class="comment-meta"
 						style="display: flex; justify-content: space-between; align-items: center;">
-						<span> <strong>${comment.usersid}</strong> ·
+						<span> <strong>${comment.usersid}</strong>
 							${comment.mdate}
 						</span>
 
 						<c:choose>
 							<c:when test="${not empty sessionScope.user}">
 								<!-- 로그인 상태면 신고 폼 -->
-								<form action="report.do" method="post" style="margin: 0;">
-									<input type="hidden" name="mcno" value="${comment.mcno}" /> <input
-										type="hidden" name="movieid" value="${movie.movieId}" />
-									<button type="submit"
-										style="background: none; border: none; color: red; cursor: pointer;">🚩신고</button>
-								</form>
+								<input type="hidden" name="mcno" value="${comment.mcno}" />
+								<input type="hidden" name="movieid" value="${movie.movieId}" />
+								<button type="button"
+									onclick="reportUser('${comment.usersid}', '${movie.movieId}')"
+									style="background: none; border: none; color: red; cursor: pointer;">🚩신고</button>
 							</c:when>
 							<c:otherwise>
 								<!-- 비로그인 상태면 alert -->
