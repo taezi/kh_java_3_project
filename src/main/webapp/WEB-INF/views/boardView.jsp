@@ -16,25 +16,7 @@ textarea {
 	height: 400px;
 }
 </style>
-<script>
-window.onload = () => {
-	document.querySelector('.btn_content_like').onclick = async (e) => {
-		const bno = ${board.bno};
-		
-		try{
-			const response = await fetch(`./BoardLike.do?bno=\${bno}`);
-			const data = await response.json(); //response를 json으로 파싱
-		
-			alert(data.msg);
-			document.querySelector('.btn_content_like > span').innerHTML = data.count.BLIKE; //data.count.BLIKE 이부분수정해야함
-			//BLIKE : selectBoardLikeHateCount(bno) 메서드의 SQL 결과에서 생긴 컬럼
-			//.xml에선 소문자(대문자 가능)로 쓰지만, Oracle + MyBatis는 대문자로 바꿔서, jsp에서는 대문자로 써야함
-		}catch(error){
-			console.log(error);
-		}
-	}
-}
-</script>
+
 </head>
 <body>
 	<jsp:include page="./template/header.jsp"></jsp:include>
@@ -87,6 +69,24 @@ window.onload = () => {
 				</div>
 			</c:forEach>	
 		</div>
-	</div>	
+	</div>
+
 </body>
+<script>
+	document.querySelector('.btn_content_like').onclick = async (e) => {
+		const bno = ${board.bno};
+		
+		try{
+			const response = await fetch(`./BoardLike.do?bno=\${bno}`);
+			const data = await response.json(); //response를 json으로 파싱
+		
+			alert(data.msg);
+			document.querySelector('.btn_content_like > span').innerHTML = data.count.BLIKE; //data.count.BLIKE 이부분수정해야함
+			//BLIKE : selectBoardLikeHateCount(bno) 메서드의 SQL 결과에서 생긴 컬럼
+			//.xml에선 소문자(대문자 가능)로 쓰지만, Oracle + MyBatis는 대문자로 바꿔서, jsp에서는 대문자로 써야함
+		}catch(error){
+			console.log(error);
+		}
+	}
+</script>
 </html>

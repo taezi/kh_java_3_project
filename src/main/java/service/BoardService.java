@@ -75,7 +75,7 @@ public class BoardService {
 	public int DeleteBoardLike(int bno, String usersid) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bno", bno);
-		map.put("usersId", usersid);
+  	map.put("usersid", usersid);
 		return mapper.DeleteBoardLike(map);		
 	}
 

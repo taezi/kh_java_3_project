@@ -69,12 +69,15 @@ public class HandllerMapping {
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
+		case "MovieUrl":
+			controller = new MovieUrlController();
+      break;
 		case "NaverLoginCallback":
 			controller = new NaverLoginCallbackController();
 			break;
 		case "BoardLike":
 			controller = new BoardLikeController();
-      break;
+			break;
 		case "SearchIdView":
 			controller = new SearchIdViewController();
 			break;

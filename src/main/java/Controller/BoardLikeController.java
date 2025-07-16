@@ -30,11 +30,14 @@ public class BoardLikeController implements Controller {
 		}
 		
 		try { 
+			System.out.println("성공 : " + member.getUsersid());
 			BoardService.getInstance().InsertBoardLike(bno, member.getUsersid());
+			System.out.println("해당 게시글에 좋아요 하셨습니다.");
 			json.put("resultCode", 1);
 			json.put("msg", "해당 게시글에 좋아요 하셨습니다.");
 		} catch (Exception e) { //insert에서 에러 발생 시
 			//좋아요 취소
+			System.out.println("취소 : " + member.getUsersid());
 			BoardService.getInstance().DeleteBoardLike(bno, member.getUsersid());
 			json.put("resultCode", 1);
 			json.put("msg", "해당 게시글에 좋아요를 취소하셨습니다.");

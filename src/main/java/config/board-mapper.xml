@@ -43,13 +43,13 @@
   </select>
   
   <insert id="InsertBoardLike">
-insert into board_event (bno, usersid, blike, bhate)
-  values (#{bno}, #{usersId}, '1', '0')
+
+  	insert into board_event(bno, usersid, blike, bhate) values(#{bno},#{usersid}, '1', '0')
   </insert>
   
   <delete id="DeleteBoardLike">
-  delete from board_event
-  where bno = #{bno} and usersid = #{usersId} and blike = '1'
+  	delete from board_event where bno = #{bno} and usersid = #{usersid} and blike = '1'
+
   </delete>
   
 <select id="SelectBoardLikeHateCount" resultType="map">
