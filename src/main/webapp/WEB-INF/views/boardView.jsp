@@ -34,7 +34,7 @@ textarea {
 		
 		<div class="board-actions">
 			<c:if test="${sessionScope.user != null && sessionScope.user.usersid == board.usersId }">
-				<a href="" class="button-common button-delete">게시글 삭제</a>
+				<a href="./BoardDelete.do?bno=${board.bno}" class="button-common button-delete">게시글 삭제 버튼</a>
 				<a href="" class="button-common button-modify">게시글 수정</a>
 			</c:if>	
 		</div>
@@ -51,7 +51,9 @@ textarea {
 			</c:if>
 			
 			<c:forEach var="comment" items="${clist }">
-			    <div class="comment" data-bno="${board.bno}"> <input type="hidden" name="cno" value="${comment.bcno}">
+
+			    <div class="comment" data-bno="${board.bno}"> 
+                    <input type="hidden" name="cno" value="${comment.bcno}">
 			        <ul>
 			            <li>작성자 : ${comment.usersId }</li>
 			            <li>작성일 : ${comment.bcdate }</li>	
@@ -66,13 +68,14 @@ textarea {
 			        
 			        <div class="comment-actions">
 			            <c:if test="${sessionScope.user.usersid == comment.usersId }">
-			                <a href="./BoardCommentDelete.do?cno=${comment.bcno }" class="button-common button-delete button-small">댓글 삭제</a>
-			                <a href="#" class="button-common button-modify button-small">댓글 수정</a>
+                        <!--<a href="./BoardCommentDelete.do?cno=${comment.bcno }" class="button-common button-delete button-small">댓글 삭제</a>-->
+			                <a href="./BoardCommentDelete.do?bcno=${comment.bcno }&bno=${board.bno}" class="button-common button-delete button-small">댓글 삭제 버튼</a><!-- 0716 gpt 댓글삭제 기능 -->
+							<a href="#" class="button-common button-modify button-small">댓글 수정</a>
 			            </c:if>
 			        </div>
 			    </div>
 			</c:forEach>
-	
+
 		</div>
 	</div>
 

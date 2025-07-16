@@ -94,6 +94,7 @@ public class BoardService {
 	}
 
 
+
 	public int InsertBoardCommentLike(int bcno, int bno, String usersid) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -117,6 +118,17 @@ public class BoardService {
 	}
 
 	
+
+	public int DeleteBoardComment(int bcno) {
+		return mapper.DeleteBoardComment(bcno);
+		
+	}
+
+	public int DeleteBoard(int bno) {
+		return mapper.DeleteBoard(bno);
+		
+	}
+
 	
 	
 }

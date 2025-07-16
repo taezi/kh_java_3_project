@@ -80,6 +80,7 @@
 		values(seq_board_comment_bcno.nextval, #{bno},#{usersId},#{bcpost})
 	</insert>
 	
+
   <insert id="InsertBoardCommentLike">
 
   	insert into board_comment_event(bcno, bno ,usersid, bclike, bchate) values(#{bcno},#{bno},#{usersid}, '1', '0')
@@ -102,4 +103,13 @@
 	
 	
 	
+
+	<delete id="DeleteBoardComment">
+	delete from board_comment where bcno = #{bcno}
+	</delete>
+	
+	<delete id="DeleteBoard">
+	delete from board where bno = #{bno}
+	</delete>
+
 </mapper>
