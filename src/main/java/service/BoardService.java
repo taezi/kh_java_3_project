@@ -92,6 +92,16 @@ public class BoardService {
 	public int BoardCommentInsert(boardCommentDTO comment) {
 		return mapper.BoardCommentInsert(comment);
 	}
+
+	public int DeleteBoardComment(int bcno) {
+		return mapper.DeleteBoardComment(bcno);
+		
+	}
+
+	public int DeleteBoard(int bno) {
+		return mapper.DeleteBoard(bno);
+		
+	}
 	
 	
 }

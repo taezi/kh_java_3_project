@@ -95,6 +95,9 @@ public class HandllerMapping {
 			break;
 		case "BoardCommentDelete":
 			controller = new BoardCommentDeleteController();
+			break;
+		case "BoardDelete":
+			controller = new BoardDeleteController();
 			break;	
 		}
 			
