@@ -99,7 +99,10 @@ input:focus {
 	gap: 10px;
 	color: darkgray;
 }
-
+.loginInbox > #checkbox > label:hover{
+color: blue;
+font-weight: bold;
+}
 #chk_id {
 	height: 24px;
 	width: 24px;

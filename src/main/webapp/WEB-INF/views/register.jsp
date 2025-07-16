@@ -64,13 +64,13 @@
     padding: 5px 20px; 
     font-size: 20px;
   }
-  input:hover{
-    color: gray;
+  .membershipInbox > input:hover{
+    color: yellowgreen;
   }
   input::placeholder{
     /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
     font-size: 20px;
-    font-style: #e9e9e9;
+    color: darkgray;
     /* justify-content: center; */
   }
     input:focus {
@@ -82,8 +82,13 @@
     display: flex;
     box-sizing: border-box;
     text-align: center;
+    text-justify: center;
     gap: 10px;
-    color: darkgray;
+    padding-left: 10px;
+    color: #e9e9e9;
+  }
+  .membershipInbox > #checkbox :hover{
+   color: blue;
   }
   #chk_id{
     height: 24px;
@@ -94,12 +99,15 @@
   }
   #checkbox >label{
     font-size: 20px;
-    font-style: #e9e9e9;
+    color: #e9e9e9;
   }
   .membershipInbox > button{
     height: 50px;
     border-radius: 10px;
     border: #db1a1a
+  }
+  button:hover {
+	border: 5px solid orange;
   }
   #btn_membership{
     background-color: #db1a1a;
@@ -120,9 +128,7 @@
     box-sizing: border-box;
   }
 </style>
-<script>
-
-</script>
+<script></script>
 </head>
   <body>
         <header>
@@ -134,9 +140,8 @@
    <div class="container">
 
     <div class="bodyBox">
-     <div class="leftside">
+     <div class="leftside"></div>
 
-     </div>
      <div class="membershipOutbox">
 			<form action="Register.do" method="post">
         <div class="membershipInbox">
@@ -149,17 +154,15 @@
           <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16" required>
             
           <div id="checkbox">
-            <input type="checkbox" id="chk_id"><label for="chk_id">가입 필수 정보를 위임하는데 동의합니다.</label>
+            <label for="chk_id">가입 필수 정보를 위임하는데 동의합니다.</label><input type="checkbox" id="chk_id">
           </div>
            
-          <button type="submit" id="btn_membership">KHLogIn</button>
+          <button type="submit" id="btn_membership">KHMOVIE 회원가입</button>
            
         </div>
        	 </form>
       </div>
-      <div class="rightside">
-
-      </div>
+      <div class="rightside"></div>
     </div>
     <footer>
 
@@ -167,70 +170,61 @@
   </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('.membershipOutbox form'); // 폼 요소를 선택
-        const inId = document.getElementById('in_id');
-        const inUsername = document.getElementById('in_username');
-        const inPw = document.getElementById('in_pw');
-        const inPwRe = document.getElementById('in_pwre');
-        const inNickname = document.getElementById('in_nickname');
-        const chkId = document.getElementById('chk_id');
+      const form = document.querySelector('.membershipOutbox form'); // 폼 요소를 선택
+      const Id = document.getElementById('in_id');
+      const Username = document.getElementById('in_username');
+      const Pw = document.getElementById('in_pw');
+      const PwRe = document.getElementById('in_pwre');
+      const Nickname = document.getElementById('in_nickname');
+      const chkId = document.getElementById('chk_id');
 
         form.addEventListener('submit', function(event) {
-            // 기본 제출 동작을 막습니다. (유효성 검사를 위해)
-            event.preventDefault(); 
+          // 기본 제출 동작을 막습니다. (유효성 검사를 위해)
+          event.preventDefault(); 
 
-            // 1. 입력 필드 값 확인
-            if (inId.value.trim() === '') {
-                alert('이메일을 입력해 주세요.');
-                inId.focus();
-                return; 
-            }
-
-            if (inUsername.value.trim() === '') {
-                alert('이름을 입력해 주세요.');
-                inUsername.focus();
-                return;
-            }
-
-            if (inPw.value.trim() === '') {
-                alert('비밀번호를 입력해 주세요.');
-                inPw.focus();
-                return;
-            }
-
-            if (inPwRe.value.trim() === '') {
-                alert('비밀번호를 다시 입력해 주세요.');
-                inPwRe.focus();
-                return;
-            }
-
-            // 2. 비밀번호 일치 여부 확인
-            if (inPw.value !== inPwRe.value) {
-                alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
-                inPwRe.focus();
-                return;
-            }
-
-            if (inNickname.value.trim() === '') {
-                alert('별명을 입력해 주세요.');
-                inNickname.focus();
-                return;
-            }
-
-            // 3. 체크박스 확인
-            if (!chkId.checked) {
-                alert('가입 필수 정보 위임에 동의해 주세요.');
-                chkId.focus(); // 체크박스에 포커스
-                return;
-            }
-
-            // 모든 유효성 검사를 통과하면 폼을 제출합니다.
-            form.submit();
+          // 1. 입력 필드 값 확인
+          if (Id.value.trim() === '') {
+            alert('이메일을 입력해 주세요.');
+            Id.focus();
+            return; 
+          }
+          if (Username.value.trim() === '') {
+            alert('이름을 입력해 주세요.');
+            Username.focus();
+            return;
+          }
+          if (Pw.value.trim() === '') {
+            alert('비밀번호를 입력해 주세요.');
+            Pw.focus();
+            return;
+           }
+          if (PwRe.value.trim() === '') {
+            alert('비밀번호를 다시 입력해 주세요.');
+            PwRe.focus();
+            return;
+          }
+          // 2. 비밀번호 일치 여부 확인
+          if (Pw.value !== PwRe.value) {
+            alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
+            PwRe.focus();
+            return;
+          }
+          if (Nickname.value.trim() === '') {
+            alert('별명을 입력해 주세요.');
+            Nickname.focus();
+            return;
+          }
+          // 2-1 비밀번호 특수문자+숫자+알파벳 조합 추가. (해야함)
+         // 3. 체크박스 확인
+          if (!chkId.checked) {
+            alert('가입 필수 정보 위임에 동의해 주세요.');
+            chkId.focus(); // 체크박스에 포커스
+            return;
+          }
+         // 모든 유효성 검사를 통과하면 폼을 제출합니다.
+          form.submit();
         });
     });
-</script>
-  
-</body>
-</html>
+</script>  
 </body>
 </html>
