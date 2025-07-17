@@ -26,7 +26,7 @@ public class SearchIdController implements Controller {
 		userDTO user = UserService.getInstance().searchId(map);
 		System.out.println(user); //확인용 - 확인후 주석예정
 		System.out.println(map);	//확인용 - 확인후 주석예정
-		//HttpSession session = request.getSession();
+		
 		
 		if (user != null) {
 			request.setAttribute("okIdMsg", "회원님의 아이디는 " + user.getUsersid() + " 입니다.");

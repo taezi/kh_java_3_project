@@ -69,7 +69,7 @@
   input::placeholder{
     /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
     font-size: 20px;
-    font-style: #e9e9e9;
+    color: #3a3a3a;
     /* justify-content: center; */
   }
     input:focus {
@@ -112,10 +112,16 @@
 						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20">
             <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
 
-            CSS와 formaction 이동경로 맞추기 전. <br>
-            비밀번호 찾기 누른후 페이지 입니다.
-            위에 input 태그 지우고, 비밀번호 출력하는 페이지. 
-            비밀번호 재설정은 거절합니다. 버튼 행오버 CSS 필요함
+						${requestScope.okPwMsg}
+						${requestScope.errorPWMsg}
+						비밀번호 SHA-512 복호화 불가 비밀먼호 재설정 페이지없음 첫화면이동
+						<c:if test="${not empty okPwMsg}">
+ 							<p style="color: green;">${okPwMsg}</p>
+  							<form action="ResetPwView.do" method="post">
+    						<input type="hidden" name="id" value="${param.id}">
+    						<button type="submit">비밀번호 재설정</button>
+  							</form>
+						</c:if>
 						<button type="submit" id="btn_searchId">메인화면 이동</button>
 
 						

@@ -13,8 +13,7 @@ public class SearchIdViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		// login - SearchId(아이디찾기) - 화면만 바꿔줘도 될듯?
-	
+		// login - SearchId(아이디찾기클릭후)
 		return new ModelAndView("SearchIdView.jsp", false);
 	}
 

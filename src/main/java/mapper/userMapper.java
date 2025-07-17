@@ -20,5 +20,9 @@ public interface userMapper {
 
 	userDTO searchId(Map<String, Object> map);
 
+
+	userDTO searchPw(Map<String, Object> map);
+
+
 	
 }

@@ -99,7 +99,10 @@ input:focus {
 	gap: 10px;
 	color: darkgray;
 }
-
+.loginInbox > #checkbox > label:hover{
+color: blue;
+font-weight: bold;
+}
 #chk_id {
 	height: 24px;
 	width: 24px;
@@ -215,7 +218,7 @@ ul {
 							placeholder="아이디(이메일)을 입력해주세요" maxlength="50" required autofocus /> 
 							<input
 							id="in_pw" type="password" name="passwd"
-							placeholder="비밀번호를 입력해주세요." maxlength="20" required />
+							placeholder="비밀번호를 입력해주세요(특수문자+숫자+문자조합)." maxlength="20" required />
 
 						<div id="checkbox">
 							<label for="chk_id">아이디 저장</label><input type="checkbox"
@@ -259,8 +262,8 @@ ul {
 						function() {
 							const loginForm = document
 									.querySelector('.loginOutbox form');
-							const inId = document.getElementById('in_id');
-							const inPw = document.getElementById('in_pw');
+							const Id = document.getElementById('in_id');
+							const Pw = document.getElementById('in_pw');
 							const chkId = document.getElementById('chk_id');
 
 							loginForm
@@ -269,17 +272,25 @@ ul {
 											function(event) {
 												event.preventDefault();
 
-												if (inId.value.trim() === '') {
+												if (Id.value.trim() === '') {
 													alert('이메일을 입력해 주세요.');
-													inId.focus();
+													Id.focus();
 													return;
 												}
 
-												if (inPw.value.trim() === '') {
+												if (Pw.value.trim() === '') {
 													alert('비밀번호를 입력해 주세요.');
-													inPw.focus();
+													Pw.focus();
 													return;
 												}
+												const password = Pw.value.trim();
+          							const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+          							// 비밀번호 특수문자+숫자+알파벳 조합 추가. (07.16 OK)
+          							if (!regex.test(password)) {
+			      						alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
+  			    						Pw.focus();
+  			    						return;
+          							}
 
 												if (chkId.checked) {
 													const confirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시겠습니까?");

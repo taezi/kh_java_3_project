@@ -46,5 +46,9 @@ public class UserService {
 		return mapper.searchId(map);
 	}
 
+	public userDTO searchPw(Map<String, Object> map) {
+		return mapper.searchPw(map);
+	}
+
 	
 }
