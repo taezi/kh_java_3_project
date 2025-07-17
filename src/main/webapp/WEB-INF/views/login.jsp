@@ -7,17 +7,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>login</title>
 <style>
 * {
 	margin: 0px;
 	padding: 0px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .container {
 	width: 1440px;
 	margin: 0 auto;
-	/* border: 1px solid black;  */ /* 크기 확인용 */
+	/* border: 1px solid black;  */ /* 영역확인용 */
 }
 
 header {
@@ -54,6 +56,7 @@ header {
 	color: black;
 	text-align: center;
 	font-weight: bold;
+	font-size: 32px;
 }
 
 .loginInbox {
@@ -67,29 +70,24 @@ header {
 }
 
 input {
-	height: 60px;
+	height: 68px;
 	border-radius: 10px;
 	border: 2px solid darkgray;
-	/*  justify-items: center; */
 	padding: 5px 15px;
 	font-size: 20px;
+	box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
-
-.loginInbox>input:hover {
-	color: gray;
-}
-
 input::placeholder {
-	/* padding-left: 10px; */
 	font-size: 20px;
-	font-style: #e9e9e9;
-	/*  justify-content: center; */
+	color: #8a8a8a;
 }
-
+input:hover {
+  border-color: orange;
+}
 input:focus {
 	border-color: #db1a1a;
 	outline: none;
-	/*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
 }
 
 #checkbox {
@@ -101,13 +99,12 @@ input:focus {
 }
 .loginInbox > #checkbox > label:hover{
 color: blue;
-font-weight: bold;
+/* font-weight: bold; */ /* 너무 강렬해서 지움_07.17*/
 }
 #chk_id {
 	height: 24px;
 	width: 24px;
 	border-radius: 30px;
-	justify-self: center;
 	margin-top: 5px;
 }
 
@@ -116,27 +113,32 @@ font-weight: bold;
 	color: rgb(77, 77, 77);
 }
 
-.loginInbox>button {
-	height: 50px;
-	border-radius: 10px;
-	border: #db1a1a;
+.btn-style {
+  display: inline-block;
+  width: 100%;
+  height: 68px;
+  line-height: 68px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-button:hover {
-	border: 5px solid orange;
+#btn_login:hover,
+#btn_naver:hover {
+  box-shadow: 0 0 0 3px orange;
 }
-
 .loginInbox>ul>li {
 	display: flex;
 	box-sizing: border-box;
 }
-
 #btn_login {
-	background-color: #db1a1a;
-	color: white;
-	font-weight: bold;
-	height: 68px;
-	font-size: 20px;
+  background-color: #db1a1a;
+  border-color: #db1a1a;
 }
 ul {
 	list-style-type: none;
@@ -174,13 +176,10 @@ ul {
 }
 
 #btn_naver {
-	background-color: #1BC662;
-	color: white;
-	font-weight: bold;
-	height: 68px;
-	font-size: 20px;
+  background-color: #1BC662;
+  border-color: #1BC662;
 }
-
+  
 .userbox>ul {
 	display: flex;
 	flex-flow: row nowrap;
@@ -224,7 +223,7 @@ ul {
 							<label for="chk_id">아이디 저장</label><input type="checkbox"
 								id="chk_id">
 						</div>
-						<button type="submit" id="btn_login">KHLogIn</button>
+						<button type="submit" id="btn_login" class="btn-style">KHLogIn</button>
 
 						<ul class="linebox">
 							<li class="line"><hr></li>
@@ -239,8 +238,7 @@ ul {
 						String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + clientId + "&redirect_uri="
 								+ redirectURI + "&state=" + state;
 						%>
-						<a href="<%=apiURL%>"><button type="button" id="btn_naver">
-								네이버로그인</button></a>
+						<a id="btn_naver" class="btn-style" href="<%=apiURL%>">네이버로그인</a>
 						<div class="userbox">
 							<ul>
 								<li><a href="SearchIdView.do">아이디찾기</a></li>
@@ -256,55 +254,58 @@ ul {
 		</div>
 		<jsp:include page="./template/footer.jsp"></jsp:include>
 	</div>
-	<script>
-		document
-				.addEventListener(
-						'DOMContentLoaded',
-						function() {
-							const loginForm = document
-									.querySelector('.loginOutbox form');
-							const Id = document.getElementById('in_id');
-							const Pw = document.getElementById('in_pw');
-							const chkId = document.getElementById('chk_id');
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.querySelector('.loginOutbox form');
+    const Id = document.getElementById('in_id');
+    const Pw = document.getElementById('in_pw');
+    const chkId = document.getElementById('chk_id');
+    const inputs = [Id, Pw]; // input 리스트 재활용
 
-							loginForm
-									.addEventListener(
-											'submit',
-											function(event) {
-												event.preventDefault();
+    // 유효성 검사, 제출 처리
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
 
-												if (Id.value.trim() === '') {
-													alert('이메일을 입력해 주세요.');
-													Id.focus();
-													return;
-												}
+      if (Id.value.trim() === '') {
+        alert('이메일을 입력해 주세요.');
+        Id.focus();
+        return;
+      }
 
-												if (Pw.value.trim() === '') {
-													alert('비밀번호를 입력해 주세요.');
-													Pw.focus();
-													return;
-												}
-												const password = Pw.value.trim();
-          							const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
-          							// 비밀번호 특수문자+숫자+알파벳 조합 추가. (07.16 OK)
-          							if (!regex.test(password)) {
-			      						alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
-  			    						Pw.focus();
-  			    						return;
-          							}
+      if (Pw.value.trim() === '') {
+        alert('비밀번호를 입력해 주세요.');
+        Pw.focus();
+        return;
+      }
 
-												if (chkId.checked) {
-													const confirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시겠습니까?");
-													if (!confirmed) {
-														return;
-													}
-												}
-												loginForm.submit();
-											});
-						});
-	</script>
+      const password = Pw.value.trim();
+      const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+      if (!regex.test(password)) {
+        alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
+        Pw.focus();
+        return;
+      }
 
+      if (chkId.checked) {
+        const confirmed = confirm("아이디 저장을 체크하셨습니다.\n공용 PC라면 정보 노출 위험이 있습니다. 이대로 로그인 하시겠습니까?");
+        if (!confirmed) return;
+      }
 
+      loginForm.submit();
+    });
 
+    // 마지막 클릭한 input autofocus 유지
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        setTimeout(() => {
+          const active = document.activeElement;
+          if (!inputs.includes(active)) {
+            input.focus();
+          }
+        }, 10);
+      });
+    });
+  });
+</script>
 </body>
 </html>
