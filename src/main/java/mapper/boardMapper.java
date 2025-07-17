@@ -48,11 +48,17 @@ public interface boardMapper {
 
 	int DeleteBoard(int bno);
 
+
+	int BoardUpdate(Map<String, Object> map);
+
+	int UpdateBoardComment(Map<String, Object> map);
+
 	int reportBoardPlus(Map<String, Object> map);
 
 	List<boardCommentDTO> getReport();
 
 	int AdminBoardDelete(Map<String, Object> map);
+
 
 
 
