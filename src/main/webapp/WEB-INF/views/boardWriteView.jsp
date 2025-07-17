@@ -174,6 +174,7 @@
 			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
 			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
 		</div>
+		<jsp:include page="./template/footer.jsp"></jsp:include>
 
 
 </body>

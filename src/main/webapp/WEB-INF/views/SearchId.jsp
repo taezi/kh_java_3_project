@@ -126,8 +126,9 @@
 				</form>
 			</div>
 			<div class="rightside"></div>
+			<jsp:include page="./template/footer.jsp"></jsp:include>
 		</div>
-		<footer> </footer>
+		
 <script> </script>
 </body>
 </html>

@@ -129,6 +129,7 @@
 		</div>
 
 		<div class="right_container"></div>
+		<jsp:include page="./template/footer.jsp"></jsp:include>
 
 	</div>
 

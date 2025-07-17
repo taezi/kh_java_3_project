@@ -119,8 +119,9 @@
 				</form>
 			</div>
 			<div class="rightside"></div>
+			<jsp:include page="./template/footer.jsp"></jsp:include>
 		</div>
-		<footer> </footer>
+		
 <script>
   // 유효성 검사 - 이름, 별명 2자이상
 function valueForm() {

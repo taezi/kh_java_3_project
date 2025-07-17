@@ -166,9 +166,7 @@
       </div>
       <div class="rightside"></div>
     </div>
-    <footer>
-
-    </footer>
+    <jsp:include page="./template/footer.jsp"></jsp:include>
   </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

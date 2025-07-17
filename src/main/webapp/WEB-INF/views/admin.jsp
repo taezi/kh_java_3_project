@@ -207,8 +207,10 @@ button:hover {
 		</div>
 
 		<div class="right_container"></div>
+		
 
 	</div>
+	<jsp:include page="./template/footer.jsp"></jsp:include>
 
 </body>
 </html>
