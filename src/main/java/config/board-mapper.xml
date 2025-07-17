@@ -98,10 +98,6 @@
 	    FROM BOARD_COMMENT_EVENT
 	    WHERE BCNO = #{bcno}
 	</select>
-	
-	
-	
-	
 
 	<delete id="DeleteBoardComment">
 	delete from board_comment where bcno = #{bcno}
@@ -110,5 +106,22 @@
 	<delete id="DeleteBoard">
 	delete from board where bno = #{bno}
 	</delete>
+	
+	<update id="reportBoardPlus" parameterType="dto.boardDTO">
+    UPDATE board
+    SET reports = reports + 1
+    WHERE usersid = #{usersid} AND bno = #{bno}
+	</update>
+	
+	<select id="getReport" resultType="dto.boardDTO">
+    SELECT bno, usersid, reports
+    FROM board
+    WHERE reports > 0
+</select>
+
+<delete id="AdminBoardDelete">
+	DELETE FROM board
+	WHERE bno = #{bno} AND usersid = #{usersid}
+</delete>
 
 </mapper>
