@@ -2,11 +2,14 @@ package Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import dto.boardDTO;
+import dto.movieDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.BoardService;
+import service.MovieService;
 import views.ModelAndView;
 import vo.PaggingVO;
 
@@ -36,6 +39,13 @@ public class AllBoardController implements Controller {
 		ArrayList<boardDTO> list = BoardService.getInstance().AllBoard(pageNo, pageContentEa); /* 0712 페이징하는부분 추가하면서 매개변수도 추가함 */
 		
 		request.setAttribute("list", list);
+		request.setAttribute("pagging", pagging);
+		
+		//지우면안됨 검색할때필요(header)
+		List<movieDTO> mlist = MovieService.getInstance().selectMovieTopList(20);
+		request.setAttribute("mlist", mlist);
+		//
+		
 		
 		return new ModelAndView("boardInfo.jsp", false);
 	}

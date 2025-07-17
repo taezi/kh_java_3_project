@@ -43,7 +43,6 @@
   </select>
   
   <insert id="InsertBoardLike">
-
   	insert into board_event(bno, usersid, blike, bhate) values(#{bno},#{usersid}, '1', '0')
   </insert>
   
@@ -125,4 +124,13 @@
 	WHERE bno = #{bno} AND usersid = #{usersid}
 </delete>
 
+	<update id="BoardUpdate">
+	update board
+	set titles = #{titles}, bpost = #{bpost}
+	where bno = #{bno}
+	</update>
+	
+	<update id="UpdateBoardComment">
+	update board_comment set bcpost = #{bcpost} where bcno = #{bcno}
+</update>
 </mapper>

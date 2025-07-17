@@ -105,6 +105,12 @@ public class HandllerMapping {
 			break;
 		case "BoardDelete":
 			controller = new BoardDeleteController();
+			break;
+		case "BoardUpdate":
+			controller = new BoardUpdateController();
+			break;
+		case "BoardCommentUpdate":
+			controller = new BoardCommentUpdateController();
 			break;	
 		case "DeleteMovieComment":
 			controller = new MovieCommentDeleteController();
