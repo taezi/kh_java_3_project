@@ -8,6 +8,8 @@ public class movieCommentDTO {
 	private String mdate;
 	private int reports;
 	
+	
+	
 	public movieCommentDTO() {	}
 
 	public movieCommentDTO(int mcno, String usersid, String movieid, String mpost, String mdate, int reports) {

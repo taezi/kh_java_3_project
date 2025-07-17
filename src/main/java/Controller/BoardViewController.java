@@ -6,10 +6,12 @@ import java.util.List;
 
 import dto.boardCommentDTO;
 import dto.boardDTO;
+import dto.movieDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import service.BoardService;
+import service.MovieService;
 import views.ModelAndView;
 
 public class BoardViewController implements Controller {
@@ -35,6 +37,11 @@ public class BoardViewController implements Controller {
 		
 		request.setAttribute("board", board);
 		request.setAttribute("clist", clist);
+		
+		//지우면안됨 검색할때필요(header)
+		List<movieDTO> mlist = MovieService.getInstance().selectMovieTopList(20);
+		request.setAttribute("mlist", mlist);
+		//
 		
 		return new ModelAndView("boardView.jsp", false);
 	}
