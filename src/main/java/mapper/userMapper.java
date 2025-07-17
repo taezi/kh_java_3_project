@@ -23,6 +23,8 @@ public interface userMapper {
 
 	userDTO searchPw(Map<String, Object> map);
 
+	boolean userPwUpdate(Map<String, Object> map);
+
 
 	
 }

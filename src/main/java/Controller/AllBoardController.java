@@ -44,15 +44,15 @@ public class AllBoardController implements Controller {
 		request.setAttribute("list", list);
 		request.setAttribute("pagging", pagging);
 		
-<<<<<<< HEAD
+
 		request.setAttribute("query", query);//0717 검색어 보냄
-=======
+
 		//지우면안됨 검색할때필요(header)
 		List<movieDTO> mlist = MovieService.getInstance().selectMovieTopList(20);
 		request.setAttribute("mlist", mlist);
 		//
 		
->>>>>>> develop
+
 		
 		return new ModelAndView("boardInfo.jsp", false);
 	}

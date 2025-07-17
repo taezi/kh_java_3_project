@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="dto.userDTO" %>
+
+<%
+    userDTO user = (userDTO) request.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,39 +106,36 @@
 	</header>
 
   <div class="container">
+	<c:if test="${not empty okPwMsg}">
+		<script>
+			alert("${okPwMsg}");
+		</script>
+	</c:if>
+		<c:if test="${not empty errorMsg}">
+		<script>
+			alert("${errorMsg}");
+		</script>
+	</c:if>
 
 		<div class="bodyBox">
 			<div class="leftside"></div>
       
 			<div class="searchIdOutbox">
-				<form action="Main.do" method="post">
+				<form action="ResetPw.do" method="post">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
-            <input id="in_id" type="text" name="id" placeholder="이메일을 입력하세요" maxlength="20" autofocus>
-						<input id="in_username" name="username" type="text" placeholder="이름을 입력하세요" maxlength="20">
-            <input id="in_nickname" name="nickname" type="text" placeholder="별명을 입력하세요" maxlength="16">
+							<input type="hidden" name="id" value="<%= user.getUsersid() %>">
+		                    <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
+		          			<input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
 
-						${requestScope.okPwMsg}
-						${requestScope.errorPWMsg}
-						비밀번호 SHA-512 복호화 불가 비밀먼호 재설정 페이지없음 첫화면이동
-						<c:if test="${not empty okPwMsg}">
- 							<p style="color: green;">${okPwMsg}</p>
-  							<form action="ResetPwView.do" method="post">
-    						<input type="hidden" name="id" value="${param.id}">
-    						<button type="submit">비밀번호 재설정</button>
-  							</form>
-						</c:if>
-						<button type="submit" id="btn_searchId">메인화면 이동</button>
-
-						
-					
+							<button type="submit" id="btn_searchId">비밀번호 재설정</button>
 					</div>
 				</form>
 			</div>
 			<div class="rightside"></div>
-			<jsp:include page="./template/footer.jsp"></jsp:include>
+			
 		</div>
 		
-<script> </script>
+<jsp:include page="./template/footer.jsp"></jsp:include>
 </body>
 </html>

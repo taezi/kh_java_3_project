@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import service.UserService;
 import views.ModelAndView;
 
-public class SearchPwController implements Controller {
+public class ResetPwViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -27,12 +27,14 @@ public class SearchPwController implements Controller {
 		
 		if (user != null) {
 			request.setAttribute("okPwMsg", " 입력하신 정보가 일치합니다. 비밀번호 재설정을 진행해 주세요.");
+			request.setAttribute("user", user);
 		}else {
 			request.setAttribute("errorPWMsg", "입력하신 아이디와 이름과 별명에 해당하는 비밀번호가 없습니다.");
+			return new ModelAndView("SearchPwView.jsp", false);
 		}
 		
 		
-		return new ModelAndView("SearchPw.jsp", false);
+		return new ModelAndView("ResetPwView.jsp", false);
 	}
 
 }

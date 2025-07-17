@@ -28,4 +28,9 @@ VALUES (#{usersid},standard_hash(#{passwd}, 'SHA512'), #{userName}, #{nickName})
 	select * from users where usersid = #{id} and username =  #{username} and nickname = #{nickname}
   </select>
 
+	<update id="userPwUpdate" parameterType="map">
+	  UPDATE users
+	  SET passwd = STANDARD_HASH(#{passwd}, 'SHA512')
+	  WHERE usersid = #{usersid}
+	</update>
 </mapper>

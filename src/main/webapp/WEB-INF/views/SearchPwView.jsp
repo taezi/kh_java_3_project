@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,12 +101,17 @@
 	</header>
 
   <div class="container">
+  	<c:if test="${not empty errorPWMsg}">
+	    <script>
+	        alert("${errorPWMsg}");
+	    </script>
+	</c:if>
 
 		<div class="bodyBox">
 			<div class="leftside"></div>
       
 			<div class="searchIdOutbox">
-				<form action="SearchPw.do" method="post" onsubmit="return valueForm()">
+				<form action="ResetPwView.do" method="post" onsubmit="return valueForm()">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
             <input id="in_id" type="email" name="id" placeholder="이메일을 입력하세요" maxlength="20" required autofocus>
@@ -119,9 +125,9 @@
 				</form>
 			</div>
 			<div class="rightside"></div>
-			<jsp:include page="./template/footer.jsp"></jsp:include>
+
 		</div>
-		
+<jsp:include page="./template/footer.jsp"></jsp:include>	
 <script>
   // 유효성 검사 - 이름, 별명 2자이상
 function valueForm() {

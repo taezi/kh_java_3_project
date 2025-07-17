@@ -50,5 +50,10 @@ public class UserService {
 		return mapper.searchPw(map);
 	}
 
+	public boolean userPwUpdate(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mapper.userPwUpdate(map);
+	}
+
 	
 }

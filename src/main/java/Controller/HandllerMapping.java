@@ -85,8 +85,8 @@ public class HandllerMapping {
 		case "SearchPwView":
 			controller = new SearchPwViewController();
 			break;
-		case "SearchPw":
-			controller = new SearchPwController();
+		case "ResetPwView":
+			controller = new ResetPwViewController();
 			break;
 		case "BoardCommentInsert":
 			controller = new BoardCommentInsertController();
@@ -120,6 +120,9 @@ public class HandllerMapping {
 			break;
 		case "AdminBoardDelete":
 			controller = new AdminBoardDeleteController();
+			break;
+		case "ResetPw":
+			controller = new ResetPwController();
 			break;
 		}
 
