@@ -3,105 +3,121 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
-nav {
-	height: 100px;
-	width: 100%;
-	background-color: #E9E9E9;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 40px;
-	box-sizing: border-box;
-}
-
-.header-logo-link {
-	display: flex;
-	align-items: center;
-	height: 200px;
-}
-
-.header-logo-link img {
-	height: 100%;
-	vertical-align: middle;
-}
-
-.search-container {
-	position: relative;
-	width: 400px;
-	height: 45px;
-	display: flex;
-	align-items: center;
-	background-color: white;
-	border-radius: 25px;
-	border: 1px solid #ccc;
-}
-
-.search-input {
-	flex-grow: 1;
-	border: none;
-	outline: none;
-	font-size: 1.1em;
-	padding: 0 10px;
-	z-index: 2;
-	background-color: transparent;
-	color: #333;
-}
-
-/* 돋보기 아이콘  */
-.search-icon-inside {
-	width: 24px;
-	height: 24px;
-	margin-right: 15px;
-	cursor: pointer;
-	z-index: 2;
-}
-
-.user-actions {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	gap: 25px;
-}
-
-.user-actions li {
-	display: flex;
-	align-items: center;
-}
-
-.user-actions a {
-	text-decoration: none;
-	color: #333;
-	font-size: 1.0em;
-	display: flex;
-	align-items: center;
-	white-space: nowrap;
-}
-
-.user-actions a:hover {
-	color: #007bff;
-}
-
-/* 로그인/회원가입 아이콘 */
-.user-actions img {
-	width: 36px;
-	height: 36px;
-	margin-right: 5px;
-	vertical-align: middle;
-}
-
-/* 로그인 상태 메시지 */
-.user-info {
-	color: #555;
-	font-size: 1.0em;
-	white-space: nowrap;
-}
-
-.user-info-admin {
-	color: #555;
-	font-size: 1.0em;
-	white-space: nowrap;
-}
+	nav {
+		height: 100px;
+		width: 100%;
+		background-color: #E9E9E9;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 40px;
+		box-sizing: border-box;
+		position: relative; /* 중앙 고정을 위한 기준점 */
+	}
+	
+	/* 검색창을 항상 중앙에 고정 */
+	.search-form-wrapper {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 3;
+	}
+	
+	.header-logo-link {
+		display: flex;
+		align-items: center;
+		height: 200px;
+	}
+	
+	.header-logo-link img {
+		height: 100%;
+		vertical-align: middle;
+	}
+	
+	.search-container {
+		position: relative;
+		width: 400px;
+		height: 45px;
+		display: flex;
+		align-items: center;
+		background-color: white;
+		border-radius: 25px;
+		border: 1px solid #ccc;
+	}
+	
+	.search-input {
+		flex-grow: 1;
+		border: none;
+		outline: none;
+		font-size: 1.1em;
+		padding: 0 10px;
+		z-index: 2;
+		background-color: transparent;
+		color: #333;
+	}
+	
+	/* 돋보기 아이콘  */
+	.search-icon-inside {
+		width: 24px;
+		height: 24px;
+		margin-right: 15px;
+		cursor: pointer;
+		z-index: 2;
+	}
+	
+	.user-actions {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		gap: 25px;
+	}
+	
+	.user-actions li {
+		display: flex;
+		align-items: center;
+	}
+	
+	.user-actions a {
+		text-decoration: none;
+		color: #333;
+		font-size: 1.0em;
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+	}
+	
+	.user-actions a:hover {
+		color: #007bff;
+	}
+	
+	/* 로그인/회원가입 아이콘 */
+	.user-actions img {
+		width: 36px;
+		height: 36px;
+		margin-right: 5px;
+		vertical-align: middle;
+		transition: opacity 0.3s ease, transform 0.3s ease; 
+	}
+	
+	.user-actions a:hover img {
+	    opacity: 0.7; 
+	    transform: scale(1.2); 
+	}
+	
+	/* 로그인 상태 메시지 */
+	.user-info {
+		color: #555;
+		font-size: 1.0em;
+		white-space: nowrap;
+	}
+	
+	.user-info-admin {
+		color: #555;
+		font-size: 1.0em;
+		white-space: nowrap;
+	}
 </style>
 
 <nav>
@@ -110,17 +126,23 @@ nav {
 		alt="KH MOVIE 로고">
 	</a>
 
-	<form action="SearchView.do" method="get" class="search-form">
-		<div class="search-container">
-			<input type="text" class="search-input" placeholder="Search..."
-				name="query">
-			<button type="submit"
-				style="background: none; border: none; padding: 0; cursor: pointer;">
-				<img src="${pageContext.request.contextPath}/images/search_icon.png"
-					alt="Search" class="search-icon-inside">
-			</button>
-		</div>
-	</form>
+	<div class="search-form-wrapper">
+		<form action="SearchView.do" method="get" class="search-form">
+			<div class="search-container">
+				<input type="text" class="search-input" list="movie-titles" placeholder="Search..." name="query">
+					        <datalist id="movie-titles">
+					            <c:forEach var="movie" items="${mlist}" varStatus="status">
+					                <c:if test="${status.index < 6}">
+										<option value="${movie.movieName}"></option>
+									</c:if>
+					            </c:forEach>
+					        </datalist>
+				<button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+					<img src="${pageContext.request.contextPath}/images/search_icon.png" alt="Search" class="search-icon-inside">
+				</button>
+			</div>
+		</form>
+	</div>
 
 
 	<ul class="user-actions">

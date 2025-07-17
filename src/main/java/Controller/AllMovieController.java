@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import dto.movieDTO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,11 @@ public class AllMovieController implements Controller {
 		}
 		
 		request.setAttribute("list", list);
+		
+		//지우면안됨 검색할때필요(header)
+		List<movieDTO> mlist = MovieService.getInstance().selectMovieTopList(20);
+		request.setAttribute("mlist", mlist);
+		//
 		
 		return new ModelAndView("movieAllInfo.jsp", false);
 	}

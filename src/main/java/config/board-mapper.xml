@@ -43,7 +43,6 @@
   </select>
   
   <insert id="InsertBoardLike">
-
   	insert into board_event(bno, usersid, blike, bhate) values(#{bno},#{usersid}, '1', '0')
   </insert>
   
