@@ -4,24 +4,24 @@ public class HandllerMapping {
 	private static HandllerMapping instance = new HandllerMapping();
 
 	public HandllerMapping() {
-		
+
 	}
-	
+
 	public static HandllerMapping getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new HandllerMapping();
 		}
 		return instance;
 	}
-	
+
 	public Controller createController(String command) {
 		Controller controller = null;
-		
-		switch(command) {
+
+		switch (command) {
 		case "Main":
 			controller = new MainController();
 			break;
-		//Movie
+		// Movie
 		case "AllMovie":
 			controller = new AllMovieController();
 			break;
@@ -34,7 +34,7 @@ public class HandllerMapping {
 		case "movieCommentWrite":
 			controller = new movieCommentWriteController();
 			break;
-		//Board
+		// Board
 		case "AllBoard":
 			controller = new AllBoardController();
 			break;
@@ -44,7 +44,7 @@ public class HandllerMapping {
 		case "BoardView":
 			controller = new BoardViewController();
 			break;
-		//로그인
+		// 로그인
 		case "RegisterView":
 			controller = new RegisterViewController();
 			break;
@@ -63,15 +63,12 @@ public class HandllerMapping {
 		case "Admin":
 			controller = new AdminController();
 			break;
-		case "report":
-			controller = new reportController();
-			break;
 		case "BoardWrite":
 			controller = new BoardWriteController();
 			break;
 		case "MovieUrl":
 			controller = new MovieUrlController();
-      break;
+			break;
 		case "NaverLoginCallback":
 			controller = new NaverLoginCallbackController();
 			break;
@@ -88,14 +85,38 @@ public class HandllerMapping {
 		case "SearchPwView":
 			controller = new SearchPwViewController();
 			break;
-		case "SearchPw": 
+		case "SearchPw":
 			controller = new SearchPwController();
 			break;
 		case "BoardCommentInsert":
 			controller = new BoardCommentInsertController();
 			break;
+		case "reportMovie":
+			controller = new MovieReportController();
+			break;
+		case "UserDelete":
+			controller = new UserDeleteController();
+			break;
+		case "BoardCommentLike":
+			controller = new BoardCommentLikeController();
+			break;
+		case "BoardCommentDelete":
+			controller = new BoardCommentDeleteController();
+			break;
+		case "BoardDelete":
+			controller = new BoardDeleteController();
+			break;	
+		case "DeleteMovieComment":
+			controller = new MovieCommentDeleteController();
+			break;
+		case "reportBoard":
+			controller = new BoardReportController();
+			break;
+		case "AdminBoardDelete":
+			controller = new AdminBoardDeleteController();
+			break;
 		}
-			
+
 		return controller;
 	}
 }
