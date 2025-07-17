@@ -252,8 +252,11 @@ ul {
 			<div class="rightside"></div>
 			
 		</div>
-		<jsp:include page="./template/footer.jsp"></jsp:include>
+		
 	</div>
+
+	<jsp:include page="./template/footer.jsp"></jsp:include>
+  
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.querySelector('.loginOutbox form');
@@ -307,5 +310,6 @@ ul {
     });
   });
 </script>
+
 </body>
 </html>

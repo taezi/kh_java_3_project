@@ -395,6 +395,17 @@
 
 <body>
 	<jsp:include page="./template/header.jsp"></jsp:include>
+	<%
+  	  String okPwMsg = (String) session.getAttribute("okPwMsg");
+  	  if (okPwMsg != null) {
+	%>
+	    <script>
+	        alert("<%= okPwMsg %>");
+	    </script>
+	<%
+	        session.removeAttribute("okPwMsg"); // 한 번만 보여주고 제거
+	    }
+	%>
 	<div class="top-container">
 		<div class="carousel-container" id="main-carousel">
 		  <div class="carousel-inner">

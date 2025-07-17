@@ -166,8 +166,9 @@
       </div>
       <div class="rightside"></div>
     </div>
-    <jsp:include page="./template/footer.jsp"></jsp:include>
+    
   </div>
+  <jsp:include page="./template/footer.jsp"></jsp:include>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.querySelector('.membershipOutbox form'); // 폼 요소를 선택

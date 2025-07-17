@@ -125,10 +125,11 @@
 					</div>
 				</form>
 			</div>
+			
 			<div class="rightside"></div>
-			<jsp:include page="./template/footer.jsp"></jsp:include>
+			
 		</div>
-		
-<script> </script>
+	</div>
+<jsp:include page="./template/footer.jsp"></jsp:include>
 </body>
 </html>
