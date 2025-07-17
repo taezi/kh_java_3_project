@@ -7,44 +7,75 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 결과</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <style>
-    .search-page-wrapper {
-        width: 100%;
-        padding: 40px 20px; 
-        box-sizing: border-box; 
-    }
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
 
-    .search-title {
-        text-align: center;
-        font-size: 1.8em;
-        margin-bottom: 40px; 
-    }
+.search-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
 
-    .movie-container {
-        text-align: center;
-    }
+.search-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    color: #222;
+}
 
-    .movie-card {
-        display: inline-block;
-        width: 200px; 
-        margin: 15px; 
-        vertical-align: top;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        text-align: center;
-        overflow: hidden;
-        cursor: pointer;
-    }
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
-    .movie-card img {
-        width: 100%;
-    }
+.movie-card {
+    width: 200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    text-align: center;
+}
 
-    .movie-card .movie-name {
-        padding: 15px 10px;
-        font-weight: bold;
-    }
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-name {
+    padding: 15px 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #444;
+}
+
+.movie-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
 
 </style>
 </head>

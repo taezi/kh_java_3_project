@@ -7,60 +7,76 @@
 <head>
 <meta charset="UTF-8">
 <title>${movie.movieName}-상세정보</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <style>
 /* 기본 스타일 */
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	background-color: #f4f4f4;
 	margin: 0;
 	padding: 0;
+	color: #1e1e1e;
 }
 
 /* 영화 상세 */
 .detail-container {
 	max-width: 1000px;
 	margin: 60px auto;
-	background-color: white;
+	background-color: #fff;
 	padding: 40px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
 	display: flex;
+	flex-wrap: wrap;
 	gap: 40px;
-	border-radius: 12px;
+	border-radius: 16px;
 }
 
 .poster {
 	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .poster img {
 	width: 100%;
 	max-width: 320px;
 	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .info {
 	flex: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .info h1 {
 	font-size: 32px;
-	margin-bottom: 10px;
+	margin-bottom: 12px;
+	font-weight: 700;
 }
 
 .info .sub {
 	font-size: 16px;
-	color: #777;
-	margin-bottom: 20px;
+	color: #666;
+	margin-bottom: 18px;
 }
 
 .info p {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.6;
 	margin: 8px 0;
 }
 
 .info .highlight {
-	font-weight: bold;
+	font-weight: 600;
+	color: #0077cc;
 }
 
 .description {
@@ -70,8 +86,8 @@ body {
 }
 
 .popularity {
-	margin-top: 12px;
-	font-size: 15px;
+	margin-top: 14px;
+	font-size: 12px;
 	color: #999;
 }
 
@@ -79,33 +95,43 @@ body {
 .comment-section {
 	max-width: 1000px;
 	margin: 40px auto;
-	background: white;
+	background: #ffffff;
 	padding: 30px;
 	border-radius: 12px;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .comment-section h3 {
-	margin-bottom: 15px;
-	font-size: 20px;
+	margin-bottom: 20px;
+	font-size: 19px;
+	font-weight: 600;
+	color: #333;
 	border-bottom: 1px solid #eee;
-	padding-bottom: 5px;
+	padding-bottom: 6px;
 }
 
 .comment-section form {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 12px;
 }
 
 .comment-section textarea {
 	width: 100%;
-	height: 80px;
+	height: 90px;
 	resize: vertical;
-	padding: 10px;
+	padding: 12px;
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	font-size: 15px;
+	background-color: #fafafa;
+	transition: border 0.3s;
+}
+
+.comment-section textarea:focus {
+	border-color: #0077cc;
+	outline: none;
+	background-color: #fff;
 }
 
 .comment-section button {
@@ -116,6 +142,8 @@ body {
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.2s ease;
 }
 
 .comment-section button:hover {
@@ -128,16 +156,37 @@ body {
 
 .comment-item {
 	margin-bottom: 20px;
-	padding: 12px;
-	background-color: #fafafa;
+	padding: 14px 16px;
+	background-color: #f9f9f9;
 	border-radius: 8px;
 	border-left: 4px solid #0077cc;
+	transition: background-color 0.3s ease;
+}
+
+.comment-item:hover {
+	background-color: #f1f1f1;
 }
 
 .comment-meta {
-	font-size: 14px;
+	font-size: 12px;
 	color: #666;
-	margin-bottom: 8px;
+	margin-bottom: 6px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.comment-meta button {
+	background: none;
+	border: none;
+	color: #d9534f;
+	cursor: pointer;
+	font-size: 12px;
+	transition: color 0.2s;
+}
+
+.comment-meta button:hover {
+	color: #b52b27;
 }
 </style>
 <script>
