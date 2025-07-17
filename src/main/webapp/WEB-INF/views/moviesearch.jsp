@@ -93,6 +93,7 @@ body {
 				</div>
 			</c:forEach>
 		</div>
+		<jsp:include page="./template/footer.jsp"></jsp:include>
 	</div>
 
 </body>

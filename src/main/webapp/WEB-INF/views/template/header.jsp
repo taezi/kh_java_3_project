@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
+
+	nav,
+	.search-input,
+	.user-actions a,
+	.user-info,
+	.user-info-admin {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+
 	nav {
 		height: 100px;
 		width: 100%;
@@ -81,7 +90,7 @@
 	.user-actions a {
 		text-decoration: none;
 		color: #333;
-		font-size: 1.0em;
+		font-size: 20px;
 		display: flex;
 		align-items: center;
 		white-space: nowrap;
@@ -109,13 +118,13 @@
 	/* 로그인 상태 메시지 */
 	.user-info {
 		color: #555;
-		font-size: 1.0em;
+		font-size: 20px;
 		white-space: nowrap;
 	}
 	
 	.user-info-admin {
 		color: #555;
-		font-size: 1.0em;
+		font-size: 20px;
 		white-space: nowrap;
 	}
 </style>
@@ -129,7 +138,7 @@
 	<div class="search-form-wrapper">
 		<form action="SearchView.do" method="get" class="search-form">
 			<div class="search-container">
-				<input type="text" class="search-input" list="movie-titles" placeholder="Search..." name="query">
+				<input type="text" class="search-input" list="movie-titles" placeholder="영화를 검색하세요" name="query">
 					        <datalist id="movie-titles">
 					            <c:forEach var="movie" items="${mlist}" varStatus="status">
 					                <c:if test="${status.index < 6}">

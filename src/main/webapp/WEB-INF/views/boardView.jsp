@@ -143,6 +143,7 @@ function reportUser(usersid, bno) {
 
 	<!-- 🆕 게시글 수정 시 필요한 bno -->
 	<input type="hidden" id="bno" value="${board.bno}">
+	<jsp:include page="./template/footer.jsp"></jsp:include>
 </body>
 
 <!-- 게시글 좋아요 -->

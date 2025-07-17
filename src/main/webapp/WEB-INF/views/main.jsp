@@ -7,11 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <style>
 	* {
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box; 
+		font-family: 'Noto Sans KR', sans-serif; /* 페이지 전체에 Noto Sans KR 적용 */
 		
 	}
 	.top-container{
@@ -30,7 +34,7 @@
 	}
 	.left-container, .main-container, .right-container {
 		box-sizing: border-box;
-		height: 1500px; 
+		height: 1200px; 
 	}
 
 	.left-container, .right-container {
@@ -201,7 +205,7 @@
 
     .sub-item-container a {
       color: #eee;
-      font-size: 15px;
+      font-size: 16px;
       text-decoration: none;
       line-height: 1.4;
     }
@@ -370,7 +374,7 @@
 }
 
 .main-carousel-overlay h2 {
-    font-size: 28px;
+    font-size: 80px;
     margin-bottom: 10px;
 }
 
@@ -499,6 +503,7 @@
 		</div>
 	
 	</div>
+	<jsp:include page="./template/footer.jsp"></jsp:include>
 <script>
 	//로그아웃 start//
 	const urlParams = new URLSearchParams(window.location.search);
