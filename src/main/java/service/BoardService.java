@@ -37,7 +37,27 @@ public class BoardService {
 	public int SelectBoardTotalCount() { /* 0712 */
 		return mapper.SelectBoardTotalCount();
 	}
+	
+	public int SelectBoardTotalCount(String query) { //0717 게시글 제목 검색 기능 추가때매, 메서드오버로딩
+		if(query == null || query.trim().isEmpty()) {
+			return mapper.SelectBoardTotalCount();
+		}
+		return mapper.SelectBoardTotalCountByTitle("%" + query + "%");
+	}
+	
+	public ArrayList<boardDTO> AllBoard(int pageNo, int pageContentEa, String query) { //0717 게시글 제목 검색 기능 추가때매, 메서드오버로딩
+		Map<String, Object> map = new HashMap<>();
+		map.put("pageNo", pageNo);
+		map.put("pageContentEa", pageContentEa);
+		map.put("query", "%" + (query == null ? "" : query) + "%");
 
+		if(query == null || query.trim().isEmpty()) {
+			return mapper.AllBoard(map);
+		} else {
+			return mapper.SearchBoardByTitle(map);
+		}
+	}
+	
 	public int UpdateBoardCount(int bno) {
 		return mapper.UpdateBoardCount(bno);
 	}
@@ -129,6 +149,22 @@ public class BoardService {
 		
 	}
 
+
+	public int BoardUpdate(int bno, String titles, String bpost) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("titles", titles);
+		map.put("bpost", bpost);
+		return mapper.BoardUpdate(map);
+	}
+
+	public int UpdateBoardComment(int bcno, String bcpost) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bcno", bcno);
+		map.put("bcpost", bcpost);
+		return mapper.UpdateBoardComment(map);
+	}
+
 	public int boardReportPlus(Map<String, Object> map) {
 		return mapper.reportBoardPlus(map);
 		
@@ -140,6 +176,7 @@ public class BoardService {
 
 	public int AdminBoardDelete(Map<String, Object> map) {
 		return mapper.AdminBoardDelete(map);
+
 	}
 
 	
