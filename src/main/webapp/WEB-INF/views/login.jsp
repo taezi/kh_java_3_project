@@ -89,7 +89,6 @@ input:focus {
 	border-color: #db1a1a;
 	outline: none;
 }
-
 #checkbox {
 	display: flex;
 	box-sizing: border-box;
@@ -127,6 +126,7 @@ color: blue;
   box-sizing: border-box;
   border: 2px solid transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	cursor: pointer;
 }
 #btn_login:hover,
 #btn_naver:hover {
