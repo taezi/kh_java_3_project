@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Map;
 
 import config.DBManager;
@@ -32,9 +33,22 @@ public class UserService {
 	public userDTO findById(String id) {
 		return mapper.findID(id);
 	}
-	
+
+
+	public List<userDTO> getAllUsers() {
+		return mapper.AllUser();
+	}
+
+	public int deleteUser(String usersid) {
+		return mapper.deleteUser(usersid);
+	}
 	public userDTO searchId(Map<String, Object> map) {
 		return mapper.searchId(map);
 	}
+
+	public userDTO searchPw(Map<String, Object> map) {
+		return mapper.searchPw(map);
+	}
+
 	
 }

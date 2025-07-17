@@ -51,4 +51,22 @@
 		INSERT INTO movie_comment (mcno, usersid, movieid, mpost, mdate, reports)
 		VALUES (SEQ_MOVIECOMMENT_MCNO.NEXTVAL, #{usersid}, #{movieid}, #{mpost}, SYSDATE, 0)
 	</insert>
+	
+	<update id="movieReportAdd" parameterType="dto.movieCommentDTO">
+    UPDATE movie_comment
+    SET reports = reports + 1
+    WHERE usersid = #{usersid} AND movieid = #{movieid}
+	</update>
+	
+	<select id="reportList" resultType="dto.movieCommentDTO">
+    SELECT mcno, usersid, movieid, reports
+    FROM movie_comment
+    WHERE reports > 0
+</select>
+
+<delete id="MovieCommentDelete">
+	DELETE FROM Movie_Comment
+	WHERE mcno = #{mcno} AND usersid = #{usersid} AND movieid = #{movieid}
+</delete>
+
 </mapper>
