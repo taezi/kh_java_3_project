@@ -20,9 +20,9 @@
 	
 	.container {
 		width: 100%; 
-		height: 2000px; 
+		
 		font-size: 0px;
-		border: 1px solid black;
+		
 		display: flex;
         flex-direction: row;
         justify-content: center;
@@ -30,7 +30,7 @@
 	}
 	.left-container, .main-container, .right-container {
 		box-sizing: border-box;
-		height: 2000px; 
+		height: 1500px; 
 	}
 
 	.left-container, .right-container {
@@ -253,7 +253,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
-		border: 1px solid black;
+		
 	}
 	
 
@@ -346,6 +346,41 @@
     text-decoration: underline;
 }
 
+/* 메인 캐러쉘 이벤트 */
+.main-carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 어두워짐 효과 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    text-align: center;
+}
+
+.carousel-item:hover .main-carousel-overlay {
+    opacity: 1;
+}
+
+.main-carousel-overlay h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.main-carousel-overlay p {
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: #ffc107;
+}
 
 
 	
@@ -360,10 +395,16 @@
 		<div class="carousel-container" id="main-carousel">
 		  <div class="carousel-inner">
 		    
-	        <c:forEach var="movie" items="${list}" begin="0" end="3" >
+	        <c:forEach var="movie" items="${mlist}" begin="0" end="3" >
+	        
 		        <div class="carousel-item" data-movie-id="${movie.movieId}">
-					<img src="https:/image.tmdb.org/t/p/w1280/${movie.hposter}" alt="${movie.movieName}" />
+					    <img src="https://image.tmdb.org/t/p/w1280/${movie.hposter}" alt="${movie.movieName}" />
+					    <div class="main-carousel-overlay">
+					        <h2>${movie.movieName}</h2>
+					        <p>예고편 보러가기</p>
+					    </div>		
 				</div>
+				
 			</c:forEach>
 		 
 		  </div>
@@ -387,14 +428,14 @@
 	
 	<div class="container">
 		<div class="left-container">
-			<a href="AllMovie.do">영화 정보 보기</a>
+		
 		</div>
 	
 		<div class="main-container">
 			  <div class="sub-carousel-container" id="sub-carousel">
 				    <div class="sub-carousel-inner">
 				
-						<c:forEach var="movie" items="${list}" varStatus="status">
+						<c:forEach var="movie" items="${mlist}" varStatus="status">
 							<div class="sub-item-container">
 								<a href="movieinfo.do?movieid=${movie.movieId}" class="movie-image-link">
 									<img src="https://image.tmdb.org/t/p/w500/${movie.wposter}" alt="${movie.movieName}" />
@@ -454,7 +495,7 @@
 		</div>
 		
 		<div class="right-container">
-			<a href="AllBoard.do">게시판 정보 보기
+			
 		</div>
 	
 	</div>
