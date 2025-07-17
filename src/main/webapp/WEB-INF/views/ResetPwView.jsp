@@ -10,11 +10,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>SearchId</title>
 <style>
   * {
     margin: 0px;
     padding: 0px;
+	font-family: 'Noto Sans KR', sans-serif;
   }
   .container{
     width: 1440px;
@@ -39,18 +41,19 @@
     /*  background-color: black; */ /* 없음으로 변경_25.07.10 */
   }
   .searchIdOutbox{
-    display:flex;
-    flex-flow: column nowrap;
-    border: 1px solid #db1a1a;
-    padding: 0px;
-    width: 800px;
-    justify-content: center;
-    margin: 100px auto;
+	display: flex;
+	flex-flow: column nowrap;
+	border: 2px solid #db1a1a;
+	padding: 0px;
+	width: 800px;
+	justify-content: center;
+	margin: 100px auto;
   }
   .searchIdInBox > h1 {
     color: black;
     text-align: center;
     font-weight: bold; 
+    font-size: 32px;
   }
   .searchIdInBox{
     width: 500px;
@@ -62,41 +65,40 @@
     row-gap: 20px; 
   }
   input{
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    border: 1px solid darkgray;
-    /* justify-items: center; */
-    padding: 5px 20px; 
-    font-size: 20px;
+	height: 68px;
+	border-radius: 10px;
+	border: 2px solid darkgray;
+	padding: 5px 15px;
+	font-size: 20px;
+	box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  }
+  input::placeholder {
+	  font-size: 20px;
+	  color: #8a8a8a;
   }
   input:hover{
-    color: gray;
+    border-color: orange;
   }
-  input::placeholder{
-    /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
-    font-size: 20px;
-    color: #3a3a3a;
-    /* justify-content: center; */
-  }
-    input:focus {
+  input:focus {
     border-color:#db1a1a;
     outline: none;
-  /*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
-  }
- .searchIdInBox > button{
-    height: 50px;
-    border-radius: 10px;
-    border: #db1a1a
   }
   #btn_searchId{
     background-color: #db1a1a;
     color: white;
     font-weight: bold;
-    height: 68px;
     font-size: 20px;
+    height: 68px;
+    border-radius: 10px;
+    border: 2px solid #db1a1a;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+    cursor: pointer;
   }
-  
+  #btn_searchId:hover {
+	border: 5px solid orange;
+  }
 </style>
 </head>
 <body>
@@ -126,7 +128,7 @@
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
 							<input type="hidden" name="id" value="<%= user.getUsersid() %>">
-		                    <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
+		                    <input id="in_pw" name="passwd" type="password" placeholder="비밀번호를 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required autofocus>
 		          			<input id="in_pwre" name="passwdre" type="password" placeholder="비밀번호를 다시 입력하세요(특수문자+숫자+문자조합)" maxlength="20" required>
 
 							<button type="submit" id="btn_searchId">비밀번호 재설정</button>
@@ -174,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			    Pw.focus();
 			    return;
 }
-       // 모든 유효성 검사를 통과하면 폼을 제출합니다.
+       // 모든 유효성 검사를 통과시 폼을 제출.
         form.submit();
       });
   });

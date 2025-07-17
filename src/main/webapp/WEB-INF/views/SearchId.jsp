@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>SearchId</title>
 <style>
   * {
     margin: 0px;
     padding: 0px;
+    font-family: 'Noto Sans KR', sans-serif;
+    /* box-sizing: border-box; */ /* 07.18결정 */
   }
   .container{
     width: 1440px;
@@ -44,7 +47,8 @@
   .searchIdInBox > h1 {
     color: black;
     text-align: center;
-    font-weight: bold; 
+    font-weight: bold;
+    font-size: 32px; 
   }
   .searchIdInBox{
     width: 500px;
@@ -56,43 +60,40 @@
     row-gap: 20px; 
   }
   input{
-    height: 60px;
+    height: 68px;
     border-radius: 10px;
-    border: none;
-    border: 1px solid darkgray;
-    /* justify-items: center; */
+    border: 2px solid darkgray;
     padding: 5px 20px; 
     font-size: 20px;
-  }
-  input:hover{
-    color: gray;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
   }
   input::placeholder{
-    /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
     font-size: 20px;
-    font-style: #e9e9e9;
-    /* justify-content: center; */
+    color: #8a8a8a;
   }
-    input:focus {
+  input:hover{
+    border-color: orange;
+  }
+  input:focus {
     border-color:#db1a1a;
     outline: none;
-  /*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
   }
- .searchIdInBox > button{
-    height: 50px;
-    border-radius: 10px;
-    border: #db1a1a
-  }
-  #btn_searchId{
+ #btn_searchId{
     background-color: #db1a1a;
     color: white;
     font-weight: bold;
-    height: 68px;
     font-size: 20px;
+    height: 68px;
+    border-radius: 10px;
+    border: 2px solid #db1a1a;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+    cursor: pointer;
   }
-  button:hover {
+  #btn_searchId:hover {
 	border: 5px solid orange;
-}
+  }
 </style>
 </head>
 <body>
@@ -112,17 +113,13 @@
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
 						<input id="in_username" name="username" type="text" placeholder="찾을 아이디의 이름을 입력하세요" maxlength="20" autofocus>
-            <input id="in_nickname" name="nickname" type="text" placeholder="찾을 아이디의 별명을 입력하세요" maxlength="16">
-					
+            			<input id="in_nickname" name="nickname" type="text" placeholder="찾을 아이디의 별명을 입력하세요" maxlength="16">
 					<!--DB에서 찾은 이름 보내줌.  -->	
 					<p id="searchResult" style="color: blue; font-weight: bold; text-align: center; margin-top: 15px;">
-				    ${requestScope.okIdMsg}
-    				${requestScope.errorMsg}
+				    ${requestScope.okIdMsg}${requestScope.errorMsg}
 					</p>
 						<button type="submit" id="btn_searchId">로그인하기</button>
-
-						
-					
+		
 					</div>
 				</form>
 			</div>

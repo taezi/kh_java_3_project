@@ -4,12 +4,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KHMOVE Membership</title>
   <style>
   * {
     margin: 0px;
     padding: 0px;
+  font-family: 'Noto Sans KR', sans-serif;
   }
   .container{
     width: 1440px;
@@ -44,7 +46,8 @@
   .membershipInbox > h1 {
     color: black;
     text-align: center;
-    font-weight: bold; 
+    font-weight: bold;
+    font-size: 32px; 
   }
   .membershipInbox{
     width: 500px;
@@ -56,28 +59,24 @@
     row-gap: 20px; 
   }
   input{
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    border: 1px solid darkgray;
-    /* justify-items: center; */
-    padding: 5px 20px; 
-    font-size: 20px;
+	height: 68px;
+	border-radius: 10px;
+	border: 2px solid darkgray;
+	padding: 5px 15px;
+	font-size: 20px;
+	box-sizing: border-box;
+  transition: border-color 0.3s ease;
   }
-  .membershipInbox > input:hover{
-    font-size: 20px;
-    cursor: text;
+ input::placeholder {
+	  font-size: 20px;
+	  color: #8a8a8a;
   }
-  input::placeholder{
-    /* padding-left: 10px; */ /*여백중복 삭제 25.07.11*/
-    font-size: 20px;
-    color: darkgray;
-    /* justify-content: center; */
+  input:hover{
+   border-color: orange;
   }
-    input:focus {
+  input:focus {
     border-color:#db1a1a;
     outline: none;
-  /*  background-color: yellow; */ /* 커서 깜박임 보여셔 지움25.07.11*/
   }
   #checkbox{
     display: flex;
@@ -100,23 +99,23 @@
   }
   #checkbox >label{
     font-size: 20px;
-    color: #e9e9e9;
-  }
-  .membershipInbox > button{
-    height: 50px;
-    border-radius: 10px;
-    border: #db1a1a
-  }
-  button:hover {
-	border: 5px solid orange;
-  cursor: pointer;
+  	color: #8a8a8a;
   }
   #btn_membership{
     background-color: #db1a1a;
     color: white;
     font-weight: bold;
-    height: 68px;
     font-size: 20px;
+    height: 68px;
+    border-radius: 10px;
+    border: 2px solid #db1a1a;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+    cursor: pointer;
+  }
+  #btn_membership:hover {
+	border: 5px solid orange;
+  cursor: pointer;
   }
   ul{
   list-style-type: none;
@@ -170,69 +169,80 @@
   </div>
   <jsp:include page="./template/footer.jsp"></jsp:include>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.querySelector('.membershipOutbox form'); // 폼 요소를 선택
-      const Id = document.getElementById('in_id');
-      const Username = document.getElementById('in_username');
-      const Pw = document.getElementById('in_pw');
-      const PwRe = document.getElementById('in_pwre');
-      const Nickname = document.getElementById('in_nickname');
-      const chkId = document.getElementById('chk_id');
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.membershipOutbox form');
+    const Id = document.getElementById('in_id');
+    const Username = document.getElementById('in_username');
+    const Pw = document.getElementById('in_pw');
+    const PwRe = document.getElementById('in_pwre');
+    const Nickname = document.getElementById('in_nickname');
+    const chkId = document.getElementById('chk_id');
+    const inputs = [Id, Username, Pw, PwRe, Nickname];
 
-        form.addEventListener('submit', function(event) {
-          // 기본 제출 동작을 막습니다. (유효성 검사를 위해)
-          event.preventDefault(); 
-
-          // 1. 입력 필드 값 확인
-          if (Id.value.trim() === '') {
-            alert('이메일을 입력해 주세요.');
-            Id.focus();
-            return; 
+    // input에 focus 계속 유지
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        setTimeout(() => {
+          const active = document.activeElement;
+          if (!inputs.includes(active)) {
+            input.focus();
           }
-          if (Username.value.trim() === '') {
-            alert('이름을 입력해 주세요.');
-            Username.focus();
-            return;
-          }
-          if (Pw.value.trim() === '') {
-            alert('비밀번호를 입력해 주세요.');
-            Pw.focus();
-            return;
-           }
-          if (PwRe.value.trim() === '') {
-            alert('비밀번호를 다시 입력해 주세요.');
-            PwRe.focus();
-            return;
-          }
-          // 2. 비밀번호 일치 여부 확인
-          if (Pw.value !== PwRe.value) {
-            alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
-            PwRe.focus();
-            return;
-          }
-          if (Nickname.value.trim() === '') {
-            alert('별명을 입력해 주세요.');
-            Nickname.focus();
-            return;
-          }
-          const password = Pw.value.trim();
-          const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
-          // 2-1 비밀번호 특수문자+숫자+알파벳 조합 추가. (해야함)
-          if (!regex.test(password)) {
-			      alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
-  			    Pw.focus();
-  			    return;
-}
-         // 3. 체크박스 확인
-          if (!chkId.checked) {
-            alert('가입 필수 정보 위임에 동의해 주세요.');
-            chkId.focus(); // 체크박스에 포커스
-            return;
-          }
-         // 모든 유효성 검사를 통과하면 폼을 제출합니다.
-          form.submit();
-        });
+        }, 10);
+      });
     });
+
+    // 유효성 검사
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (Id.value.trim() === '') {
+        alert('이메일을 입력해 주세요.');
+        Id.focus();
+        return;
+      }
+      if (Username.value.trim() === '') {
+        alert('이름을 입력해 주세요.');
+        Username.focus();
+        return;
+      }
+      if (Pw.value.trim() === '') {
+        alert('비밀번호를 입력해 주세요.');
+        Pw.focus();
+        return;
+      }
+      if (PwRe.value.trim() === '') {
+        alert('비밀번호를 다시 입력해 주세요.');
+        PwRe.focus();
+        return;
+      }
+      if (Pw.value !== PwRe.value) {
+        alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
+        PwRe.focus();
+        return;
+      }
+      if (Nickname.value.trim() === '') {
+        alert('별명을 입력해 주세요.');
+        Nickname.focus();
+        return;
+      }
+      //
+      const password = Pw.value.trim();
+      const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+      if (!regex.test(password)) {
+        alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
+        Pw.focus();
+        return;
+      }
+
+      if (!chkId.checked) {
+        alert('가입 필수 정보 위임에 동의해 주세요.');
+        chkId.focus();
+        return;
+      }
+
+      form.submit();
+    });
+  });
 </script>  
 </body>
 </html>
