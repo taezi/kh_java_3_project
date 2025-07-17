@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import config.DBManager;
 import dto.boardDTO;
@@ -49,6 +50,19 @@ public class MovieService {
 
 	public int insertComment(movieCommentDTO comment) {
 		return mapper.movieCommentInsert(comment);
+	}
+
+	public int movieReportPlus(Map<String, String> map) {
+		return mapper.movieReportAdd(map);
+		
+	}
+
+	public List<movieCommentDTO> getReportList() {
+		return mapper.reportList();
+	}
+
+	public int CommentMovieDelete(Map<String, Object> map) {
+		return mapper.MovieCommentDelete(map);
 	}
 
 	

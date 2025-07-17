@@ -16,10 +16,10 @@ public class MainController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
-		
-		List<movieDTO> list = MovieService.getInstance().selectMovieTopList(20);
-		request.setAttribute("list", list);
-		
+		//지우면안됨 검색할때필요(header)
+		List<movieDTO> mlist = MovieService.getInstance().selectMovieTopList(20);
+		request.setAttribute("mlist", mlist);
+		//
 		List<boardDTO> blist = BoardService.getInstance().selectBoardTopList(10);
 		request.setAttribute("blist", blist);
 		

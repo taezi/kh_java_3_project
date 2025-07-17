@@ -1,5 +1,6 @@
 package mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import dto.userDTO;
@@ -12,6 +13,12 @@ public interface userMapper {
 
 	userDTO findID(String id);
 
+
+	List<userDTO> AllUser();
+
+	int deleteUser(String usersid);
+
 	userDTO searchId(Map<String, Object> map);
+
 	
 }
