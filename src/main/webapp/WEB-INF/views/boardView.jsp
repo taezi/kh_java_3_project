@@ -7,16 +7,241 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.comment_heart, .board_heart {
-	width: 100px;
-	height: 100px;
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
-textarea {
-	width: 400px;
-	height: 400px;
+.board-container {
+	width: 60%;
+	margin: 40px auto 60px auto;
+	padding: 20px 30px;
+	background-color: #fff;
+	border-radius: 16px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: relative;
+}
+
+.margin_left, .margin_right {
+	width: 20%;
+	position: fixed;
+	top: 150px;
+}
+.margin_left {
+	left: 0;
+}
+.margin_right {
+	right: 0;
+}
+.img_left {
+	width: 200px;
+	height: 200px;
+}
+.img_right {
+	width: 150px;
+	height: 600px;
+}
+
+.board-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-bottom: 1px solid black;
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+.board-meta-line {
+	display: flex;
+	justify-content: flex-start;
+	gap: 20px;
+	font-size: 14px;
+	color: #777;
+	padding: 2px 0;
+	text-align: left;
+}
+
+.content {
+	font-size: 16px;
+	line-height: 1.5;
+	padding-top: 10px;
+	text-align: left;
+}
+
+.btn_content_like {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+	padding-top: 10px;
+	align-self: center;
+}
+
+.board_heart {
+	width: 40px;
+	height: 40px;
+	transition: transform 0.2s;
+}
+.board_heart:hover {
+	transform: scale(1.1);
+}
+
+.board-actions {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	display: flex;
+	gap: 10px;
+}
+
+.button-common {
+	padding: 10px 18px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+}
+.button-delete {
+	background-color: #e74c3c;
+	color: white;
+}
+.button-modify {
+	background-color: #3498db;
+	color: white;
+}
+.button-common:hover {
+	opacity: 0.9;
+}
+
+/* 신고 버튼 위치 오른쪽 정렬 (중복 방지해서 하나만 남김) */
+.board-container > .report-button,
+.board-container > button[onclick^="reportUser"],
+.board-container > button[onclick^="alertAndRedirect"] {
+	position: absolute;
+	top: 20px;
+	right: 100px;
+	color: red;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+/* 댓글 전체 영역 */
+.comments-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	border-top: 1px solid black;
+	padding-top: 20px;
+}
+
+/* 댓글 입력 폼 */
+.comment-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.comment-form textarea {
+	width: 100%;
+	max-width: 600px;
+	height: 70px;
+	resize: none;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	font-size: 14px;
+	outline: none;
+}
+.comment-form button {
+	margin-top: 10px;
+}
+
+.comment {
+	background-color: #f9f9f9;
+	padding: 16px 20px;
+	border-radius: 12px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.comment ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	font-size: 13px;
+	color: #555;
+}
+.comment li:first-child {
+	font-weight: bold;
+}
+.comment li:nth-child(2) {
+	font-size: 12px;
+	color: #888;
+}
+.comment li:nth-child(3) {
+	font-size: 14px;
+	margin-top: 4px;
+}
+
+.comment-actions {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	gap: 5px;
+}
+
+.button-small {
+	padding: 6px 10px;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+/* 댓글 좋아요 중앙정렬 */
+.btn_comment_like {
+	background: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	justify-content: center;
+	margin-top: 10px;
+	align-self: center;
+}
+
+.comment_heart {
+	width: 30px;
+	height: 30px;
+	transition: transform 0.2s;
+}
+.comment_heart:hover {
+	transform: scale(1.1);
 }
 </style>
+
+
 
 <script> //신고 부분 Script입니다.
 function alertAndRedirect() {
@@ -48,9 +273,9 @@ function reportUser(usersid, bno) {
 	<jsp:include page="./template/header.jsp"></jsp:include>
 	<div class="board-container">
 
-		<h3 class="board-title">제목 : <span id="title-display">${board.titles }</span></h3>
-		<p class="board-meta-info">작성자 : ${board.usersId }, 작성일 : ${board.bdate }</p>
-		<p class="board-meta-info">조회수 : ${board.bview }</p>
+		<h3 class="board-title"><span id="title-display">${board.titles }</span></h3>
+		<span class="board-meta-info">${board.nickname }</span>
+		<span class="board-meta-info">${board.bdate }</span><span class="board-meta-info">&#128064;${board.bview }회</p>
 		<div class="content"><span id="bpost-display">${board.bpost }</span></div>
 		
 		<!-- 🆕 게시글 수정 input 영역 (숨겨진 상태) -->
@@ -77,29 +302,22 @@ function reportUser(usersid, bno) {
 		</c:choose>
 		<!-- 신고 끝 부분 -->
 
-		<h3 class="board-title">제목 : ${board.titles }</h3>
-		<p class="board-meta-info">작성자 : ${board.usersId }, 작성일 :
-			${board.bdate }</p>
-		<p class="board-meta-info">조회수 : ${board.bview }</p>
-		<div class="content">${board.bpost }</div>
-
-
 		<button type="button" class="btn_content_like">
 			<img src="${pageContext.request.contextPath}/images/heart.png"
-				class="board_heart" alt="하트엑박"> <span>좋아요 개수 :
+				class="board_heart" alt="하트엑박"> <span>
 				${board.blike }</span>
 		</button>
 
 		<div class="board-actions">
 
 			<c:if test="${sessionScope.user != null && sessionScope.user.usersid == board.usersId }">
-				<a href="./BoardDelete.do?bno=${board.bno}" class="button-common button-delete">게시글 삭제 버튼</a>
+				<a href="./BoardDelete.do?bno=${board.bno}" class="button-common button-delete">삭제</a>
 				<!-- 🆕 수정 버튼 -->
-				<a href="#" id="edit-btn" class="button-common button-modify">게시글 수정</a>
+				<a href="#" id="edit-btn" class="button-common button-modify">수정</a>
 			</c:if>	
 		</div>
 		
-		<hr><!-------------- 게시글 댓글 구분 -------------->
+		<!-------------- 게시글 댓글 구분 -------------->
 
 
 		<div class="comments-section">
@@ -117,22 +335,22 @@ function reportUser(usersid, bno) {
 			    <div class="comment" data-bno="${board.bno}"> 
                     <input type="hidden" name="cno" value="${comment.bcno}">
 			        <ul>
-			            <li>작성자 : ${comment.usersId }</li>
-			            <li>작성일 : ${comment.bcdate }</li>	
+			            <li>${comment.nickname }</li>
+			            <li>${comment.bcdate }</li>
+			            <li>${comment.bcpost }</li>
 			            <li>
 			                <button type="button" class="btn_comment_like" data-bcno="${comment.bcno}">
 							    <input type="hidden" name="cno" value="${comment.bcno}">
 							    <img src="${pageContext.request.contextPath}/images/heart.png" class="comment_heart" alt="하트엑박">
-							    <span>좋아요 개수 : ${comment.clike }</span>
+							    <span>${comment.clike }</span>
 							</button>
 			            </li>
 			        </ul>
-			        <p>${comment.bcpost }</p>
 			        
 			        <div class="comment-actions">
 			            <c:if test="${sessionScope.user.usersid == comment.usersId }">
-			                <a href="./BoardCommentDelete.do?bcno=${comment.bcno }&bno=${board.bno}" class="button-common button-delete button-small">댓글 삭제 버튼</a>
-							<a href="#" class="button-common button-modify button-small">댓글 수정</a>
+			                <a href="./BoardCommentDelete.do?bcno=${comment.bcno }&bno=${board.bno}" class="button-common button-delete button-small">삭제</a>
+							<a href="#" class="button-common button-modify button-small">수정</a>
 			            </c:if>
 			        </div>
 			    </div>
@@ -156,7 +374,7 @@ function reportUser(usersid, bno) {
 			const response = await fetch(`./BoardLike.do?bno=\${bno}`);
 			const data = await response.json();
 			alert(data.msg);
-			document.querySelector('.btn_content_like > span').innerHTML = data.count.BLIKE;
+			document.querySelector('.btn_content_like > span').innerHTML = `\${data.count.BLIKE}`;
 		} catch (error) {
 			console.log(error);
 		}
@@ -182,7 +400,7 @@ function reportUser(usersid, bno) {
 		        alert(data.msg);
 
 		        const newLikeCount = (data.bcount && typeof data.bcount.CLIKE !== 'undefined') ? data.bcount.CLIKE : 0;
-		        e.currentTarget.querySelector('span').innerHTML = `좋아요 개수 : \${newLikeCount}`;
+		        e.currentTarget.querySelector('span').innerHTML = `\${newLikeCount}`;
 		    } catch (error) {
 		        console.error("댓글 좋아요 처리 중 오류 발생:", error);
 		    }
