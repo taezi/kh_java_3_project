@@ -112,9 +112,18 @@ tr {
 <body>
 	<div class="container">
 		<jsp:include page="./template/header.jsp"></jsp:include>
+		
+		<!-- 0717 게시글 검색 추가(시작)-->
+		<form action="./AllBoard.do" method="get" class="board-search-form">
+			<div class="board-search-container">
+				<input type="text" name="query" class="board-search-input" placeholder="글제목으로 검색하세요" value="${param.query}">
+				<button type="submit">글제목검색 버튼</button>
+			</div>
+		</form> <!-- 0717 게시글 검색 추가(끝)-->
+	    
 		<div class="mid_container">
 			<div class="margin_left">
-				<a href=""><img src="${pageContext.request.contextPath}/images/add2.jpg" class="img_left" alt="왼쪽엑박"></a>
+				<a href="${pageContext.request.contextPath}/add_left.jsp"><img src="${pageContext.request.contextPath}/images/add2.jpg" class="img_left" alt="왼쪽엑박"></a>
 			</div>
 			
 			<div class="main_container">
@@ -170,7 +179,7 @@ tr {
 			</div>
 			
 			<div class="margin_right">
-				<a href=""><img src="${pageContext.request.contextPath}/images/add1.jpg" class="img_right" alt="오른쪽엑박"></a>
+				<a href="${pageContext.request.contextPath}/add_right.jsp"><img src="${pageContext.request.contextPath}/images/add1.jpg" class="img_right" alt="오른쪽엑박"></a>
 			</div>
 		</div>
 		<jsp:include page="./template/footer.jsp"></jsp:include>
