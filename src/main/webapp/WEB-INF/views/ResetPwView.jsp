@@ -19,6 +19,7 @@
   .container{
     width: 1440px;
     margin: 0 auto;
+    height: 750px; /* footer용*/
     /* border: 1px solid black;  */   /* 크기 확인용 */
   }
   header{
@@ -121,7 +122,7 @@
 			<div class="leftside"></div>
       
 			<div class="searchIdOutbox">
-				<form action="ResetPw.do" method="post">
+				<form action="ResetPw.do" method="post" onsubmit="return valueForm()">
 					<div class="searchIdInBox">
 						<h1>KHMOVIE</h1>
 							<input type="hidden" name="id" value="<%= user.getUsersid() %>">
@@ -135,7 +136,47 @@
 			<div class="rightside"></div>
 			
 		</div>
-		
+	</div>	
 <jsp:include page="./template/footer.jsp"></jsp:include>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.searchIdOutbox form'); // 폼 요소를 선택
+    const Pw = document.getElementById('in_pw');
+    const PwRe = document.getElementById('in_pwre');
+
+      form.addEventListener('submit', function(event) {
+        // 기본 제출 동작을 막습니다. (유효성 검사를 위해)
+        event.preventDefault(); 
+
+        // 1. 입력 필드 값 확인
+         if (Pw.value.trim() === '') {
+          alert('비밀번호를 입력해 주세요.');
+          Pw.focus();
+          return;
+         }
+        if (PwRe.value.trim() === '') {
+          alert('비밀번호를 다시 입력해 주세요.');
+          PwRe.focus();
+          return;
+        }
+        // 2. 비밀번호 일치 여부 확인
+        if (Pw.value !== PwRe.value) {
+          alert('비밀번호가 일치하지 않습니다. 다시 확인해 주세요.');
+          PwRe.focus();
+          return;
+        }
+        const password = Pw.value.trim();
+        const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+        // 2-1 비밀번호 특수문자+숫자+알파벳 조합 추가. (해야함)
+        if (!regex.test(password)) {
+			      alert('비밀번호는 특수문자 + 숫자 + 문자의 조합으로 입력해주세요.');
+			    Pw.focus();
+			    return;
+}
+       // 모든 유효성 검사를 통과하면 폼을 제출합니다.
+        form.submit();
+      });
+  });
+</script>
 </html>

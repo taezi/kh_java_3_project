@@ -224,6 +224,7 @@ ul {
 								id="chk_id">
 						</div>
 						<button type="submit" id="btn_login" class="btn-style">KHLogIn</button>
+						
 
 						<ul class="linebox">
 							<li class="line"><hr></li>
@@ -239,6 +240,7 @@ ul {
 								+ redirectURI + "&state=" + state;
 						%>
 						<a id="btn_naver" class="btn-style" href="<%=apiURL%>">네이버로그인</a>
+						
 						<div class="userbox">
 							<ul>
 								<li><a href="SearchIdView.do">아이디찾기</a></li>
