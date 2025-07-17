@@ -143,6 +143,7 @@ public class BoardService {
 		map.put("bcno", bcno);
 		map.put("bcpost", bcpost);
 		return mapper.UpdateBoardComment(map);
+	}
 
 	public int boardReportPlus(Map<String, Object> map) {
 		return mapper.reportBoardPlus(map);
