@@ -13,6 +13,7 @@
   .container{
     width: 1440px;
     margin: 0 auto;
+    height: 750px; /* footer용*/
     /* border: 1px solid black;  */   /* 크기 확인용 */
   }
   header{
