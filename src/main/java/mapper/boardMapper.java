@@ -14,6 +14,9 @@ public interface boardMapper {
 	
 	int SelectBoardTotalCount(); /* 0712 */
 	
+	int SelectBoardTotalCountByTitle(String query); //0717 게시글 검색 때매 추가함
+	ArrayList<boardDTO> SearchBoardByTitle(Map<String, Object> map); //0717 게시글 검색 때매 추가함
+	
 	int WriteBoard(boardDTO board);
 
 	int UpdateBoardCount(int bno);

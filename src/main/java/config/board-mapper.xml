@@ -15,6 +15,21 @@
 	select count(*) from board_view
   </select>
   
+  <select id="SelectBoardTotalCountByTitle" resultType="int">
+	select count(*) from board_view where titles like #{query}
+  </select>
+
+  <select id="SearchBoardByTitle" resultType="dto.boardDTO">
+  select * from (
+    select row_number() over(order by bno desc) as rw,
+           bno, titles, usersId, bdate, bview, blike
+    from board_view
+    where titles like #{query}
+  )
+  where ceil(rw / #{pageContentEa}) = #{pageNo}
+</select>
+  
+  
   	<select id="selectBoardNo" resultType="int">
 		select seq_board_bno.nextval from dual
 	</select>
