@@ -239,6 +239,50 @@ html, body {
 .comment_heart:hover {
 	transform: scale(1.1);
 }
+/* 댓글 수정 중 버튼 크기 변경 방지 */
+.comment-actions button, .comment-actions a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+/* 게시글 수정 textarea 고정 스타일 */
+#edit-title {
+	padding: 8px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#edit-bpost {
+	resize: none;
+	height: 120px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 14px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* 게시글 수정 저장 버튼 스타일 */
+#save-btn {
+	margin-top: 10px;
+	padding: 10px 18px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 14px;
+	background-color: #3498db;
+	color: white;
+	transition: opacity 0.2s;
+}
+
+#save-btn:hover {
+	opacity: 0.9;
+}
+
 </style>
 
 
@@ -438,16 +482,27 @@ function reportUser(usersid, bno) {
 document.querySelectorAll('.comment-actions .button-modify').forEach(button => {
 	button.addEventListener('click', () => {
 		const comment = button.closest('.comment');
-		const p = comment.querySelector('p');
-		const old = p.innerText;
+		const contentLi = comment.querySelector('ul li:nth-child(3)');
+		const old = contentLi.innerText;
 		const cno = comment.querySelector('input[name="cno"]').value;
 		const bno = comment.dataset.bno;
 
 		// textarea + 저장 버튼 만들기
 		const textarea = document.createElement('textarea');
 		textarea.value = old;
+		textarea.style.width = '100%';
+		textarea.style.resize = 'none'; // ← 사이즈 조절 비활성화
+		textarea.style.minHeight = '60px';
+		textarea.style.maxHeight = '120px';
+		textarea.style.padding = '10px';
+		textarea.style.borderRadius = '8px';
+		textarea.style.border = '1px solid #ccc';
+		textarea.style.fontSize = '14px';
+
 		const save = document.createElement('button');
 		save.innerText = '저장';
+		save.className = 'button-common button-modify button-small';
+		save.style.marginTop = '8px';
 
 		save.onclick = async () => {
 			const bcno = encodeURIComponent(cno);
@@ -456,7 +511,7 @@ document.querySelectorAll('.comment-actions .button-modify').forEach(button => {
 			const res = await fetch('./BoardCommentUpdate.do', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				body: 'bcno=' + bcno + '&bcpost=' + bcpost // ← 템플릿 리터럴 사용 안함
+				body: 'bcno=' + bcno + '&bcpost=' + bcpost
 			});
 			if (res.ok) {
 				alert('수정 성공');
@@ -466,9 +521,13 @@ document.querySelectorAll('.comment-actions .button-modify').forEach(button => {
 			}
 		};
 
-		p.replaceWith(textarea);
-		button.replaceWith(save);
+		// 댓글 내용 교체
+		contentLi.replaceWith(textarea);
 
+		// 수정 버튼 없애고 저장 버튼 추가
+		const actionBox = button.parentElement;
+		button.remove(); // 수정 버튼 제거
+		actionBox.appendChild(save); // 저장 버튼 추가
 	});
 });
 </script>
