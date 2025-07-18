@@ -8,136 +8,131 @@
 <title>게시판 글쓰기</title>
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<style>/* 헤더걍위로아예빼서 다시하기............ */
-	* {
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<style>
+	/* 전체 페이지 기본 설정 */
+	body {
+		font-family: "Noto Sans KR", sans-serif;
 		margin: 0;
 		padding: 0;
-		
-		font-family: 'Noto Sans KR', sans-serif;
-		color: #333;
+		background-color: #f0f2f5; /* 배경색을 약간 회색으로 설정 */
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정하여 푸터를 하단에 고정 */
 	}
-	html, body {
-    	height: 100%;
-    	margin: 0;
-    	padding: 0;
-	}
-	.max_container {
-    	height: 100vh;
 
-    	display: flex;
-    	flex-flow: column nowrap;
-    	font-size: 0px;	
-	}
+	/* 컨테이너 스타일 */
 	.container {
-        flex: 1;
-		box-sizing: border-box;
-        
-        display: flex;
-		flex-flow: row nowrap;
-        font-size: 0px;
-        
-		background-color: #f0f0f0;
+		display: flex;
+		justify-content: center;
+		padding: 20px;
+		flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+		box-sizing: border-box; /* 패딩 포함 크기 계산 */
 	}
+
+	/* 변경된 부분: 좌우 여백을 각각 20%로 설정 */
 	.margin_left, .margin_right {
-		width: 15%;
-		box-sizing: border-box;		
+		flex-basis: 20%; /* 좌우 여백 비율을 20%로 조정 */
+		max-width: 250px; /* 좌우 여백 최대 너비 제한 (기존 150px에서 조금 더 늘림, 필요시 조절) */
 	}
-	form {
 
-		width: 70%;
+	/* 폼 영역 스타일 */
+	form#input {
+		background-color: #fff;
+		border-radius: 22px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 30px;
+		width: 100%;
+		max-width: 900px; /* 폼의 최대 너비 설정 */
 		box-sizing: border-box;
-		
+		border: 1px solid black;/**/
+	}
 
-		display: flex;
-		flex-flow: column nowrap;
-		font-size: 0px;
-		
-		border-radius: 30px; /*급히수정*/
-			
-    	margin: 40px;
-   		box-shadow: 0 0 5px rgba(0,0,0,0.5);
-   		
-   		/*이상하면지워 --> 이거 무족권 들어갔어야했었음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-   		background-color: white; /* 배경색 추가 */
-		overflow: hidden; /* 안쪽에 튀어나오는 거 방지 */
-	}
-	#title {
-		height: 30%;
+	/* 제목 입력 필드 */
+	input#title {
+		width: 100%;
+		padding: 12px 15px;
+		margin-bottom: 20px;
+		border: 1px solid #black;
+		border-radius: 5px;
+		font-size: 20px;
+		font-weight: bold;
+		color: #333;
 		box-sizing: border-box;
-		
-		font-size: 48px;
-		outline: none;
-		
-		border: none;
+		outline: none; /* 포커스 시 아웃라인 제거 */
 	}
+	input#title::placeholder {
+		color: #bbb;
+	}
+
+	/* Toast UI Editor 컨테이너 */
 	#editor {
-		height: 70%;
-		box-sizing: border-box;
-		
-		font-size: 24px;
-		outline: none;
-		
-		border: none;
+		border: 1px solid #ddd; /* 에디터 테두리 추가 */
+		border-radius: 5px;
+		margin-bottom: 20px;
 	}
-	#title::placeholder {
- 		color: lightgray;
-		font-size: 48px;
-	}
+
+	/* 하단 버튼 영역 */
 	.bottom {
-		height: 100px;
-		
 		display: flex;
-		flex-flow: row nowrap;
-		font-size: 0px;
-		
-		justify-content: space-between;
-		
-		border: 1px solid black;
+		justify-content: space-between; /* 버튼들을 양 끝으로 정렬 */
+		width: 100%;
+		/* 좌우 여백 20%를 고려하여 전체 너비의 60%에 해당하는 max-width 설정 */
+		/* (100% - 20% - 20% = 60%, container의 max-width 900px을 기준으로 계산) */
+		max-width: 900px; 
+		margin: 0 auto 30px auto; /* 중앙 정렬 및 하단 여백 추가 */
+		padding: 0 20px; /* 좌우 패딩 추가 */
+		box-sizing: border-box;
 	}
-	#back {
-		width: 110px;
-		height: 50px;
-		margin-left: 60px; /*조정*/
-		margin-top: 20px; /*조정*/
-		
-		border-style: none;
-		background-color: transparent;
-		
-		font-size: 18px;
-		font-weight: bold;
-		color: #5B5B5B;
-		/*color: #333; 이걸로도해보기*/
+
+	/* 버튼 스타일 */
+	.bottom button {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 22px;
+		font-size: 16px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
 	}
-	#register {
-		width: 110px;
-		height: 50px;
-		margin-right: 60px; /*조정*/
-		margin-top: 20px; /*조정*/
-		
-		border-style: none;
-		border-radius: 20px;
-		background-color: #DB1A1A;
-		
-		font-size: 18px;
-		font-weight: bold;
+
+	/* 뒤로가기 버튼 */
+	button#back {
+		background-color: #6c757d; /* 회색 계열 */
 		color: white;
+	}
+	button#back:hover {
+		background-color: #5a6268;
+	}
+
+	/* 등록 버튼 */
+	button#register {
+		background-color: #dc3545; /* 빨간색 계열 */
+		color: white;
+	}
+	button#register:hover {
+		background-color: #c82333;
 	}
 </style>
 <script>
 	window.onload = () => {
 		const editor = new toastui.Editor({
-        	el: document.querySelector('#editor'), //에디터를 #editor에 넣음
+        	el: document.querySelector('#editor'),
         	previewStyle: 'vertical',
-        	height: '500px',
+        	height: '500px', // 에디터 높이
         	initialEditType : 'wysiwyg',
         	placeholder: '당신의 이야기를 적어보세요...'
       	});
 	
-		console.log(editor.getHTML()); //콘솔에 작성된 HTML내용 찍어보기
+		// 콘솔에 작성된 HTML 내용 찍어보기 (개발용)
+		// console.log(editor.getHTML());
 	
 		document.querySelector('#input').onsubmit = (e) => {
-			console.log(editor.getHTML());	
-			document.querySelector('#content').value = editor.getHTML(); //에디터에 작성한 HTML을 숨겨진<input>태그에 넣어서 전송되게함
+			// console.log(editor.getHTML()); // 제출 시 콘솔에 HTML 내용 찍어보기
+			document.querySelector('#content').value = editor.getHTML();
 		};
 	};
 </script>
@@ -151,31 +146,23 @@
 	</c:if>
 
 	
-	<jsp:include page="./template/header.jsp"></jsp:include>
-	
-	<div class="container">	
-		<div class="margin_left"></div>
-		<form id="input" action="./BoardWrite.do" method="post"> <!-- method="post", enctype="multipart/form-data" : 파일도 전송할거라 필요함 -->
-			<input type="text" id="title" name="title" placeholder="제목">					  
-			<div id="editor"></div>
-			<input type="hidden" name="content" id="content"> <!-- <input type="hidden" : 화면에 보이지 않는 입력 태그, 근데 form데이터를 서버로 전송할때는 포함됨 -->	
-		<%--<input type="text" id="content" name="content" placeholder="당신의 이야기를 적어보세요...">--%> <!-- content의 placeholder는 에디터에 넣어버렸음 -->
-			<br>
-		<%--<input type="file" name="file">
-			<input type="file" name="file">
-			<input type="file" name="file">--%> <!-- 첨부파일꼭안해도되지않나...흠 -->
+		<jsp:include page="./template/header.jsp"></jsp:include>
 		
-		</form>
-		<div class="margin_right"></div>
+		<div class="container">	
+			<div class="margin_left"></div>
+			<form id="input" action="./BoardWrite.do" method="post">
+				<input type="text" id="title" name="title" placeholder="제목">					  
+				<div id="editor"></div>
+				<input type="hidden" name="content" id="content">
+			</form>
+			<div class="margin_right"></div>
+		</div>
 		
-		
-	</div>
 		<div class="bottom">
 			<button type="button" id="back" onclick="history.back();">← 뒤로가기</button>
-			<button type="submit" id="register" form="input">등록</button> <!-- form="input" : 위의 form의 id와 이어줌 -->
+			<button type="submit" id="register" form="input">등록</button>
 		</div>
+
 		<jsp:include page="./template/footer.jsp"></jsp:include>
-
-
-</body>
+	 </body>
 </html>
