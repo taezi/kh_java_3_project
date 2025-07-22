@@ -33,4 +33,15 @@ VALUES (#{usersid},standard_hash(#{passwd}, 'SHA512'), #{userName}, #{nickName})
 	  SET passwd = STANDARD_HASH(#{passwd}, 'SHA512')
 	  WHERE usersid = #{usersid}
 	</update>
+	
+    <update id="updateNickname" parameterType="dto.userDTO">
+        UPDATE USERS
+        SET nickname = #{nickName}
+        WHERE usersid = #{usersid}
+    </update>
+
+    <select id="checkNickname" resultType="int" parameterType="string">
+        SELECT COUNT(*) FROM USERS WHERE nickname = #{nickname}
+    </select>
+    
 </mapper>

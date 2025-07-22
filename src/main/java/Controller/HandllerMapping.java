@@ -124,6 +124,12 @@ public class HandllerMapping {
 		case "ResetPw":
 			controller = new ResetPwController();
 			break;
+		case "MyPageView":
+			controller = new MyPageViewController();
+			break;
+		case "MyPageUpdate":
+			controller = new MyPageUpdateController();
+			break;
 		}
 
 		return controller;
