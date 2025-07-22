@@ -20,9 +20,11 @@ body {
 
 .search-page-wrapper {
     max-width: 1200px;
+    
     margin: 0 auto;
     padding: 40px 20px;
     box-sizing: border-box;
+    
 }
 
 .search-title {

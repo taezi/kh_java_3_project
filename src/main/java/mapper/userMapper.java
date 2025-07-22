@@ -25,6 +25,14 @@ public interface userMapper {
 
 	boolean userPwUpdate(Map<String, Object> map);
 
+	
+
+	
+
+	int updateNickname(userDTO userToUpdate);
+
+	int checkNickname(String newNickname);
+
 
 	
 }

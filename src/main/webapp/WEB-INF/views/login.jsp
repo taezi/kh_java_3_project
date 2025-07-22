@@ -207,6 +207,7 @@ ul {
 
 	<div class="container">
 
+
 		<div class="bodyBox">
 			<div class="leftside"></div>
 			<div class="loginOutbox">
@@ -258,9 +259,20 @@ ul {
 	</div>
 
 	<jsp:include page="./template/footer.jsp"></jsp:include>
+  <%
+  Boolean loginFail = (Boolean) session.getAttribute("loginFail");
+  session.removeAttribute("loginFail"); // 한 번 띄운 후 삭제_25.07.21 로그인실패정보
+  %>
   
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+	const loginFail = <%= loginFail != null && loginFail ? "true" : "false" %>;
+	  if (loginFail) {
+	    alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
+	     document.getElementById("in_id").focus();
+	  } //25.07.21 서버에서 전달된 로그인실패시 알림추가
+	  
+	  
     const loginForm = document.querySelector('.loginOutbox form');
     const Id = document.getElementById('in_id');
     const Pw = document.getElementById('in_pw');
