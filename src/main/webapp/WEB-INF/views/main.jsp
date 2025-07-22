@@ -477,7 +477,7 @@
 			
 			<div class="board">
 				<a href="AllBoard.do">
-					KH MVIE 이야기 +
+					KH MOVIE 이야기 +
 				</a>
 				<table>
 					<thead>

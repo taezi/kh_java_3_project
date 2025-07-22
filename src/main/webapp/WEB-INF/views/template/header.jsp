@@ -171,6 +171,10 @@
 					src="${pageContext.request.contextPath}/images/write_icon.png"
 					alt="글쓰기 아이콘">글쓰기
 			</a></li>
+			<li><a href="MyPageView.do"> <img
+					src="${pageContext.request.contextPath}/images/mypage_icon.png"
+					alt="마이페이지 아이콘">마이페이지
+			</a></li>
 			<li class="user-info">${sessionScope.user.nickName }님이로그인하셨습니다.</li>
 			<li><a href="Logout.do"> <img
 					src="${pageContext.request.contextPath}/images/logout_icon.png"
