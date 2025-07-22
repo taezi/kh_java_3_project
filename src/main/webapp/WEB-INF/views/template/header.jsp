@@ -79,7 +79,7 @@
 		margin: 0;
 		padding: 0;
 		display: flex;
-		gap: 25px;
+		gap: 15px;
 	}
 	
 	.user-actions li {
