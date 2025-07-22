@@ -15,9 +15,28 @@ public class BoardWriteController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		//title, content 파라미터롤 읽어옴
+		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
+	    StringBuilder errorMessage = new StringBuilder();
+
+	    
+	    if (title == null || title.trim().isEmpty()) {
+	        errorMessage.append("제목을 입력하세요.\\n");
+	    }
+
+	    
+	    if (content == null || content.trim().isEmpty()) {
+	        errorMessage.append("내용을 입력하세요.");
+	    }
+
+	   
+	    if (errorMessage.length() > 0) {
+	        response.setContentType("text/html; charset=UTF-8");
+	        response.getWriter().write("<script>alert('" + errorMessage.toString() + "'); history.back();</script>");
+	        return null;
+	    }
 		
 		userDTO member = (userDTO) request.getSession().getAttribute("user");
 		String id = member.getUsersid();

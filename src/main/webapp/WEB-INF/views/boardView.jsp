@@ -28,6 +28,7 @@ html, body {
 	flex-direction: column;
 	gap: 20px;
 	position: relative;
+	min-height: 720px;
 }
 
 .margin_left, .margin_right {

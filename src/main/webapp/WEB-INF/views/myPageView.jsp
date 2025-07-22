@@ -11,13 +11,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <style>
     /* .container, .main_container 등 전체적인 레이아웃 스타일 추가 (기존 스타일에서 일부 누락된 부분 채워넣음) */
+   	* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box; 
+	font-family: 'Noto Sans KR', sans-serif; /* 페이지 전체에 Noto Sans KR 적용 */
+	
+	}
     .container {
         display: flex;
         justify-content: center;
         align-items: flex-start; /* 상단 정렬 */
         width: 100%;
-        min-height: 800px; /* 최소 높이 설정 */
-        padding: 20px 0;
+        min-height: 720px; /* 최소 높이 설정 */
+        padding: 60px 0;
     }
 
     .main_container {
