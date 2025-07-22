@@ -271,8 +271,7 @@ ul {
 	    alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
 	     document.getElementById("in_id").focus();
 	  } //25.07.21 서버에서 전달된 로그인실패시 알림추가
-	  
-	  
+	    
     const loginForm = document.querySelector('.loginOutbox form');
     const Id = document.getElementById('in_id');
     const Pw = document.getElementById('in_pw');
